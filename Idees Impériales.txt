@@ -1,0 +1,210 @@
+telephone
+
+ORGA :	- (Need plus de connaissances en cpp, et voir avec coco)
+	- 
+	-
+
+
+OPTI :	- Pré - calcul en grille
+	- Calcul en carte graphique
+	- Spatial Subdivision
+
+RENDU :	- Distributed Raytracing (permet ombres floues, reflexion / transp plus realiste, et motion blur)
+	- Cel shading (Très simple à faire imo avec juste une filtre de sobel, voir si il y a moyen de faire mieux)
+	- Random (random + distributed = jouissance)
+
+
+INTERF:	- Import de scène / export d'image (hf parsing)
+	- 3 fléches qui partent de l'origine
+	- 
+
+
+
+(using multiple rays to determine a color) is acalled distribution ray tracing, or Monte Carlo ray tracing. What we are trying to do is to resolve an integral: 
+We are estimating the area of the surface of the light source that we can see from a certain point. This is very hard to solve analytically. Monte Carlo says that when you take enough random samples, 
+the average will converge to the correct solution.
+
+
+Dans les cases de la grille on a dit qu'on enregistrait tous les objets rencontrés (easy)
+Est-ce qu'on pourrait pas enregistrer aussi ombre (couple obj/lumiere qui fait de l'ombre), reflexion/transparence (obj)
+	Enrgistrer triangles ? (à mon avis ça ferait de la merde)
+
+
+Calculer l'ombre avant la lumiere ? (si l'objet est caché, pas besoin de calculer le cos avec l'angle de la lumiere
+
+
+
+ENCORE MEILLEURE IDEE : Mettons qu'on bosse sur des cases de 100x50. #define PRECISION 10% Calculer PRECISION% des pixels et save les infos comme décrit en bas
+			Save aussi les pixels ! Pas besoin de les recalculer, ces petits batards. Donc on precalcule (0, 0), (10, 0), (20, 0), ...
+														     (0, 5), (10, 5), (20, 5), ...
+
+
+
+
+A implementer : Ombres floues, calcul sur carte graphique, motion blur 
+
+
+
+Orga du truc -> Penser à l'interface, aux tests (sans devoir attendre 15 ans à chaque fois), à l'opti
+
+Pour créer la scène : se déplacer librement dedans (avec flèches / ZQSD + souris) sans gestion des trucs qui bouffe des calculs (juste une lumiere et les formes)
+		      
+si on peut se déplacer dans la scène : wolf en raytracing !
+
+--> A tester : est-ce que ce systeme detecte bien tous les obj (genre s'il y a un objet que sur 5 px peut etre qu'on le detectera pas)
+		Si non, gros impact sur le dessin ? -> Comparatif avec / sans grille
+
+
+RECAP:
+
+*A* = LISTE OBJ PRINCIPALE
+*B* = LISTE OBJ SECONDAIRE 
+*C* = LISTE REFLEXION
+
+
+On a notre liste (A) d'objets. On dessine sur une fraction de l'écran (genre 1/8 ou 1/16) le résultat carré par carré. Pour chaque rayon, on ajoute l'obj rencontré dans
+une liste (B) s'il n'est pas déjà présent. Si l'objet a une reflexion
+
+
+
+Plan d'attaque :
+
+	Lancer rayon, chopper obj rencontré
+	if (!(obj dans *B*))
+		*B*.add(obj)
+	if (obj.reflec > 0)
+		{
+			*C* découlant de obj
+			Chopper l'new_obj rencontré
+				if (!(new_obj dans *C*))
+					*C*.add(obj)
+					PROBLEME : Il faut créer une liste pour chaque sous-couche de reflection
+					Ici il faut répéter toutes les étapes pour le nouveau rayon, ça risque de foutre la merde dans les listes mais BELIEVE
+		}
+	if (obj.transp > 0)
+		{
+			Meme process
+		}
+	Opti des lumieres
+	while (lux)
+		{
+			if (!(lux dans obj) && cos entre obj et lumiere > 0.2)
+				obj.add(lux)
+			if (est à l'ombre)
+				obj.lux(celle là specifiquement).hasShadow = 1 (au cas ou il n'y ait pas d'ombre ça évite de les calc pour rien)
+		}
+	
+
+
+
+DONC POUR TRACER UNE CASE ON DOIT AVOIR :
+	Un point de départ, une largeur, une hauteur;
+	Une liste d'objets qui contient, en plus des infos de l'objet :
+										-Une liste des objets réfléchis ***
+										-Une liste des objets transparancé ***
+										-Une liste des lumières qui éclairent l'objet
+											-Pour chaque lumiere une liste chainee des objets entre la lumiere et l'obj (?)
+
+ *** : Cette liste contient elle même le même genre d'infos
+
+	
+	Du coup pour les calculs on ne bosse que sur cette liste d'objet, pour les lumières que sur celles qui éclairent, et pour les ombres que les objets entre la lumiere et l'obj
+
+
+
+sinon filtre de sobel, motion blur -> en surcouche
+
+
+
+
+
+distributed raytracing : l'idée c'est, pour les ombres et la transparence/reflexion, de renvoyer plusieurs rayons et d'en faire la moyenne. Ce que je propose,
+c'est d'envoyer TOTAL_RAYON_DISTRIBUTED, et pour chaque NB_DISTRIBUTED_YOLO rayons qui partent random dans un cone, 1 rayon part tout droit (à calculer une seule fois, ofc)
+
+Donc il faut faire une fonction qui, à partir un d'un cone (faire varier l'ouverture pour voir), renvoit un vecteur random dans le cône
+Après c'est easy-peasy, on balance les vecteurs à partir du point d'intersection et on fait la moyenne de tout ce que nous renvoie ces vecteurs
+
+Aller, go coder ça:
+
+/* AU PIRE POURQUOI JE ME FAIS CHIER AVEC UN CONE ? 
+	-> Je définis un angle max (disons 30°)
+	-> Je random l'angle (donc entre -15° et 15°) pour chaque axe
+	-> Profit
+
+*/
+
+t_pos	getRandomVecFromDir(t_pos *dir, float angle)
+{
+// mettons que angle = 30
+
+	t_pos	vec;
+	float	middle = angle / 2;
+
+	vec = *dir; //copie
+
+	vec.rotate(RAND % angle - middle, RAND % angle - middle, RAND % angle - middle)
+
+	return (vec);
+}
+
+
+classe vecteur :Attributs :
+				-double x
+				-double y // structure serait mieux
+				-double z 
+
+
+		Methodes :
+				-Rotate(x, y, z) // tout est privé ici
+				-Normalize()
+				-Reverse()
+
+
+classe objet : Attributs :	-Toutes les infos, il y en peut etre un peu trop par contre
+			
+
+		Méthodes :	-ToOrigine() // renvoie une copie ?
+				
+
+classe color : Attributs :	-r
+				-g
+				-b
+
+		Méthodes :	-Mix(liste color / color)
+
+classe lux :
+
+classe rayon : Attributs :	-vecteur DIRECTION
+				-(reference / pointeur vers) objet OBJ rencontré
+				-point INTERSECTION
+				-double K
+				-vecteur NORMAL
+				-rayon REFLECHI
+				-rayon TRANSMIS
+				-color COLOR
+
+		Méthodes :	-SetIntersecObjNormalK()
+				-ApplyLuxEffects(lux)
+				-SetReflectedRay()
+				-SetTransmittedRay()
+				-SaveInfosToBigArray(doubletabpixel)
+				-SaveInfosForGrid(??)
+
+
+
+Ombres floues : 2 manières -> soit avec en "distribuant" les rayons, soit en prenant des points random sur l'objet qui eclaire (imo ça devrait marcher avec methode 1)
+
+
+Motion blur : est-ce que en calculant juste 2 positions pour un obj et en faisant la moyenne ça rend un truc cool ? (genre il compte comme un demi objet quand on passe devant)
+
+
+Question: est - ce que   
+				#DEFINE CHELMI 5
+				#DEFINE MICHEL CHELMI / 2
+recalule michel à chaque appel ?
+
+http://www.cs.otago.ac.nz/cosc342/2015-notes/342-2015lect16.pdf
+https://www.cs.cmu.edu/afs/cs/academic/class/15462-s09/www/lec/13/lec13.pdf
+http://users.jyu.fi/~tro/gtk03/raytracing.pdf
+http://www.kevinbeason.com/smallpt/
+http://heigeas.free.fr/laure/ray_tracing/realisation.htm
