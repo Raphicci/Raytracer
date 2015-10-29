@@ -1,0 +1,39 @@
+// premières idées que je balance comme ça, sans pression
+
+
+Bon je persiste à penser qu'il faut une classe rayon, on ne peut pas se passer du t_ray_data du rt
+
+
+Sinon, pour les classes:
+
+
+
+
+
+class Object:
+		Attributes:
+				-Point pos (je suppose que la classe Point existe)
+				-Vector rot (vector pour la rot ?)
+				-Limites lim (go créer une classe limite)
+				-t_cons constantes (structures pour les constantes ? je vois pas l'interet d'une classe)
+				-Color col (go créer une classe color)
+				-Texture text (go créer une classe texture)
+		Méthodes :
+				-Tous les 7h et Guetteurs
+				-FindIntersection(Vector v)  (à override) return un point
+				-FindNormale() (à override)		  return un vector
+
+class Rayon:
+		Attributes :	
+				-Vector dir
+				-Point intersection
+				-Vector normale
+				-*Object obj (pointeur sur obj rencontré)
+				-double k (distance à l'obj trouvé)
+				-bool outside (bool pour les limites)
+				-Float ombre (set à 0, modifié à chaque ombre, on arrete de caculer dès qu'il est >= 1)
+		Méthodes :
+				-7h / Guetteurs
+				-???
+
+idée, peut etre completement conne, save tous les rayons dans un fichier, qu'on pourrait réimporter à partir de l'interface, et faire des trucs avec
