@@ -1,0 +1,58 @@
+//A partir d'une direction et d'un angle, retourne un vecteur random qui va a peu près vers la direction
+//Utile pour ombres floues, reflexion/transparence plus réaliste
+Vector	getRandomVecFromDir(Vector *dir, float angle)
+{
+	Vector	vec;
+	float	half = angle / 2;
+
+	vec = *dir; //copie
+
+	vec.rotate(RAND % angle - half, RAND % angle - half, RAND % angle - half)
+
+	return (vec);
+}
+
+
+
+//L'idée c'est de couper la scène en boites, de précalculer si un obj est dans la boite (#moins de calculs)
+Box	createBigBox(liste d'objets)
+{
+	Parcourir listeObjet;
+	récupérer plus petit x / y / z, plus grand x / y / z    // prendre en compte la taille de l'obj
+
+	box.corner1 = petit x / y / z // coin en bas à gauche
+	box.corner2 = grand x / y / z // coin au fond en haut à droite
+	return (box);
+}
+ListBox	createBoxesInsideBox(Box bigBox) // AKA BoxCeption
+{
+	listBox liste[4];
+	lenght = abs (bigBox.corner1.x - bigBox.corner2.x);
+	width = abs (bigBox.corner1.y - bigBox.corner2.y);
+
+	liste[0].corner1.x = ;
+	liste[0].corner1.y = ;
+	liste[0].corner1.z = ;
+	liste[0].corner2.x = ;
+	liste[0].corner2.y = ;
+	liste[0].corner2.z = ;
+}
+Bool	objInsideBox(Object obj, Box box)
+{
+	??
+}
+
+
+//filtre de sobel pour cel-shading
+int[][] sobel3x3(int[][] input, int W, int H) {
+	int[][] output = new int[W][H];
+	for (int y = 1; y < H - 1; y++) {
+		for (int x = 1; x < W - 1; x++) {
+			int gx = ((input[x+1][y-1]-input[x-1][y-1]) + 2 * (input[x+1][y]-input[x-1][y]) + (input[x+1][y+1]-input[x-1][y+1]))/4;
+			int gy = ((input[x-1][y+1]-input[x-1][y-1]) + 2 * (input[x][y+1]-input[x][y-1]) + (input[x+1][y+1]-input[x+1][y-1]))/4;
+			int gn = (int) Math.sqrt(gx*gx + gy*gy);
+			output[x][y] = gn;
+		}
+	}
+	return output;
+}
