@@ -1,0 +1,62 @@
+3 Grosses Parties:
+
+
+	1) Parsing
+
+VADE RETRO SATANAS
+
+
+	2) Initialisation / Précalculs
+
+Init tableaux de pointeurs sur fonctions, et d'autres trucs mais osef
+
+Précalculs d'infos sur les triangles (normale, scal entre cotés, etc...)
+Précalculs des positions des objets pdt la vidéo
+
+
+	3) Calculs / Rendu
+
+C'est là qu'on commence à se marrer:
+
+En utilisant les threads, pour chaque pixel de l'écran, on lance la fonction "anti_aliasing" qui va return une couleur.
+"anti-aliasing" lance "process_ray" qui calcul la direction du vecteur directeur, puis "get_pix" qui est notre fonction principale
+Il fait ça pour un nombre de rayons par pixel et return la moyenne.
+
+
+get_pix : prend en parametre 	-une structure qui contient toutes les infos de la scène (t_data)
+				-une structure qui contient le vecteur directeur et son origine (t_dir)
+				-un int qui sert probablement à quelquechose (ref)
+				-une structure objet qui n'est set que pdt reflexion ou transp (t_obj)
+L'objectif de get_pix est de remplir les informations d'une structure, t_ray_data, et de la return.
+Fonctionnement : il parcourt la liste d'objet et calcule la distance à chacun d'entre eux. Il save l'objet le plus proche, et donne toutes ces infos à t_ray_data.
+Il envoie ensuite t_ray_data à "final_color" (la deuxieme grosse fonction) qui va calculer la couleur.
+
+
+final_color : prend en param	-t_data
+				-t_ray_data
+				-le vecteur directeur
+				-l'origine du vecteur directeur
+
+
+Fonctionnement : calcul pos intersection, la normale, la couleur issue de la reflection / transparence, et appelle "lumos" en lui envoyant les infos calculées.
+
+ 
+lumos : prend en parametre	-t_data
+				-la normale
+				-t_ray_data
+				-une strucure qui contient les infos nécessaire au calcul de la couleur finale (t_lux_data)
+
+
+Fonctionnement : Pour chaque lumière, calcule phong, la valeur de l'ombre, et l'angle entre l'obj et la lumiere
+		 Appelle ensuite "launch_modify_col" qui va appliquer les infos et chopper les textures
+
+
+C'est à peu près tout pour le fonctionnement de base, le reste est externe à l'algo central.
+
+
+
+
+
+Trucs à la con qu'il faut changer dans le rt : 
+TRUC SUPER CON : On fait les calculs de lumière même si l'ombre est >= 1
+Dans les calculs on sépare tout le code en 2 pour des fonctions presques sembables, à cause des OBJ. Il doit y avoir moyen d'empecher ça avec un bon héritage
