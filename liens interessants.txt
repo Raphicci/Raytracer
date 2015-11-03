@@ -9,3 +9,9 @@ http://www.cs.otago.ac.nz/cosc342/2015-notes/342-2015lect16.pdf
 
 http://users.jyu.fi/~tro/gtk03/raytracing.pdf 
 (A-A, motion blur, ombres floues, distribution)
+
+https://en.wikipedia.org/wiki/Bounding_volume
+(Bounding volume)
+
+http://www.cs.rpi.edu/~cutler/classes/advancedgraphics/S11/final_projects/wright_lynn.pdf
+(A-A, Réfraction, Motion blur, Glossy Reflections, Depth of Field)

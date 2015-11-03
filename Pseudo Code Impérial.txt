@@ -14,6 +14,8 @@ Vector	getRandomVecFromDir(Vector *dir, float angle)
 
 
 
+
+
 //L'idée c'est de couper la scène en boites, de précalculer si un obj est dans la boite (#moins de calculs)
 Box	createBigBox(liste d'objets)
 {
@@ -39,8 +41,23 @@ ListBox	createBoxesInsideBox(Box bigBox) // AKA BoxCeption
 }
 Bool	objInsideBox(Object obj, Box box)
 {
-	??
+	damn c'est compliqué ça.
+	imo le plus simple c'est de mettre des box pour tout, et après c'est easy
+	genre une sphere sa boite c'est centre -/+ rayon (en x y z) pour le coin en haut et en bas.
+	après il suffit de determiner si un des 4 coins est dans la box (xmin<=x<=xmax && ymin<=y<=ymax && zmin<=z<=zmax)
+	Vu qu'on a la boite, est-ce que tester l'intersection avec la boite avant celle avec la sphere vaut le coup ?
 }
+double	inter_box() //cf inter_box.c
+{
+	précalculer l'inverse du vecteur directeur, au cas ou il y ait (et il y aura) plusieurs boites.
+	calculer tmax, faire le test if tmax < 0, et tmin après
+
+	globablement, voir s'il n'y a pas plus efficient
+}
+// SI UNE BOITE NE CONTIENT PAS D'OBJET, LA SUPPRIMER DE LA LISTE
+
+
+
 
 
 //filtre de sobel pour cel-shading
@@ -56,3 +73,32 @@ int[][] sobel3x3(int[][] input, int W, int H) {
 	}
 	return output;
 }
+
+
+
+GRILLE :
+On bosse case par case (genre 50x50). On calcule une partie des points. Pour ces points là on save quelle(s) box on croise (par ordre de rencontre,
+ce sera important pour la suite).
+Ensuite pour les autres pixels on avance box par box tant qu'on a pas trouvé d'obj, et dès qu'on en a trouvé un 
+on prend le plus proche dans la box.
+
+
+REFLEXION:
+Ajouter aux objets qui ont une reflexion une constante (genre glossy) qui plus elle sera proche de 1 plus la proportion de rayons random sera grande.
+Un miroir serait à 0, une vitre à 1 (fin a tester mais ça me parait logique)
+CALCULER AVEC QUEL(S) OBJET IL Y A LINTERSECTION POUR LES 4(8?) VECTEURS LES PLUS EXCENTRES, ET NE CHERCHER L'INTER QU'AVEC CEs OBJETs
+Calculer avec quel(s) objet(s) il y a intersection pour les 4(8 ?) vecteurs les plus excentrés, et ne chercher l'inter qu'avec ces objets pour le reste des rayons
+
+
+
+MOTION BLUR : 
+Donner aux objets une vitesse en VALUE/FRAME pour chaque axe
+Quand on rencontre un objet, s'il a une vitesse, on choppe la couleur puis on recalcule le pixel mais pour l'objet dans sa position une frame 
+plus tard, et on fait la diff des deux (étaler sur plus de positions pour une meilleur image ?
+
+
+
+EDITION DE SCENE :
+Notamment pour mettre en place une vidéo, pouvoir éditer la scène en live live en calculant que grossièrement le rendu(une lumière, pas d'ombre, par de 
+reflexion/transp) voir remplacer les objets par des cubes, ça pourrait être cool
+
