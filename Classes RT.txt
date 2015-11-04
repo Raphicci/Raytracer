@@ -9,7 +9,7 @@ Sinon, pour les classes:
 
 
 
-class Object:
+class Object:			toutes les infos pour 1 objet (hérité par chaque objet)
 		Attributes:
 				-Point pos (je suppose que la classe Point existe)
 				-Vector rot (vector pour la rot ?)
@@ -20,7 +20,7 @@ class Object:
 		Méthodes :
 				-Tous les 7h et Guetteurs
 				-FindIntersection(Vector v)  (à override) return un point
-				-FindNormale() (à override)		  return un vector
+
 
 class Rayon:
 		Attributes :	
@@ -66,7 +66,7 @@ class Point : //Pareil, hériter de Vector3 ?
 				-Void RotateAroundOrigin(double x, double y, double z);
 				-Void RotateAroundPoint(double x, double y, double z, Point p);
 
-class Color :
+class Color : //herite de Color sfml
 		Attributes :
 				-int r
 				-int g
@@ -74,9 +74,14 @@ class Color :
 				-int color (utile ?)
 		Méthodes :
 				-Void Mix(Color c)   ou (List<Color> c)
-				-Void PreventOverflow(); //si une composante est > 255, la remettre à 255 et diminuer les autres du même rapport d'échelle
-				-Void Multiply(float coef); //utiliser plutot surcharge d'opérateur
+				-Void PreventOverflow(); //si une composante est > 255, la remettre à 255 et diminuer les autres du même rapport d'échelle //Pas besoin, déja géré par le '*' de la sfml
 
+
+
+
+
+
+Class Data : Toutes les infos (pas de meéthodes)
 
 
 
