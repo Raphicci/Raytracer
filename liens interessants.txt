@@ -15,3 +15,9 @@ https://en.wikipedia.org/wiki/Bounding_volume
 
 http://www.cs.rpi.edu/~cutler/classes/advancedgraphics/S11/final_projects/wright_lynn.pdf
 (A-A, Réfraction, Motion blur, Glossy Reflections, Depth of Field)
+
+https://www-s.ks.uiuc.edu/Research/vmd/projects/ece498/raytracing/RTonGPU.pdf
+(Calcul GPU, plein d'autres trucs)
+
+http://raytracey.blogspot.fr/2011/07/writing-real-time-path-tracing-demos.html
+(Real Time RayTracing)

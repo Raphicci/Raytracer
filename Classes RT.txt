@@ -9,7 +9,6 @@ Sinon, pour les classes:
 
 
 
-
 class Object:
 		Attributes:
 				-Point pos (je suppose que la classe Point existe)
@@ -35,5 +34,56 @@ class Rayon:
 		Méthodes :
 				-7h / Guetteurs
 				-???
+
+
+class Vector : //La classe Vector3 de la SMFL ne contient que des surcharges d'opérateur, heriter de cette classe pour y rajouter de méthodes ?
+		Attributes :
+				-x
+				-y   // hérité de Vector3
+				-z
+				-isNormalized
+		Méthodes :
+				-7h / Guetteurs
+				-Constructeur : soit () -> 0, 0, 0  soit (x, y, z)  soit (Vector A, Vector B)
+				-Void Normalize();
+				-Bool isNormalized();
+				-Void Reverse();
+				-Double Scalaire(vector vec); //question : fonction scalaire à part ou en méthode ?
+				-Vec ProduitVec(vector vec); // même interrogation qu'au dessus
+				-Void RotateX(double ang);
+				-Void RotateY(double ang);
+				-Void RotateZ(double ang);
+				-Void Rotate(double angX, double angY, double angZ);
+
+class Point : //Pareil, hériter de Vector3 ?
+		Attributes :
+				-x
+				-y
+				-z
+		Méthodes :
+				-7h / Guetteurs
+				-Void Translate(double x, double y, double z); // séparer en trois méthodes pour x, y, z ?
+				-Void RotateAroundOrigin(double x, double y, double z);
+				-Void RotateAroundPoint(double x, double y, double z, Point p);
+
+class Color :
+		Attributes :
+				-int r
+				-int g
+				-int b
+				-int color (utile ?)
+		Méthodes :
+				-Void Mix(Color c)   ou (List<Color> c)
+				-Void PreventOverflow(); //si une composante est > 255, la remettre à 255 et diminuer les autres du même rapport d'échelle
+				-Void Multiply(float coef); //utiliser plutot surcharge d'opérateur
+
+
+
+
+
+
+Question : est ce que les classes sans méthodes ont un interet ? (encapsulation ?)
+
+
 
 idée, peut etre completement conne, save tous les rayons dans un fichier, qu'on pourrait réimporter à partir de l'interface, et faire des trucs avec
