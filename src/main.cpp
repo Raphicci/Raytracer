@@ -5,13 +5,9 @@
 ** Login   <vasseu_g@epitech.net>
 **
 ** Started on  Thu Jun 18 17:44:25 2015 Adrien Vasseur
-** Last update Fri Nov  6 16:42:22 2015 Antoine Lempereur
+** Last update Fri Nov  6 17:28:08 2015 Adrien Vasseur
 */
 
-#include	<SFML/Graphics.hpp>
-#include	<vector>
-#include	<iostream>
-#include	"Window_Config.h"
 #include	"displayer/Window.h"
 #include	"displayer/EnvChecker.h"
 

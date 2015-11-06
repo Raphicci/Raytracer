@@ -5,7 +5,7 @@
 ** Login   <zanard_a@epitech.net>
 **
 ** Started on  Thu Jun 11 11:52:31 2015 Antoine Zanardi
-** Last update Fri Nov  6 16:41:52 2015 Antoine Lempereur
+** Last update Fri Nov  6 17:24:53 2015 Adrien Vasseur
 */
 
 #ifndef				WINDOW_H_
@@ -18,9 +18,6 @@
 # include			<SFML/Graphics.hpp>
 
 # include			"Window_Config.h"
-# include			"Gui.h"
-# include			"displayer/MapRenderer.h"
-# include			"network/NetworkManager.h"
 
 namespace			Displayer
 {
@@ -35,8 +32,6 @@ namespace			Displayer
   private:
     sf::RenderWindow		*window;
     Displayer::Window_Config	*config;
-    Displayer::MapRenderer	*m_renderer;
-    Network::NetworkManager	*m_network;
   };
 };
 

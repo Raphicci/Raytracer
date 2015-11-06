@@ -5,7 +5,7 @@
 ## Login   <adrien.vasseur@epitech.net>
 ##
 ## Started on  Tue Apr 14 16:47:57 2014 Adrien Vasseur
-## Last update Fri Nov  6 16:56:18 2015 Antoine Lempereur
+## Last update Fri Nov  6 17:23:03 2015 Adrien Vasseur
 ##
 
 ifeq ($(CC), clang++)
@@ -15,20 +15,16 @@ CC		=	g++
 CPPFLAGS	=	-W -Wextra -Wall -g -std=c++11
 endif
 
-NAME		=	raytracer_putain_ma_gueule_ça_fait_plaisir
+NAME		=	raytracer
 
-CPPFLAGS	+=	-I./include/ -I./lib/SFML-2.3/include/
-CPPFLAGS	+=	-L./lib/SFML-2.3/lib/
-CPPFLAGS	+=	-lsfml-network-s -lsfml-graphics-s -lsfml-window-s -lsfml-system-s
-CPPFLAGS	+=	-ludev -lpthread -lX11 -lXrandr -lxcb -lGL -lX11-xcb
-CPPFLAGS	+=	-lxcb-randr -lxcb-image -ljpeg
-CPPFLAGS	+=	-lm -lstdc++ -DSFML_STATIC
+CPPFLAGS	+=	-I./include/
+CPPFLAGS	+=	-lsfml-network -lsfml-graphics -lsfml-window -lsfml-system
+CPPFLAGS	+=	-lX11
 
 SRC		=	src/main.cpp \
 			src/Window_Config.cpp \
 			src/displayer/EnvChecker.cpp \
-			src/displayer/Window.cpp \
-			src/network/NetworkManager.cpp \
+			src/displayer/Window.cpp
 
 OBJS		=	$(SRC:.cpp=.o)
 

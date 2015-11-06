@@ -1,14 +1,13 @@
-//
-// Window_Config.cpp for prototype in /home/zanard_a/rendu/Projets_TEK1/prototype
-//
-// Made by Antoine Zanardi
-// Login   <zanard_a@epitech.net>
-//
-// Started on  Thu Jun 11 12:16:55 2015 Antoine Zanardi
-// Last update Thu Jun 11 19:49:05 2015 Raphael Thiebault
-//
+/*
+** Window_Config.cpp for prototype in /home/zanard_a/rendu/Projets_TEK1/prototype
+**
+** Made by Antoine Zanardi
+** Login   <zanard_a@epitech.net>
+**
+** Started on  Thu Jun 11 12:16:55 2015 Antoine Zanardi
+** Last update Fri Nov  6 17:27:45 2015 Adrien Vasseur
+*/
 
-#include	<map>
 #include	"Window_Config.h"
 
 namespace Displayer
