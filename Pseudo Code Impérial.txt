@@ -1,3 +1,51 @@
+// CODE EN BAS
+
+
+
+GRILLE :
+On bosse case par case (genre 50x50). On calcule une partie des points. Pour ces points là on save quelle(s) box on croise (par ordre de rencontre,
+ce sera important pour la suite).
+Ensuite pour les autres pixels on avance box par box tant qu'on a pas trouvé d'obj, et dès qu'on en a trouvé un 
+on prend le plus proche dans la box.
+// Globalement je pense que l'idée boite / grille est une bonne idée mais need y réfléchir un max avant de l'implémenter
+
+
+REFLEXION: (tout pareil pour transparence)
+Ajouter aux objets qui ont une reflexion une constante (genre glossy) qui plus elle sera proche de 1 plus la proportion de rayons random sera grande.
+Un miroir serait à 0, une vitre à 1 (fin a tester mais ça me parait logique)
+CALCULER AVEC QUEL(S) OBJET IL Y A LINTERSECTION POUR LES 4(8?) VECTEURS LES PLUS EXCENTRES, ET NE CHERCHER L'INTER QU'AVEC CEs OBJETs
+Calculer avec quel(s) objet(s) il y a intersection pour les 4(8 ?) vecteurs les plus excentrés, et ne chercher l'inter qu'avec ces objets pour le reste des rayons
+Créer classe ReflectHandler ? Il contiendrait plein d'infos servant à ne pas avoir à recalculer des trucs pdt la ref
+
+
+MOTION BLUR :
+Donner aux objets une vitesse en VALUE/FRAME pour chaque axe
+Quand on rencontre un objet, s'il a une vitesse, on choppe la couleur puis on recalcule le pixel mais pour l'objet dans sa position une frame 
+plus tard, et on fait la diff des deux (étaler sur plus de positions pour une meilleur image ?).
+Problème : ça marche pas pour la position "future" de l'objet, du coup mettre l'objet dans une boite qui englobe toutes les positions au cours du temps,
+Imo ça devrait marcher mais pour etre joli il va falloir un max de calculs :(
+
+
+
+EDITION DE SCENE :
+Notamment pour mettre en place une vidéo, pouvoir éditer la scène en live live en calculant que grossièrement le rendu(une lumière, pas d'ombre, pas de 
+reflexion/transp) voir remplacer les objets par des cubes, ça pourrait être cool
+
+
+
+LUMIERE :
+Ne plus diviser par le nombre de lumières, remplacer par un prevent overflow après tous les calculs. Gérer l'intensité des lumières
+
+
+
+OMBRES :
+Donc pour les ombres floues on envoie plusieurs rayons, un peu random, au lieu d'un seul. Comment opti ? Checker les 4(8?) rayons excentré,
+et s'ils sont tous à l'ombre / pas à l'ombre, pas besoin de calc le reste. Sinon, save quel(s) objet(s) bloque(nt) la lumière et ne refaire les tests que sur
+ceux là.
+Pareil, créer une classe ShadowHandler ?
+
+
+
 //A partir d'une direction et d'un angle, retourne un vecteur random qui va a peu près vers la direction
 //Utile pour ombres floues, reflexion/transparence plus réaliste
 Vector	getRandomVecFromDir(Vector *dir, float angle)
@@ -73,32 +121,3 @@ int[][] sobel3x3(int[][] input, int W, int H) {
 	}
 	return output;
 }
-
-
-
-GRILLE :
-On bosse case par case (genre 50x50). On calcule une partie des points. Pour ces points là on save quelle(s) box on croise (par ordre de rencontre,
-ce sera important pour la suite).
-Ensuite pour les autres pixels on avance box par box tant qu'on a pas trouvé d'obj, et dès qu'on en a trouvé un 
-on prend le plus proche dans la box.
-
-
-REFLEXION:
-Ajouter aux objets qui ont une reflexion une constante (genre glossy) qui plus elle sera proche de 1 plus la proportion de rayons random sera grande.
-Un miroir serait à 0, une vitre à 1 (fin a tester mais ça me parait logique)
-CALCULER AVEC QUEL(S) OBJET IL Y A LINTERSECTION POUR LES 4(8?) VECTEURS LES PLUS EXCENTRES, ET NE CHERCHER L'INTER QU'AVEC CEs OBJETs
-Calculer avec quel(s) objet(s) il y a intersection pour les 4(8 ?) vecteurs les plus excentrés, et ne chercher l'inter qu'avec ces objets pour le reste des rayons
-
-
-
-MOTION BLUR : 
-Donner aux objets une vitesse en VALUE/FRAME pour chaque axe
-Quand on rencontre un objet, s'il a une vitesse, on choppe la couleur puis on recalcule le pixel mais pour l'objet dans sa position une frame 
-plus tard, et on fait la diff des deux (étaler sur plus de positions pour une meilleur image ?
-
-
-
-EDITION DE SCENE :
-Notamment pour mettre en place une vidéo, pouvoir éditer la scène en live live en calculant que grossièrement le rendu(une lumière, pas d'ombre, par de 
-reflexion/transp) voir remplacer les objets par des cubes, ça pourrait être cool
-
