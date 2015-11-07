@@ -5,7 +5,7 @@
 ## Login   <adrien.vasseur@epitech.net>
 ##
 ## Started on  Tue Apr 14 16:47:57 2014 Adrien Vasseur
-## Last update Fri Nov  6 17:23:03 2015 Adrien Vasseur
+## Last update Sat Nov  7 13:28:00 2015 Corentin Descamps
 ##
 
 ifeq ($(CC), clang++)
@@ -24,7 +24,8 @@ CPPFLAGS	+=	-lX11
 SRC		=	src/main.cpp \
 			src/Window_Config.cpp \
 			src/displayer/EnvChecker.cpp \
-			src/displayer/Window.cpp
+			src/displayer/Window.cpp \
+			src/engine/Light.cpp
 
 OBJS		=	$(SRC:.cpp=.o)
 
