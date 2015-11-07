@@ -5,7 +5,7 @@
 ## Login   <adrien.vasseur@epitech.net>
 ##
 ## Started on  Tue Apr 14 16:47:57 2014 Adrien Vasseur
-## Last update Sat Nov  7 13:28:00 2015 Corentin Descamps
+## Last update Sat Nov  7 17:06:45 2015 Antoine Lempereur
 ##
 
 ifeq ($(CC), clang++)
@@ -22,6 +22,7 @@ CPPFLAGS	+=	-lsfml-network -lsfml-graphics -lsfml-window -lsfml-system
 CPPFLAGS	+=	-lX11
 
 SRC		=	src/main.cpp \
+			src/tools/Vector.cpp \
 			src/Window_Config.cpp \
 			src/displayer/EnvChecker.cpp \
 			src/displayer/Window.cpp \

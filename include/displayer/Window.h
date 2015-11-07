@@ -5,7 +5,7 @@
 ** Login   <zanard_a@epitech.net>
 **
 ** Started on  Thu Jun 11 11:52:31 2015 Antoine Zanardi
-** Last update Fri Nov  6 17:24:53 2015 Adrien Vasseur
+** Last update Sat Nov  7 16:48:39 2015 Antoine Lempereur
 */
 
 #ifndef				WINDOW_H_
