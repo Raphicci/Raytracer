@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:59:23 2015 Antoine Lempereur
-** Last update Sat Nov  7 17:26:46 2015 Antoine Lempereur
+** Last update Sun Nov  8 22:18:02 2015 Adrien Vasseur
 */
 
 #include	<math.h>
@@ -15,9 +15,7 @@ namespace	Tools
 {
   Vector::Vector()
   {
-    x = 0;
-    y = 0;
-    z = 0;
+    Vector(0, 0, 0);
   }
 
   Vector::Vector(double x, double y, double z)

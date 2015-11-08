@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 **
 ** Started on  Thu Jun 18 17:44:25 2015 Adrien Vasseur
-** Last update Sat Nov  7 17:28:10 2015 Antoine Lempereur
+** Last update Sun Nov  8 22:18:13 2015 Adrien Vasseur
 */
 
 #include	"displayer/Window.h"
@@ -15,14 +15,12 @@
 int				main()
 {
   Displayer::Window		*m_window;
-  Tools::Vector			*vector1;
-  Tools::Vector			*vector2;
+  Tools::Vector			vector1(1, 1, 1);
+  Tools::Vector			vector2(1, 0, 0);
 
-  vector1 = new Tools::Vector(1, 1, 1);
-  vector2 = new Tools::Vector(1, 0, 0);
-  printf("%f\n", vector1->scalar(*vector2));
-  vector1->normalize();
-  printf("%f\n", vector1->getX());
+  printf("%f\n", vector1.scalar(vector2));
+  vector1.normalize();
+  printf("%f\n", vector1.getX());
   if (Displayer::EnvChecker::hasXEnv())
     {
       m_window = new Displayer::Window;

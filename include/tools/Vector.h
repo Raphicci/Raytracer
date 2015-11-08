@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:21:52 2015 Antoine Lempereur
-** Last update Sat Nov  7 17:10:52 2015 Antoine Lempereur
+** Last update Sun Nov  8 22:17:43 2015 Adrien Vasseur
 */
 
 #ifndef		VECTOR_H_
