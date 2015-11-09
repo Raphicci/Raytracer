@@ -1,6 +1,12 @@
 // CODE EN BAS
 
 
+BOITES :
+Découper la scène en boites, repérer quels objets sont dans quelles boites et chercher d'abord les intersections avec les boites (si bien fait il y aura bcp moins
+d'intersection, et le calcul d'intersection avec une boite est peu coûteux en ressources). Imo commencer par créer une grosse boite qui englobe tout , la découper
+en 2 / 4 / 8 boites, elles-même redécoupées en 2 / 4 / 8 boites. (2, 4 ou 8 ? S'il y a peu d'objets, réduire le nombre de boites ? La grosse boite est - t - elle utile ?
+La vie a-t-elle un sens ?)
+
 
 GRILLE :
 On bosse case par case (genre 50x50). On calcule une partie des points. Pour ces points là on save quelle(s) box on croise (par ordre de rencontre,
