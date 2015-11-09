@@ -1,0 +1,50 @@
+/*
+**	Essai de mise au propre de
+**	l'arborescence du RT
+*/
+
+main:
+	=> Parser les arguments
+	=> Parser le fichier de conf en remplissant la classe Scene
+	=> Création classe Window
+	=> Ouverture fenêtre
+	=> Main loop
+
+Classe	Window:
+	=> Boucle principale pour mettre à jour la sf::RenderWindow
+
+Classe	Scene:
+	=> Contient toutes les informations du monde :
+	   -> Une liste de <Camera>
+	   -> Une liste de <Object>
+	=> Classe qui démarre le rendu (double boucle)
+
+Classe	Object:
+	=> Classe abstraite
+	   -> Vector position
+	   -> Vector rotation
+	   -> Vector taille
+	   (-> Color couleur)
+	   (-> Texture texture)
+	=> Méthode virtuelle :
+	   	   bool collide(Object const *);
+
+Classe	Camera:
+	=> Hérite de Object ?!
+
+Classe	Sphere:
+	=> Hérite de Object
+	=> Réécris la méthode collide (pour la collision de la sphère)
+
+Classe	***:
+	=> Pour chaque objet *** sa classe héritée de Object
+
+Pour les lumières, créer une classe avec paramètres nécessaires
+La classe Vector gère à la fois les points et les vecteurs (même logique mathématique)
+Classe Color et Texture qui font des crêpes
+
+Les classes Rayon seront à séparer des classes ci dessus :
+    => Les classes ci dessus ne seront pas modifiées, les classes de calculs (Rayon, intersection etc) seront à créer dynamiquement
+       => Utile pour le hyperthreading
+
+Pour le GPU, "déparser" toutes les classes pour en faire un méga tableau à envoyer en GPU, puis tous les calculs seront en GPU

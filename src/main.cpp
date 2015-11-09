@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 **
 ** Started on  Thu Jun 18 17:44:25 2015 Adrien Vasseur
-** Last update Sun Nov  8 22:18:13 2015 Adrien Vasseur
+** Last update Mon Nov  9 16:13:07 2015 Adrien Vasseur
 */
 
 #include	"displayer/Window.h"
@@ -25,6 +25,7 @@ int				main()
     {
       m_window = new Displayer::Window;
       m_window->loop();
+      return (EXIT_SUCCESS);
     }
-  return (0);
+  return (EXIT_FAILURE);
 }
