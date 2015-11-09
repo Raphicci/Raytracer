@@ -5,7 +5,7 @@
 ## Login   <adrien.vasseur@epitech.net>
 ##
 ## Started on  Tue Apr 14 16:47:57 2014 Adrien Vasseur
-## Last update Sat Nov  7 17:06:45 2015 Antoine Lempereur
+## Last update Sun Nov  8 10:41:29 2015 Antoine Lempereur
 ##
 
 ifeq ($(CC), clang++)
@@ -23,6 +23,7 @@ CPPFLAGS	+=	-lX11
 
 SRC		=	src/main.cpp \
 			src/tools/Vector.cpp \
+			src/tools/Color.cpp \
 			src/Window_Config.cpp \
 			src/displayer/EnvChecker.cpp \
 			src/displayer/Window.cpp \
