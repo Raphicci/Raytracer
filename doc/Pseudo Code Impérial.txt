@@ -51,6 +51,11 @@ ceux là.
 Pareil, créer une classe ShadowHandler ?
 
 
+RENDU CARTOON :
+Marquer contours avec filtre sobel. Pour la couleur de l'objet, calculer le cos puis attribuer une couleur selon la range dans laquelle est le cos (et par
+rapport à la couleur de l'objet) (par contre pas sur que ça passe bien avec lumieres colorées, mais pas compliqué à gérer si besoin);
+
+
 
 //A partir d'une direction et d'un angle, retourne un vecteur random qui va a peu près vers la direction
 //Utile pour ombres floues, reflexion/transparence plus réaliste
@@ -126,4 +131,19 @@ int[][] sobel3x3(int[][] input, int W, int H) {
 		}
 	}
 	return output;
+}
+int  cartoonColor(cos, objectColor) // le cos doit etre le total de tous les cos s'il y a plusieurs lumières qui eclairent lobj, chaque cos étant multiplié par l'intensité de sa lumiere
+{
+	int nombreCouches = 3;
+	float inv = 1 / nombreCouches;
+	int i = 1;
+
+	while (i < nombreCouches)
+	{	
+		if (cos <= i * inv)
+			return (objectColor * (i * inv))
+	i++;
+	}
+	return (objectColor);
+// à tester mais ça devrait marcher
 }
