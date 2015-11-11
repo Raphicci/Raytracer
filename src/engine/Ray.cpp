@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Mon Nov  9 21:36:06 2015 Antoine Lempereur
-** Last update Wed Nov 11 18:14:27 2015 Antoine Lempereur
+** Last update Wed Nov 11 19:04:06 2015 Antoine Lempereur
 */
 
 #include	"engine/Ray.h"
@@ -13,18 +13,25 @@
 
 namespace	Engine
 {
-  Ray::Ray()
-  {
-
-  }
-
-  Ray::Ray(Vector origin, Vector direction)
+  Ray::Ray(Tools::Vector origin, Tools::Vector direction)
   {
     this->origin = origin;
     this->direction = direction;
   }
 
-  /*Ray::Ray(double i, double j, Scene const& scene)
+  void	Ray::setIntersection()
+  {
+    this->intersection.setX(this->origin.getX() + this->dist * this->direction.getX());
+    this->intersection.setY(this->origin.getY() + this->dist * this->direction.getY());
+    this->intersection.setZ(this->origin.getZ() + this->dist * this->direction.getZ());
+  }
+
+  void	Ray::normalize()
+  {
+    this->direction.normalize();
+  }
+
+  /*  Ray::Ray(double i, double j, Scene const& scene)
   {
     double	x;
     double	y;
@@ -34,7 +41,8 @@ namespace	Engine
     y = w / 2 - i;
     z = h / 2 - j;
     rotate;
-    this->origin.setValues(x, y, z);
+    this->direction.setValues(x, y, z);
+    this->inversed.setValues(1 / x, 1 / y, 1 / z);
     }*/
 
   /*  void	Ray::findClosestObject(std::list<Object*> objects)
