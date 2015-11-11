@@ -33,3 +33,6 @@ raytracer
 
 # Config Files
 *.ini
+
+# Test files
+test/*
