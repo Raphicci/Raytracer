@@ -5,7 +5,7 @@
 ## Login   <adrien.vasseur@epitech.net>
 ##
 ## Started on  Tue Apr 14 16:47:57 2014 Adrien Vasseur
-## Last update Sun Nov  8 10:41:29 2015 Antoine Lempereur
+## Last update Wed Nov 11 15:43:00 2015 Corentin Descamps
 ##
 
 ifeq ($(CC), clang++)
@@ -21,26 +21,36 @@ CPPFLAGS	+=	-I./include/
 CPPFLAGS	+=	-lsfml-network -lsfml-graphics -lsfml-window -lsfml-system
 CPPFLAGS	+=	-lX11
 
-SRC		=	src/main.cpp \
-			src/tools/Vector.cpp \
+MAIN		=	src/main.cpp
+
+MAINTEST	=	test/main.cpp
+
+SRC		=	src/tools/Vector.cpp \
 			src/tools/Color.cpp \
 			src/Window_Config.cpp \
 			src/displayer/EnvChecker.cpp \
 			src/displayer/Window.cpp \
 			src/engine/Light.cpp
 
-OBJS		=	$(SRC:.cpp=.o)
+OBJ		=	$(SRC:.cpp=.o) $(MAIN:.cpp=.o)
+
+OBJTEST		=	$(SRC:.cpp=.o) $(MAINTEST:.cpp=.o)
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS)
-			$(CC) $(OBJS) $(INC) -o $(NAME) $(CPPFLAGS)
+$(NAME):		$(OBJ)
+			$(CC) $(OBJ) $(INC) -o $(NAME) $(CPPFLAGS)
+
+test:			$(OBJTEST)
+			$(CC) $(OBJTEST) $(INC) -o test/test $(CPPFLAGS)
 
 clean:
-			rm -f $(OBJS)
+			rm -f $(OBJ)
+			rm -f $(OBJTEST)
 
 fclean:			clean
 			rm -f $(NAME)
+			rm -f test/test
 
 re:			fclean all
 
