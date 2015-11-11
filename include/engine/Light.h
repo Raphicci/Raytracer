@@ -5,11 +5,14 @@
 ** Login   <descam_d@epitech.net>
 ** 
 ** Started on  Sat Nov  7 13:21:40 2015 Corentin Descamps
-** Last update Sat Nov  7 13:28:41 2015 Corentin Descamps
+** Last update Wed Nov 11 17:21:19 2015 Corentin Descamps
 */
 
 #ifndef			LIGHT_H_
 # define		LIGHT_H_
+
+# include		"tools/Vector.h"
+# include		"tools/Color.h"
 
 namespace		Engine
 {
@@ -17,10 +20,14 @@ namespace		Engine
   {
   public:
     Light();
+    Light(Tools::Vector position, Tools::Color light);
     ~Light();
+    Tools::Vector*	getPosition();
+    Tools::Color*	getColor();
 
   private:
-    
+    Tools::Vector	*position;
+    Tools::Color	*color;
   };
 }
 
