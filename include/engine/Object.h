@@ -5,15 +5,15 @@
 ** Login   <thieba_r@epitech.net>
 ** 
 ** Started on  Wed Nov 11 15:06:39 2015 Raphael Thiebault
-** Last update Wed Nov 11 15:07:13 2015 Raphael Thiebault
+** Last update Wed Nov 11 19:22:06 2015 Antoine Lempereur
 */
 
 #ifndef			OBJECT_H_
 # define		OBJECT_H_
 
-#include "tools/Vector.h"
-#include "tools/Color.h"
-#include "engine/Rayon.h"
+#include	"tools/Vector.h"
+#include	"tools/Color.h"
+#include	"engine/Ray.h"
 
 namespace		Engine
 {
@@ -31,9 +31,9 @@ namespace		Engine
 
     }
 
-    virtual float Collide(Rayon const *);
-    virtual Tools::Vector getNormal(Rayon const *);
-    virtual Tools::Vector getShadow(Rayon const *);
+    virtual float Collide(Engine::Ray const *);
+    virtual Tools::Vector getNormal(Engine::Ray const *);
+    virtual Tools::Vector getShadow(Engine::Ray const *);
 
   private:
 

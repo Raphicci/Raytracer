@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:21:52 2015 Antoine Lempereur
-** Last update Wed Nov 11 19:05:28 2015 Antoine Lempereur
+** Last update Wed Nov 11 19:21:04 2015 Antoine Lempereur
 */
 
 #ifndef		RAY_H_
@@ -13,6 +13,7 @@
 
 # include	"tools/Vector.h"
 # include	"tools/Color.h"
+# include	"engine/Object.h"
 
 namespace	Engine
 {
@@ -29,7 +30,7 @@ namespace	Engine
     ~Ray();
 
   private:
-    //Object	*obj  un pointeur sur l'obj rencontré
+    Engine::Object	*object;//  un pointeur sur l'obj rencontré
     float	dist;
     bool	isLim; // Limite ou pas, probablement utile pour les normales (a check)
     Tools::Vector	origin;
