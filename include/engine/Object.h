@@ -5,7 +5,7 @@
 ** Login   <thieba_r@epitech.net>
 ** 
 ** Started on  Wed Nov 11 15:06:39 2015 Raphael Thiebault
-** Last update Wed Nov 11 19:22:06 2015 Antoine Lempereur
+** Last update Wed Nov 11 19:43:10 2015 Adrien Vasseur
 */
 
 #ifndef			OBJECT_H_
@@ -17,6 +17,8 @@
 
 namespace		Engine
 {
+  class			Ray; // Circular inclusion
+
   class			Object
   {
   public:
@@ -40,7 +42,7 @@ namespace		Engine
   	Tools::Vector position;
   	Tools::Vector rotation;
   	//Tools::Vector taille; 
-    Tools:Color color;
+	Tools::Color color;
     //Tools:Texture texture;
 
   };
