@@ -24,6 +24,7 @@ Classe	Object:
 	   -> Vector position
 	   -> Vector rotation
 	   -> Vector taille
+	   -> Vector position oeil en position simple (pareil pour rot)
 	   (-> Color couleur)
 	   (-> Texture texture)
 	=> Méthode virtuelle :

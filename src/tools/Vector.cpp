@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:59:23 2015 Antoine Lempereur
-** Last update Sun Nov  8 22:18:02 2015 Adrien Vasseur
+** Last update Mon Nov  9 21:00:01 2015 Antoine Lempereur
 */
 
 #include	<math.h>
@@ -77,6 +77,20 @@ namespace	Tools
     this->x /= n;
     this->y /= n;
     this->z /= n;
+  }
+
+  void		Vector::reverse()
+  {
+    this->x = -this->x;
+    this->y = -this->y;
+    this->z = -this->z;
+  }
+
+  void		Vector::inverse()
+  {
+    this->x = 1 / this->x;
+    this->y = 1 / this->y;
+    this->z = 1 / this->z;
   }
 
   Vector::~Vector()

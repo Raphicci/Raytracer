@@ -5,7 +5,7 @@
 ## Login   <adrien.vasseur@epitech.net>
 ##
 ## Started on  Tue Apr 14 16:47:57 2014 Adrien Vasseur
-## Last update Wed Nov 11 15:43:00 2015 Corentin Descamps
+## Last update Wed Nov 11 16:08:28 2015 Antoine Lempereur
 ##
 
 ifeq ($(CC), clang++)
@@ -30,7 +30,8 @@ SRC		=	src/tools/Vector.cpp \
 			src/Window_Config.cpp \
 			src/displayer/EnvChecker.cpp \
 			src/displayer/Window.cpp \
-			src/engine/Light.cpp
+			src/engine/Light.cpp \
+			src/engine/Ray.cpp
 
 OBJ		=	$(SRC:.cpp=.o) $(MAIN:.cpp=.o)
 

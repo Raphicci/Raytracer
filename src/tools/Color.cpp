@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sun Nov  8 10:31:42 2015 Antoine Lempereur
-** Last update Mon Nov  9 17:21:43 2015 Antoine Lempereur
+** Last update Wed Nov 11 18:11:00 2015 Antoine Lempereur
 */
 
 #include	"tools/Color.h"
@@ -69,8 +69,6 @@ namespace	Tools
     this->r *= scale;
     this->g *= scale;
     this->b *= scale;
-
-    // à cause de l'héritage on peut pas dépasser 255 donc c'est un peu chiant donc go pas hériter
   }
 
   void		Color::Mix(Color const& c)
@@ -78,6 +76,13 @@ namespace	Tools
     this->r = (this->r + c.r) / 2;
     this->g = (this->g + c.g) / 2;
     this->b = (this->b + c.b) / 2;
+  }
+
+  void		Color::Mix(Color const& c, float coef)
+  {
+    this->r = this->r * (1 - coef) + c.r * coef;
+    this->g = this->g * (1 - coef) + c.g * coef;
+    this->b = this->b * (1 - coef) + c.b * coef;
   }
 
   Color::~Color()

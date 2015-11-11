@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sun Nov  8 10:16:27 2015 Antoine Lempereur
-** Last update Mon Nov  9 16:48:09 2015 Antoine Lempereur
+** Last update Wed Nov 11 16:49:55 2015 Antoine Lempereur
 */
 
 
@@ -15,11 +15,13 @@
 # include	<iostream>
 # include	<exception>
 
+# include	<vector>
+
 # include	<SFML/Graphics/Color.hpp>
 
 namespace	Tools
 {
-  class		Color// : sf::Color
+  class		Color
   {
   public:
     Color();
@@ -31,8 +33,8 @@ namespace	Tools
     void	setG(int value);
     void	setB(int value);
     void	Mix(Color const&);
-    void	Mix();// vecteurs;
-    //void	Mix(); Liste
+    void	Mix(std::vector<Color const&>);
+    void	Mix(Color const&, float);
     void	PreventOverflow();
     ~Color();
   private:
