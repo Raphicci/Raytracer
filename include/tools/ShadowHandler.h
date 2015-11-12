@@ -13,12 +13,11 @@
 
 # include	"tools/DistributionHandler.h"
 
-class	ShadowHandler : public Tools::DistributionHandler
+class	ShadowHandler : public DistributionHandler
 {
  private:
   Vector	mainVec();
   float		value;
-
  public:
   ShadowHandler();
 };

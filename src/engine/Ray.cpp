@@ -69,7 +69,54 @@ namespace	Engine
       }
   }*/
 
-  /*void		Ray::setColor(Scene scene)
+  /*void			Ray::compute(Scene scene)
+  {
+	  this->findClosestObject(scene.getObject());
+	  this->setColor();
+  }
+
+	Tools::Vector		Ray::calcReflectedMainRay() 
+	{
+		double	scal;
+		Tools::Vector	reflected;
+
+		scal = this->normal.scalar(this->direction); // direction doit etre en position normale
+		reflected.setX(this->direction.getX() - 2 * this->normal.getX() * scal);
+		reflected.setY(this->direction.getY() - 2 * this->normal.getY() * scal);
+		reflected.setZ(this->direction.getZ() - 2 * this->normal.getZ() * scal);
+		reflected.normalize();
+		return (reflected);
+	}
+
+	Tools::Vector		Ray::calcRefractedMainRay() 
+	{
+		double	scal;
+		double	common;
+		Tools::Vector	refracted;
+		double	nn;
+
+		scal = this->normal.scalar(this->direction); // direction doit etre en position normale
+		nn = 1 / 1.5;// 1.5 à remplacer par indice de réfraction de l'obj
+		common = nn * scal - sqrt(1 + (nn * nn) * ((scal * scal) - 1));
+		refracted.setX(this->direction.getX() * nn + this->normal.getX() * common);
+		refracted.setY(this->direction.getY() * nn + this->normal.getY() * common);
+		refracted.setZ(this->direction.getZ() * nn + this->normal.getZ() * common);
+		return (refracted);
+	}
+
+	Tools::Color	Ray::getReflectedColor(Scene scene) 
+	{
+		Vector		reflected = this->calcRefractedMainRay(); // ça marche ça ?
+	
+
+		//ça c'est le main ray, pour l'handler
+		Ray			ray(this->intersection + reflected, reflected); // need coder surcharge de +
+
+		ray.compute(scene);
+		return (ray.getColor());
+	}
+
+  void		Ray::setColor(Scene scene)
   {
     int		i = 0;
     int		color = 0;
