@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Wed Nov 11 17:48:06 2015 Antoine Lempereur
-** Last update Wed Nov 11 18:08:12 2015 Antoine Lempereur
+** Last update Thu Nov 12 22:00:05 2015 Antoine Lempereur
 */
 
 
@@ -24,7 +24,7 @@ namespace	Tools
 
   private:
     Tools::Vector		mainVector;
-    std::vector<Objects *>	objects;
+    std::vector<Engine::Objects *>	objects;
     float			angle;
     std::vector<Tools::Vector>	vectors;
   };

@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Mon Nov  9 21:36:06 2015 Antoine Lempereur
-** Last update Thu Nov 12 16:46:42 2015 Antoine Lempereur
+** Last update Thu Nov 12 22:29:55 2015 Antoine Lempereur
 */
 
 #include	"engine/Ray.h"
@@ -31,53 +31,60 @@ namespace	Engine
     this->direction.normalize();
   }
 
-  /*  Ray::Ray(double i, double j, Scene const& scene)
+  Ray::Ray(double i, double j, Scene const& scene)
   {
     double	x;
     double	y;
     double	z;
+    double	w = 1; // c'est juste pour que ça compile hein
+    double	h = 1;
 
     x = w / 2 * ANTI_FISH_EYE_VALUE;
     y = w / 2 - i;
     z = h / 2 - j;
-    rotate;
+    //this->origin = scene.getOrigin();
     this->direction.setValues(x, y, z);
-    this->inversed.setValues(1 / x, 1 / y, 1 / z);
-    }*/
+    this->direction.rotate(0, 0, 0);
+    this->direction.normalize();//verifier que normaliser des le debut fout aps la merde
+    this->inversed = this->direction; // logiquement ça fait bien une copie
+    this->inversed.inverse();
+  }
 
-  /*  void	Ray::findClosestObject(std::list<Object*> objects)
+  void			Ray::findClosestObject(std::vector<Engine::Object*> objects)
   {
-    int		i = 0;
-    float	dist;
+    unsigned int	i = 0;
+    float		dist;
 
-    if (objects.Length == 0)
+    if (objects.size() == 0)
       return;
-    while (i < objects.Length)
+    while (i < objects.size())
       {
-	dist = objects[i].Collide(this);
+	dist = objects[i]->Collide(this);
 	if (i == 0)
 	  {
 	    this->dist = dist;
 	    this->object = objects[i];
 	  }
-	else if (dist > 0 && dist < saveDist)
+	else if (dist > 0 && (dist < this->dist || this->dist < 0))
 	  {
 	    this->dist = dist;
 	    this->object = objects[i];
 	  }
 	i++;
       }
-  }*/
+  }
 
-  /*void			Ray::compute(Scene scene)
+  void			Ray::compute(Engine::Scene const& scene)
   {
-    this->findClosestObject(scene.getObject());
-    this->setColor();
-    }*/
+    //this->findClosestObject(scene.getObject());
+    this->setIntersection();
+    //this->setNormale()
+      //this->setColor();
+  }
 
-  /*  Tools::Vector		Ray::calcReflectedMainRay()
+  Tools::Vector		Ray::calcReflectedMainRay()
   {
-    double	scal;
+    double		scal;
     Tools::Vector	reflected;
 
     scal = this->normal.scalar(this->direction); // direction doit etre en position normale
@@ -86,44 +93,59 @@ namespace	Engine
     reflected.setZ(this->direction.getZ() - 2 * this->normal.getZ() * scal);
     reflected.normalize();
     return (reflected);
-    }*/
+  }
 
-  /*Tools::Vector		Ray::calcRefractedMainRay()
+  Tools::Vector		Ray::calcRefractedMainRay()
   {
-    double	scal;
-    double	common;
+    double		scal;
+    double		common;
     Tools::Vector	refracted;
-    double	nn;
+    double		nn;
 
-    scal = this->normal.scalar(this->direction); // direction doit etre en position normale
+    scal = this->normal.scalar(this->direction);
     nn = 1 / 1.5;// 1.5 à remplacer par indice de réfraction de l'obj
     common = nn * scal - sqrt(1 + (nn * nn) * ((scal * scal) - 1));
     refracted.setX(this->direction.getX() * nn + this->normal.getX() * common);
     refracted.setY(this->direction.getY() * nn + this->normal.getY() * common);
     refracted.setZ(this->direction.getZ() * nn + this->normal.getZ() * common);
     return (refracted);
-  }*/
+  }
 
-  /*  Tools::Color	Ray::getReflectedColor(Scene scene)
+  Tools::Color	Ray::getReflectedColor(Scene const& scene)
   {
-    Tools::Vector		reflected = this->calcRefractedMainRay();
-    Tools::ReflectionHandler	handler(this->intersection + reflected, reflected);
-
-    Ray			ray(this->intersection + reflected, reflected); // need coder surcharge de +
+    Tools::Vector		reflected = this->calcReflectedMainRay();
+    //Tools::ReflectionHandler	handler(this->intersection + reflected, reflected);
+    Ray			ray(this->intersection + reflected, reflected);
 
     ray.compute(scene);
     return (ray.getColor());
-  }*/
+  }
 
-  /*void		Ray::setColor(Scene scene)
+  Tools::Color	Ray::getRefractedColor(Scene const& scene)
   {
-    int		i = 0;
-    int		color = 0;
+    Tools::Vector		refracted = this->calcRefractedMainRay();
+    //Tools::ReflectionHandler	handler(this->intersection + reflected, reflected);
+    Ray			ray(this->intersection + refracted, refracted);
+
+    ray.compute(scene);
+    return (ray.getColor());
+  }
+
+  Tools::Color	Ray::getColor()
+  {
+    return (this->color);
+  }
+
+  /*void			Ray::setColor(Scene const& scene)
+  {
+    int			i = 0;
+    Tools::Color	color;
 
     //shadowhandler : à calculer dans BigLightFunction, sert à opti le calcul des ombres, càd calculer le main rayon et les objets possiblement rencontré
-
-    this->color.Mix(REFLECTEDCOLOR, this->object->getReflexion());
-    this->color.Mix(TRANSPARENCEDCOLOR, this->object->getTransparency());
+    
+    this->color.Mix(this->getReflectedColor(scene), this->object->getReflexion());
+    this->color.Mix(this->getRefractedColor(scene),
+		    this->object->getTransparency());
     while (i < scene.getLights().Length)
       {
 	color += scene.getLights()[i].BigLightFunction(scene, this, shadowHandler);
@@ -131,7 +153,7 @@ namespace	Engine
       }
     this->color = color;
     this->color.PreventOverflow();
-    }*/
+  }*/
 
   Ray::~Ray()
   {
