@@ -5,9 +5,10 @@
 ** Login   <vasseu_g@epitech.net>
 **
 ** Started on  Thu Jun 18 17:44:25 2015 Adrien Vasseur
-** Last update Thu Nov 12 20:50:46 2015 Adrien Vasseur
+** Last update Thu Nov 12 21:27:16 2015 Adrien Vasseur
 */
 
+#include	"tools/Log.h"
 #include	"engine/Scene.h"
 #include	"tools/Vector.h"
 #include	"tools/Color.h"
@@ -20,6 +21,9 @@ int				main(int argc, char **argv)
   Tools::Vector			v1(2, 2, 2);
   Tools::Vector			v2(1, 1, 1);
 
+  Log::error("Erreur");
+  Log::warning("Warning");
+  Log::info("Information");
   v1 = v1 + v2;
   printf("%f\n", v1.getZ());
   if (!scene.init(argc, argv))

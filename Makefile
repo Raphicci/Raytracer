@@ -5,7 +5,7 @@
 ## Login   <adrien.vasseur@epitech.net>
 ##
 ## Started on  Tue Apr 14 16:47:57 2014 Adrien Vasseur
-## Last update Thu Nov 12 20:58:34 2015 Adrien Vasseur
+## Last update Thu Nov 12 21:25:56 2015 Adrien Vasseur
 ##
 
 ifeq ($(CC), clang++)
@@ -25,7 +25,8 @@ MAIN		=	src/main.cpp
 
 MAINTEST	=	test/main.cpp
 
-SRC		=	src/tools/Vector.cpp \
+SRC		=	src/tools/Log.cpp \
+			src/tools/Vector.cpp \
 			src/tools/Color.cpp \
 			src/Window_Config.cpp \
 			src/displayer/EnvChecker.cpp \
