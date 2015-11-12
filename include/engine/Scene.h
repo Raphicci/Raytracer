@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Nov 12 20:33:42 2015 Adrien Vasseur
-** Last update Thu Nov 12 20:48:59 2015 Adrien Vasseur
+** Last update Thu Nov 12 21:03:21 2015 Adrien Vasseur
 */
 
 #ifndef		SCENE_H_
@@ -13,6 +13,12 @@
 
 # include	"displayer/Window.h"
 # include	"displayer/EnvChecker.h"
+# include	"parser/SceneParser.h"
+
+namespace	Parser
+{
+  class		SceneParser;
+};
 
 namespace	Engine
 {
@@ -26,6 +32,7 @@ namespace	Engine
     void	run();
 
   private:
+    Parser::SceneParser	*m_parser;
     Displayer::Window	*m_window;
   };
 };

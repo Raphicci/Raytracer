@@ -5,7 +5,7 @@
 ## Login   <adrien.vasseur@epitech.net>
 ##
 ## Started on  Tue Apr 14 16:47:57 2014 Adrien Vasseur
-## Last update Thu Nov 12 20:51:25 2015 Adrien Vasseur
+## Last update Thu Nov 12 20:58:34 2015 Adrien Vasseur
 ##
 
 ifeq ($(CC), clang++)
@@ -30,6 +30,7 @@ SRC		=	src/tools/Vector.cpp \
 			src/Window_Config.cpp \
 			src/displayer/EnvChecker.cpp \
 			src/displayer/Window.cpp \
+			src/parser/SceneParser.cpp \
 			src/engine/Scene.cpp \
 			src/engine/Light.cpp \
 			src/engine/Ray.cpp

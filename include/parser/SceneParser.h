@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Nov 12 20:28:50 2015 Adrien Vasseur
-** Last update Thu Nov 12 20:36:24 2015 Adrien Vasseur
+** Last update Thu Nov 12 21:00:31 2015 Adrien Vasseur
 */
 
 #ifndef		SCENEPARSER_H_
@@ -15,6 +15,11 @@
 
 # include	"engine/Scene.h"
 
+namespace	Engine
+{
+  class		Scene;
+};
+
 namespace	Parser
 {
   class		SceneParser
@@ -23,9 +28,11 @@ namespace	Parser
     SceneParser();
     ~SceneParser();
 
-    bool	loadFromFile(Scene &, std::string);
+    bool	loadFromFile(Engine::Scene &, std::string);
 
   private:
+    size_t	m_pos;
+    std::string	m_buff;
   };
 };
 
