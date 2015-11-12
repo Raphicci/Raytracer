@@ -5,29 +5,25 @@
 ** Login   <vasseu_g@epitech.net>
 **
 ** Started on  Thu Jun 18 17:44:25 2015 Adrien Vasseur
-** Last update Thu Nov 12 17:15:35 2015 Antoine Lempereur
+** Last update Thu Nov 12 20:50:46 2015 Adrien Vasseur
 */
 
-#include	"displayer/Window.h"
-#include	"displayer/EnvChecker.h"
+#include	"engine/Scene.h"
 #include	"tools/Vector.h"
 #include	"tools/Color.h"
 #include	"engine/Ray.h"
 #include	"const.h"
 
-int				main()
+int				main(int argc, char **argv)
 {
-  Displayer::Window		*m_window;
+  Engine::Scene			scene;
   Tools::Vector			v1(2, 2, 2);
   Tools::Vector			v2(1, 1, 1);
 
   v1 = v1 + v2;
   printf("%f\n", v1.getZ());
-  if (Displayer::EnvChecker::hasXEnv())
-    {
-      m_window = new Displayer::Window;
-      m_window->loop();
-      return (EXIT_SUCCESS);
-    }
-  return (EXIT_FAILURE);
+  if (!scene.init(argc, argv))
+    return (EXIT_FAILURE);
+  scene.run();
+  return (EXIT_SUCCESS);
 }

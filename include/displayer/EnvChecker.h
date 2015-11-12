@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Jun 18 21:08:55 2015 Adrien Vasseur
-** Last update Thu Jun 18 21:16:30 2015 Adrien Vasseur
+** Last update Thu Nov 12 20:48:23 2015 Adrien Vasseur
 */
 
 #ifndef		ENVCHECKER_H_
