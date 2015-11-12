@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Nov 12 21:11:57 2015 Adrien Vasseur
-** Last update Thu Nov 12 21:22:48 2015 Adrien Vasseur
+** Last update Thu Nov 12 22:06:57 2015 Adrien Vasseur
 */
 
 #include	"tools/Log.h"
@@ -76,27 +76,19 @@ std::string	Log::getDate()
   date = "[";
   if (now->tm_mday < 10)
     date += "0";
-  date += Log::intToString(now->tm_mday) + "-";
+  date += Log::toString(now->tm_mday) + "-";
   if (now->tm_mon + 1 < 10)
     date += "0";
-  date += Log::intToString(now->tm_mon + 1) + "-" +
-    Log::intToString(now->tm_year + 1900) + " ";
+  date += Log::toString(now->tm_mon + 1) + "-" +
+    Log::toString(now->tm_year + 1900) + " ";
   if (now->tm_hour < 10)
     date += "0";
-  date += Log::intToString(now->tm_hour) + ":";
+  date += Log::toString(now->tm_hour) + ":";
   if (now->tm_min < 10)
     date += "0";
-  date += Log::intToString(now->tm_min) + ":";
+  date += Log::toString(now->tm_min) + ":";
   if (now->tm_sec < 10)
     date += "0";
-  date += Log::intToString(now->tm_sec) + "]";
+  date += Log::toString(now->tm_sec) + "]";
   return (date);
-}
-
-std::string	Log::intToString(int nbr)
-{
-  std::stringstream	stream;
-
-  stream << nbr;
-  return (stream.str());
 }
