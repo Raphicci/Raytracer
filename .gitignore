@@ -36,3 +36,6 @@ raytracer
 
 # Test files
 test/*
+
+# Log files
+*.log
