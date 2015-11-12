@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:21:52 2015 Antoine Lempereur
-** Last update Wed Nov 11 18:22:29 2015 Antoine Lempereur
+** Last update Thu Nov 12 17:26:07 2015 Antoine Lempereur
 */
 
 #ifndef		VECTOR_H_
@@ -30,9 +30,13 @@ namespace	Tools
     Vector	vectorProduct(Vector const& vec);
     void	reverse();
     void	inverse();
+    void	rotateX(double);
+    void	rotateY(double);
+    void	rotateZ(double);
     void	rotate(double x, double y, double z);
     void	normalize();
     void	translate(double x, double y, double z);
+    Vector	operator+(Vector const&);
 
   private:
     double	x;

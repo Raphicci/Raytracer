@@ -5,11 +5,11 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Fri Nov  6 17:14:36 2015 Antoine Lempereur
-** Last update Fri Nov  6 17:20:58 2015 Antoine Lempereur
+** Last update Thu Nov 12 16:22:48 2015 Antoine Lempereur
 */
 
 #ifndef		SHADOWHANDLER_H_
-# define	SHADOWHANDLER_H_
+# define	SHADOWHANDLER_H_
 
 # include	"tools/DistributionHandler.h"
 

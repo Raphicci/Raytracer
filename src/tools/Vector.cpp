@@ -5,11 +5,12 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:59:23 2015 Antoine Lempereur
-** Last update Wed Nov 11 18:21:43 2015 Antoine Lempereur
+** Last update Thu Nov 12 17:37:17 2015 Antoine Lempereur
 */
 
 #include	<math.h>
 #include	"tools/Vector.h"
+#include	"const.h"
 
 namespace	Tools
 {
@@ -93,10 +94,54 @@ namespace	Tools
     this->z = 1 / this->z;
   }
 
+  void		Vector::rotateX(double value)
+  {
+    double	saveY = this->y;
+    double	saveZ = this->z;
+
+    this->y = cos(value) * saveY - sin(value) * saveZ;
+    this->z = sin(value) * saveY + cos(value) * saveZ;
+  }
+
+  void		Vector::rotateY(double value)
+  {
+    double	saveX = this->x;
+    double	saveZ = this->z;
+
+    this->x = cos(value) * saveX + sin(value) * saveZ;
+    this->z = -1 * sin(value) * saveX + cos(value) * saveZ;
+  }
+
+  void		Vector::rotateZ(double value)
+  {
+    double	saveY = this->y;
+    double	saveX = this->x;
+
+    this->y = sin(value) * saveX + cos(value) * saveY;
+    this->x = cos(value) * saveX - sin(value) * saveY;
+  }
+
+  void		Vector::rotate(double x, double y, double z)
+  {
+    if (x < -ALMOST_ZERO || x > ALMOST_ZERO)
+      this->rotateX(x);
+    if (y < -ALMOST_ZERO || y > ALMOST_ZERO)
+      this->rotateY(y);
+    if (z < -ALMOST_ZERO || z > ALMOST_ZERO)
+      this->rotateZ(z);
+  }
+
+  Vector	Vector::operator+(Vector const& vec)
+  {
+    Vector	result(this->x + vec.x, this->y + vec.y, this->z + vec.z);
+
+    return (result);
+  }
+
   Vector::~Vector()
   {
 
   }
 
-  //reste quelques méthodes à coder, soonTM
+  //reste à coder translate, vectorProduct
 };
