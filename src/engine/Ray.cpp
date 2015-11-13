@@ -136,6 +136,31 @@ namespace	Engine
     return (this->color);
   }
 
+  /*Tools::Vector	Ray::getInversed()
+  {
+    return (this->inversed);
+  }
+
+  Tools::Vector	Ray::getIntersection()
+  {
+    return (this->intersection);
+  }
+
+  Tools::Vector	Ray::getNormal()
+  {
+    return (this->normal);
+  }
+
+	Tools::Vector	Ray::getOrigin()
+  {
+    return (this->origin);
+  }
+
+ Tools::Vector	Ray::getDirection()
+  {
+    return (this->direction);
+  }*/
+
   /*void			Ray::setColor(Scene const& scene)
   {
     int			i = 0;

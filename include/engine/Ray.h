@@ -25,18 +25,28 @@ namespace	Engine
   public:
     Ray(Tools::Vector origin, Tools::Vector direction); // références / Copies ?
     Ray(double i, double j, Engine::Scene const&);
-    void	setIntersection();
-    void	normalize();
-    void	compute(Engine::Scene const&);
-    void	setNormal();
-    void	findClosestObject(std::vector<Engine::Object*>);
+	~Ray();
+
+    void			setIntersection();
+    void			normalize();
+    void			compute(Engine::Scene const&);
+    void			setNormal();
+    void			findClosestObject(std::vector<Engine::Object*>);
     Tools::Vector	calcReflectedMainRay();
     Tools::Vector	calcRefractedMainRay();
     Tools::Color	getReflectedColor(Engine::Scene const&);
     Tools::Color	getRefractedColor(Engine::Scene const&);
-    void	setColor(Engine::Scene const&);
+    void			setColor(Engine::Scene const&);
+
     Tools::Color	getColor();
-    ~Ray();
+	Tools::Vector	getIntersection();
+	Tools::Vector	getNormal();
+	Tools::Vector	getInversed();
+	Tools::Vector	getOrigin();
+	Tools::Vector	getDirection();
+	Engine::Object*	getObject();
+	bool			getIsLim();
+	float			getDist();
 
   private:
     Engine::Object	*object;
