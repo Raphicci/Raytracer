@@ -21,3 +21,6 @@ https://www-s.ks.uiuc.edu/Research/vmd/projects/ece498/raytracing/RTonGPU.pdf
 
 http://raytracey.blogspot.fr/2011/07/writing-real-time-path-tracing-demos.html
 (Real Time RayTracing)
+
+http://people.csail.mit.edu/amy/papers/box-jgt.pdf
+(ALGO INTERSECTION BOX, C'EST BIEN ET C'EST FACILE)

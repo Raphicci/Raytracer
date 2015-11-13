@@ -76,7 +76,9 @@ namespace	Engine
 
   void			Ray::compute(Engine::Scene const& scene)
   {
+	  /*if (Scene.bigBox.collide(this) > 0)
     //this->findClosestObject(scene.getObject());
+	*/
     this->setIntersection();
     //this->setNormale()
       //this->setColor();
@@ -159,7 +161,24 @@ namespace	Engine
  Tools::Vector	Ray::getDirection()
   {
     return (this->direction);
-  }*/
+  }
+
+  Engine::Object*	getObject()
+  {
+	return (this->object);
+  }
+  
+  Bool				getIsLim()
+  {
+	return (this->isLim);
+  }
+
+  double			getDist()
+  {
+	return (this->dist);
+  }
+  
+  */
 
   /*void			Ray::setColor(Scene const& scene)
   {

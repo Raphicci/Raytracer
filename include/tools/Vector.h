@@ -36,6 +36,7 @@ namespace	Tools
     void	rotate(double x, double y, double z);
     void	normalize();
     void	translate(double x, double y, double z);
+	//bool	isInsideBox(Engine::Box const&);
     Vector	operator+(Vector const&);
 
   private:

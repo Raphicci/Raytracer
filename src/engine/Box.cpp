@@ -20,7 +20,7 @@ namespace		Engine
 		this->highCorner = highCorner;
 	}
 
-	double	Collide(Engine::Ray const& ray) 
+	double	Box::collide(Engine::Ray const& ray) 
 	{
 		Tools::Vector	v = ray.getInversed();
 		Tools::Vector	t1;
@@ -41,6 +41,63 @@ namespace		Engine
   if (tmin > tmax)
     return (-1);
   return (tmin);
+
+
+
+  // HEY J'AI TROUVE UNE OPTI DE CE CODE :) je la code sans encapsulation parce que ça me pete les couilles
+
+  // à tester, vérifier, toussa toussa mais ça me parrait bien.
+  double	min[3];
+  double	max[3];
+
+  if (ray.inversed.x >= 0) 
+  {
+	  min[0] = this->lowCorner.x - r.origin.x * ray.inversed.x;
+	  max[0] = this->highCorner.x - r.origin.x * ray.inversed.x;
+  }
+  else
+  {
+  	  max[0] = this->lowCorner.x - r.origin.x * ray.inversed.x;
+	  min[0] = this->highCorner.x - r.origin.x * ray.inversed.x;
+  }
+  if (ray.inversed.y >= 0) 
+  {
+	  min[1] = this->lowCorner.y - r.origin.y * ray.inversed.y;
+	  max[1] = this->highCorner.y - r.origin.y * ray.inversed.y;
+  }
+  else
+  {
+  	  max[1] = this->lowCorner.y - r.origin.y * ray.inversed.y;
+	  min[1] = this->highCorner.y - r.origin.y * ray.inversed.y;
+  }
+  if (min[0] > max[1] || min[1] > max[0])
+	  return (-1);
+  if (min[1] > min[0])
+	  min[0] = min[1];
+  if (max[1] < max[0])
+	  max[0] = max[1];  
+  if (ray.inversed.z >= 0) 
+  {
+	  min[2] = this->lowCorner.z - r.origin.z * ray.inversed.z;
+	  max[2] = this->highCorner.z - r.origin.z * ray.inversed.z;
+  }
+  else
+  {
+  	  max[2] = this->lowCorner.z - r.origin.z * ray.inversed.z;
+	  min[2] = this->highCorner.z - r.origin.z * ray.inversed.z;
+  }
+  if (min[0] > max[2] || min[2] > max[0])
+	  return (-1);
+  if (min[2] > min[0])
+	  min[0] = min[2];
+  if (max[2] < max[0])
+	  max[0] = max[2];  
+  return (min[0]);
+	}
+
+	bool	Box::isInsideBox(Engine::Box const& box) 
+	{
+		
 	}
 
 	Box::~Box() 

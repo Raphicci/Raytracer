@@ -32,6 +32,7 @@ namespace	Engine
     void			compute(Engine::Scene const&);
     void			setNormal();
     void			findClosestObject(std::vector<Engine::Object*>);
+	//void			setBoxVector(Engine::Scene const&);
     Tools::Vector	calcReflectedMainRay();
     Tools::Vector	calcRefractedMainRay();
     Tools::Color	getReflectedColor(Engine::Scene const&);
@@ -58,6 +59,7 @@ namespace	Engine
     Tools::Vector	intersection;
     Tools::Vector	normal;
     Tools::Color	color;
+//	std::vector<Engine::Box> boxes;
   };
 }
 

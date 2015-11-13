@@ -13,12 +13,14 @@ namespace	Engine
   public:
 	  Box();
 	  Box(Tools::Vector, Tools::Vector);
-	  double	Collide(Engine::Ray const&);
+	  bool		isInsideBox(Engine::Box const&);
+	  double	collide(Engine::Ray const&);
 	  ~Box();
 
   private:
 	  Tools::Vector	lowCorner;
 	  Tools::Vector	highCorner;
+	  std::vector<Engine::Object *> objects;
   };
 }
 

@@ -6,6 +6,7 @@ Découper la scène en boites, repérer quels objets sont dans quelles boites et ch
 d'intersection, et le calcul d'intersection avec une boite est peu coûteux en ressources). Imo commencer par créer une grosse boite qui englobe tout , la découper
 en 2 / 4 / 8 boites, elles-même redécoupées en 2 / 4 / 8 boites. (2, 4 ou 8 ? S'il y a peu d'objets, réduire le nombre de boites ? La grosse boite est - t - elle utile ?
 La vie a-t-elle un sens ?)
+Plein plein de manières de découper la scène en boites... Pour commencer, ne faire que la boite globale (quitte à la supprimer plus tard si ça fout plus la merde qu'autre chose)
 
 
 GRILLE :
