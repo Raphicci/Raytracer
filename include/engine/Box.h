@@ -1,11 +1,11 @@
 /*
 ** Box.h for raytracer in /home/lemper_a/rendu/Raytracer
-** 
+**
 ** Made by Antoine Lempereur
 ** Login   <lemper_a@epitech.net>
-** 
+**
 ** Started on  Sun Nov 15 09:53:57 2015 Antoine Lempereur
-** Last update Sun Nov 15 10:09:40 2015 Antoine Lempereur
+** Last update Sun Nov 15 12:59:34 2015 Antoine Lempereur
 */
 
 #ifndef		BOX_H_

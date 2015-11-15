@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 **
 ** Started on  Thu Jun 18 17:44:25 2015 Adrien Vasseur
-** Last update Sun Nov 15 09:53:48 2015 Antoine Lempereur
+** Last update Sun Nov 15 12:49:39 2015 Antoine Lempereur
 */
 
 #include	"tools/Log.h"

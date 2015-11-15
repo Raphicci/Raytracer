@@ -57,6 +57,8 @@ Marquer contours avec filtre sobel. Pour la couleur de l'objet, calculer le cos 
 rapport à la couleur de l'objet) (par contre pas sur que ça passe bien avec lumieres colorées, mais pas compliqué à gérer si besoin);
 
 
+Globalement, pour opti, il faut 2 trucs : ne jamais faire 2 fois le même calcul, et éviter de faire des calculs dont on connait le résultat
+
 
 //A partir d'une direction et d'un angle, retourne un vecteur random qui va a peu près vers la direction
 //Utile pour ombres floues, reflexion/transparence plus réaliste

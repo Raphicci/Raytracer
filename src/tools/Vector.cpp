@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:59:23 2015 Antoine Lempereur
-** Last update Thu Nov 12 17:37:17 2015 Antoine Lempereur
+** Last update Sun Nov 15 13:43:29 2015 Antoine Lempereur
 */
 
 #include	<math.h>
@@ -129,6 +129,18 @@ namespace	Tools
       this->rotateY(y);
     if (z < -ALMOST_ZERO || z > ALMOST_ZERO)
       this->rotateZ(z);
+  }
+
+  Vector	Vector::getRandomVec(double angle)
+  {
+    Vector	v(this->x, this->y, this->z);
+
+    // il va falloir convertir l'angle en degrés, faire le random, repasser en radian et rotate
+    
+    //faire 3 random % double, c'est pas un peu cher niveau calculs ?
+    
+    //v.rotate(10.3 % angle, 10 % angle, 10 % angle);
+    return (v);
   }
 
   Vector	Vector::operator+(Vector const& vec)
