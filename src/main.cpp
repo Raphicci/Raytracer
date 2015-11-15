@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 **
 ** Started on  Thu Jun 18 17:44:25 2015 Adrien Vasseur
-** Last update Thu Nov 12 22:04:30 2015 Adrien Vasseur
+** Last update Sun Nov 15 09:53:48 2015 Antoine Lempereur
 */
 
 #include	"tools/Log.h"
@@ -13,6 +13,7 @@
 #include	"tools/Vector.h"
 #include	"tools/Color.h"
 #include	"engine/Ray.h"
+#include	"engine/Box.h"
 #include	"const.h"
 
 int				main(int argc, char **argv)

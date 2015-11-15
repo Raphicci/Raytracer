@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Mon Nov  9 21:36:06 2015 Antoine Lempereur
-** Last update Thu Nov 12 22:29:55 2015 Antoine Lempereur
+** Last update Sun Nov 15 09:53:01 2015 Antoine Lempereur
 */
 
 #include	"engine/Ray.h"
@@ -138,7 +138,7 @@ namespace	Engine
     return (this->color);
   }
 
-  /*Tools::Vector	Ray::getInversed()
+  Tools::Vector	Ray::getInversed()
   {
     return (this->inversed);
   }
@@ -153,32 +153,30 @@ namespace	Engine
     return (this->normal);
   }
 
-	Tools::Vector	Ray::getOrigin()
+  Tools::Vector	Ray::getOrigin()
   {
     return (this->origin);
   }
 
- Tools::Vector	Ray::getDirection()
+  Tools::Vector	Ray::getDirection()
   {
     return (this->direction);
   }
 
-  Engine::Object*	getObject()
+  Engine::Object*	Ray::getObject()
   {
-	return (this->object);
-  }
-  
-  Bool				getIsLim()
-  {
-	return (this->isLim);
+    return (this->object);
   }
 
-  double			getDist()
+  bool				Ray::getIsLim()
   {
-	return (this->dist);
+    return (this->isLim);
   }
-  
-  */
+
+  double			Ray::getDist()
+  {
+    return (this->dist);
+  }
 
   /*void			Ray::setColor(Scene const& scene)
   {

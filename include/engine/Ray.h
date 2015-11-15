@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:21:52 2015 Antoine Lempereur
-** Last update Thu Nov 12 22:26:02 2015 Antoine Lempereur
+** Last update Sun Nov 15 09:52:01 2015 Antoine Lempereur
 */
 
 #ifndef		RAY_H_
@@ -47,11 +47,11 @@ namespace	Engine
 	Tools::Vector	getDirection();
 	Engine::Object*	getObject();
 	bool			getIsLim();
-	float			getDist();
+	double			getDist();
 
   private:
     Engine::Object	*object;
-    float	dist;
+    double	dist;
     bool	isLim;
     Tools::Vector	origin;
     Tools::Vector	direction;

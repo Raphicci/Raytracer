@@ -5,7 +5,7 @@
 ## Login   <adrien.vasseur@epitech.net>
 ##
 ## Started on  Tue Apr 14 16:47:57 2014 Adrien Vasseur
-## Last update Thu Nov 12 21:55:46 2015 Adrien Vasseur
+## Last update Sun Nov 15 10:12:11 2015 Antoine Lempereur
 ##
 
 ifeq ($(CC), clang++)
@@ -34,7 +34,8 @@ SRC		=	src/tools/Log.cpp \
 			src/parser/SceneParser.cpp \
 			src/engine/Scene.cpp \
 			src/engine/Light.cpp \
-			src/engine/Ray.cpp
+			src/engine/Ray.cpp \
+			src/engine/Box.cpp
 
 OBJ		=	$(SRC:.cpp=.o) $(MAIN:.cpp=.o)
 
