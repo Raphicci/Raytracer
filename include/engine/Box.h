@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 **
 ** Started on  Sun Nov 15 09:53:57 2015 Antoine Lempereur
-** Last update Sun Nov 15 12:59:34 2015 Antoine Lempereur
+** Last update Tue Nov 17 22:03:38 2015 Antoine Lempereur
 */
 
 #ifndef		BOX_H_
@@ -31,7 +31,7 @@ namespace	Engine
 	  Tools::Vector	lowCorner;
 	  Tools::Vector	highCorner;
 	  std::vector<Engine::Object *> objects;
-	  Box[4]		boxes;
+	  Box		*boxes;
   };
 }
 
