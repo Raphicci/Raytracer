@@ -24,3 +24,6 @@ http://raytracey.blogspot.fr/2011/07/writing-real-time-path-tracing-demos.html
 
 http://people.csail.mit.edu/amy/papers/box-jgt.pdf
 (ALGO INTERSECTION BOX, C'EST BIEN ET C'EST FACILE)
+
+http://stackoverflow.com/questions/686353/c-random-float-number-generation
+(Random float, pour la distribution)
