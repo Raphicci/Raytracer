@@ -28,6 +28,21 @@ namespace		Engine
     this->highCorner = highCorner;
   }
 
+  void		Box::setBoxesInside() 
+  {
+	  double	width = abs(this->lowCorner.getY() - this->highCorner.getY()) / 2;
+	  double	height = abs(this->lowCorner.getZ() - this->highCorner.getZ()) / 2;
+	  double	depth = abs(this->lowCorner.getX() - this->highCorner.getX()) / 2;
+	  Tools::Vector	lowCorner;
+	  Tools::Vector	highCorner;
+	  /*
+	  highCorner.setValues(lowCorner.getX() + depth, lowCorner.getY() + width, lowCorner.getZ() + height);
+	   // bon vraiment l'encapsulation c'est chiant
+	  this->boxes[0].lowCorner = lowCorner;
+	  this->boxes[0].highCorner = etc...*/
+  }
+
+
   /*double	Box::collide(Engine::Ray const& ray)
   {
         Tools::Vector	v = ray.getInversed();

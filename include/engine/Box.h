@@ -24,12 +24,14 @@ namespace	Engine
 	  bool		isInsideBox(Engine::Box const&);
 	  bool		contain(Tools::Vector const&);
 	  double	collide(Engine::Ray const&);
+	  void		setBoxesInside();
 	  ~Box();
 
   private:
 	  Tools::Vector	lowCorner;
 	  Tools::Vector	highCorner;
 	  std::vector<Engine::Object *> objects;
+	  Box[4]		boxes;
   };
 }
 

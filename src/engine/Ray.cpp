@@ -44,7 +44,7 @@ namespace	Engine
     z = h / 2 - j;
     //this->origin = scene.getOrigin();
     this->direction.setValues(x, y, z);
-    this->direction.rotate(0, 0, 0);
+    this->direction.rotate(0, 0, 0); // (scene.getRotation().getX(), scene.getRotation().getY(), scene.getRotation().getZ())
     this->direction.normalize();//verifier que normaliser des le debut fout aps la merde
     this->inversed = this->direction; // logiquement ça fait bien une copie
     this->inversed.inverse();

@@ -136,11 +136,32 @@ namespace	Tools
     Vector	v(this->x, this->y, this->z);
 
     // il va falloir convertir l'angle en degrés, faire le random, repasser en radian et rotate
-    
-    //faire 3 random % double, c'est pas un peu cher niveau calculs ?
+
+    //c'est pas un peu cher niveau calculs ?
     
     //v.rotate(10.3 % angle, 10 % angle, 10 % angle);
     return (v);
+  }
+
+  void		Vector::translate(double x, double y, double z) 
+  {
+	  this->x += x;
+	  this->y += y;
+	  this->z += z;
+  }
+
+  Vector	Vector::vectorProduct(Vector const& vec)
+  {
+	  Vector	result;
+	  double	x;
+	  double	y;
+	  double	z;
+
+	  x = this->z * vec.y - vec.z * this->y;
+	  y = this->x * vec.z - vec.x * this->z;
+	  z = this->y * vec.x - vec.y * this->x;
+	  result.setValues(x, y, z);
+	  return (result);
   }
 
   Vector	Vector::operator+(Vector const& vec)
