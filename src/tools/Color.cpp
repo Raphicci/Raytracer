@@ -85,6 +85,19 @@ namespace	Tools
     this->b = this->b * (1 - coef) + c.b * coef;
   }
 
+  sf::Color	Color::MixSfColor(sf::Color const& a, sf::Color const& b)
+  {
+	  sf::Color	col;
+	  int r = (a.r + b.r) / 2;
+	  int g = (a.g + b.g) / 2;
+	  int b = (a.b + b.b) / 2;
+	  col.r = (sf::Uint8)r;
+	  col.g = (sf::Uint8)g;
+	  col.b = (sf::Uint8)b;
+	  col.a = 255;
+	  return (col);
+  }
+
   Color::~Color()
   {
 

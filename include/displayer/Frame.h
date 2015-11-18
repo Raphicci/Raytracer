@@ -20,13 +20,11 @@ namespace	Displayer
 	  void	setDist(float, int, int);
 
   private:
-	  sf::Texture		texture;
-	  sf::Texture		motionBlurTexture;
-	  sf::Sprite		sprite; // go tester la taille d'une texture et d'un sprite, voir si c'est lourd à stocker
-	  sf::Sprite		motionBlurSprite;
+	  sf::Image			image;
+	  sf::Image			motionBlurImage; // c'est lourd àstocker une image ?
 	  float				*dist; // ça risque de prendre bcp trop de place :(  mais ce serait bien de l'avoir
 	  Engine::Object	*objects; // pareil ça prendrait masse mémoire mais ça permettrait d'appliquer l'effet cartoon après le calcul
-	  int				frame; // la position de cette frame dans la série, pas sur que ce soit utile
+	  int				framePos; // la position de cette frame dans la série, pas sur que ce soit utile
 	};
 };
 

@@ -36,7 +36,10 @@ namespace	Tools
     void	Mix(std::vector<Color const&>);
     void	Mix(Color const&, float);
     void	PreventOverflow();
+	static sf::Color	MixSfColor(sf::Color const&, sf::Color const&);
+	sf::Color	toSfColor(); //pour envoyer aux fonctions de la sfml
     ~Color();
+
   private:
     int		r;
     int		g;
