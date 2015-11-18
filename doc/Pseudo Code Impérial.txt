@@ -57,6 +57,12 @@ Marquer contours avec filtre sobel. Pour la couleur de l'objet, calculer le cos 
 rapport à la couleur de l'objet) (par contre pas sur que ça passe bien avec lumieres colorées, mais pas compliqué à gérer si besoin);
 
 
+
+Idée : Pour chaque rayon, avoir un vecteur d'obj "possible". Les supprimer au fur et à mesure qu'on se rend compte qu'il ne le sont plus. ça peut etre bien, mais
+est-ce que c'est long de créer un vecteur d'obj pour chaque rayon ? logiquement il y a pas besoin d'allouer plus de mémoire, on les mets/enleve juste de la liste,
+sans delete et new
+
+
 Globalement, pour opti, il faut éviter de faire des calculs dont on peut connaitre le résultat à l'avance
 
 

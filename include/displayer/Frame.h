@@ -13,8 +13,6 @@ namespace	Displayer
 	  frame(sf::Uint8 *, float *)
 	  ~frame();
 
-	  void	setTexture(sf::Uint8 *);
-	  void	setSprite();
 	  void	setMotionBlur(frame);
 	  void	setDist(float *);
 	  void	setDist(float, int, int);

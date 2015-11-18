@@ -37,7 +37,10 @@ namespace	Engine
 
   void		Scene::run()
   {
-	/*double i = 0;
+	/*
+	je pense pas qu'il faille lancer le loop et faire les calculs dans la même fonction
+	
+	double i = 0;
 	double j = 0;
     sf::Uint8 *pixels = new sf::Uint8[this->width * this->height * 4];
 	float	*dist = new float[this->width * this->height];

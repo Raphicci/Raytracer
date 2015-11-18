@@ -18,6 +18,7 @@
 # include			<SFML/Graphics.hpp>
 
 # include			"Window_Config.h"
+//# include			"displayer/Frame.h"
 
 namespace			Displayer
 {
@@ -28,6 +29,8 @@ namespace			Displayer
     ~Window();
 
     void			loop();
+	//void			loop(Displayer::Frame const&);
+	//void			loop(list de frames);
 
   private:
     sf::RenderWindow		*window;

@@ -15,22 +15,12 @@ namespace	Displayer
 		this->setDist(dist);
 	}
 
-	void	Frame::setTexture(sf::Uint8 *pixels) 
-	{
-		this->texture.update(pixels)
-	}
-
-	void	Frame::setSprite() 
-	{
-		this->sprite.setTexture(this->texture);
-	}
-
 	void	Frame::setDist(float *dist) 
 	{
 		this->dist = dist;
 	}
 
-	void	Frame::setMotionBlur(Frame const& nextFrame) // ou une list de frame si on fait le blur sur plusieurs images
+	void	Frame::setMotionBlur(Frame const& nextFrame) // ou une list de frame si on fait le blur sur plusieurs images (d'ailleurs plus le nombre de FPS est important plus le nombre d'image dont il faut faire la moyenne est important)
 	{
 		unsigned int	x;
 		unsigned int	y;
