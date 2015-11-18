@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Nov 12 20:33:42 2015 Adrien Vasseur
-** Last update Thu Nov 12 21:03:21 2015 Adrien Vasseur
+** Last update Wed Nov 18 17:01:14 2015 Antoine Lempereur
 */
 
 #ifndef		SCENE_H_
@@ -14,15 +14,25 @@
 # include	<vector>
 # include	"displayer/Window.h"
 # include	"displayer/EnvChecker.h"
+# include	"tools/Vector.h"
+# include	"engine/Object.h"
 # include	"parser/SceneParser.h"
+//# include	<SFML/Graphics/vector.h>
 
 namespace	Parser
 {
   class		SceneParser;
 };
 
+namespace	Displayer
+{
+  class		Window;
+}
+
 namespace	Engine
 {
+  class		Object;
+
   class		Scene
   {
   public:
@@ -35,17 +45,13 @@ namespace	Engine
   private:
     Parser::SceneParser	*m_parser;
     Displayer::Window	*m_window;
-	/*Tools::Vector		origin;
-	sf::vector3f		rotation; // pourquoi eux ils ont le droit de mettre x, y, z en public ? c'est du racisme
-	
-	std::vector<Engine::Object *> objects
-	int					height; // set hauteur / largeur différent de ceux du fichier de conf ?
-	int					width;	
-	int					antiAliasing;
-	int					fps;
-
-
-	*/
+    Tools::Vector		origin;
+    //sf::vector3f		rotation; // pourquoi eux ils ont le droit de mettre x, y, z en public ? c'est du racisme
+    std::vector<Engine::Object *> objects;
+    unsigned int					height; // set hauteur / largeur différent de ceux du fichier de conf ?
+    unsigned int					width;
+    int					antiAliasing;
+    int					fps;
   };
 };
 

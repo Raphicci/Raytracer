@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Jun 18 17:01:24 2015 Adrien Vasseur
-** Last update Wed Nov 18 17:10:38 2015 Antoine Lempereur
+** Last update Wed Nov 18 17:04:14 2015 Antoine Lempereur
 */
 
 # include	"displayer/Window.h"
@@ -40,7 +40,6 @@ namespace	Displayer
   void		Window::loop()
   {
     sf::Event	event;
-
     while (this->window->isOpen())
       {
 	while (this->window->pollEvent(event))
@@ -56,7 +55,22 @@ namespace	Displayer
   void		Window::loop(Displayer::Frame frame)
   {
     sf::Event	event;
+    /*   sf::Texture	t;
+    sf::Sprite	s;
 
+    if (!t.create(50, 50))
+      {
+	printf("yolo\n");
+      }
+    sf::Uint8* pixels = new sf::Uint8[50 * 50 * 4];
+    int i = 0;
+    while (i < 50 * 50 * 4)
+      {
+	pixels[i] = 200;
+	i++;
+      }
+    t.update(pixels);
+    s.setTexture(t);*/
     while (this->window->isOpen())
       {
 	while (this->window->pollEvent(event))
@@ -65,7 +79,7 @@ namespace	Displayer
 	      this->window->close();
 	  }
 	this->window->clear();
-	this->window->draw(frame.getSprite());
+	this->window->draw(s);
 	this->window->display();
       }
   }

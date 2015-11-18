@@ -5,7 +5,7 @@
 ## Login   <adrien.vasseur@epitech.net>
 ##
 ## Started on  Tue Apr 14 16:47:57 2014 Adrien Vasseur
-## Last update Sun Nov 15 10:12:11 2015 Antoine Lempereur
+## Last update Wed Nov 18 16:42:03 2015 Antoine Lempereur
 ##
 
 ifeq ($(CC), clang++)
@@ -31,6 +31,7 @@ SRC		=	src/tools/Log.cpp \
 			src/Window_Config.cpp \
 			src/displayer/EnvChecker.cpp \
 			src/displayer/Window.cpp \
+			src/displayer/Frame.cpp \
 			src/parser/SceneParser.cpp \
 			src/engine/Scene.cpp \
 			src/engine/Light.cpp \

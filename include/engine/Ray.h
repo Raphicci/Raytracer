@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:21:52 2015 Antoine Lempereur
-** Last update Sun Nov 15 13:08:42 2015 Antoine Lempereur
+** Last update Wed Nov 18 17:02:26 2015 Antoine Lempereur
 */
 
 #ifndef		RAY_H_
@@ -21,23 +21,25 @@
 
 namespace	Engine
 {
+  class		Scene;
+
   class		Ray
   {
   public:
     Ray(Tools::Vector origin, Tools::Vector direction);
-    Ray(double i, double j, Engine::Scene const&);
+    Ray(double i, double j, Engine::Scene *);
     ~Ray();
 
     void			setIntersection();
     void			normalize();
-    void			compute(Engine::Scene const&);
+    void			compute(Engine::Scene *);
     void			setNormal();
     void			findClosestObject(std::vector<Engine::Object*>);
     void			setListBox(Engine::Scene const&);
     Tools::Vector		calcReflectedMainRay();
     Tools::Vector		calcRefractedMainRay();
-    Tools::Color		getReflectedColor(Engine::Scene const&);
-    Tools::Color		getRefractedColor(Engine::Scene const&);
+    Tools::Color		getReflectedColor(Engine::Scene *);
+    Tools::Color		getRefractedColor(Engine::Scene *);
     void			setColor(Engine::Scene const&);
 
     Tools::Color		getColor();

@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Mon Nov  9 21:36:06 2015 Antoine Lempereur
-** Last update Sun Nov 15 09:53:01 2015 Antoine Lempereur
+** Last update Wed Nov 18 17:02:09 2015 Antoine Lempereur
 */
 
 #include	"engine/Ray.h"
@@ -31,7 +31,7 @@ namespace	Engine
     this->direction.normalize();
   }
 
-  Ray::Ray(double i, double j, Scene const& scene)
+  Ray::Ray(double i, double j, Scene *scene)
   {
     double	x;
     double	y;
@@ -74,7 +74,7 @@ namespace	Engine
       }
   }
 
-  void			Ray::compute(Engine::Scene const& scene)
+  void			Ray::compute(Engine::Scene *scene)
   {
 	  /*if (Scene.bigBox.collide(this) > 0)
     //this->findClosestObject(scene.getObject());
@@ -113,7 +113,7 @@ namespace	Engine
     return (refracted);
   }
 
-  Tools::Color	Ray::getReflectedColor(Scene const& scene)
+  Tools::Color	Ray::getReflectedColor(Scene *scene)
   {
     Tools::Vector		reflected = this->calcReflectedMainRay();
     //Tools::ReflectionHandler	handler(this->intersection + reflected, reflected);
@@ -123,7 +123,7 @@ namespace	Engine
     return (ray.getColor());
   }
 
-  Tools::Color	Ray::getRefractedColor(Scene const& scene)
+  Tools::Color	Ray::getRefractedColor(Scene *scene)
   {
     Tools::Vector		refracted = this->calcRefractedMainRay();
     //Tools::ReflectionHandler	handler(this->intersection + reflected, reflected);

@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sun Nov  8 10:31:42 2015 Antoine Lempereur
-** Last update Wed Nov 11 18:11:00 2015 Antoine Lempereur
+** Last update Wed Nov 18 16:29:47 2015 Antoine Lempereur
 */
 
 #include	"tools/Color.h"
@@ -88,12 +88,12 @@ namespace	Tools
   sf::Color	Color::MixSfColor(sf::Color const& a, sf::Color const& b)
   {
 	  sf::Color	col;
-	  int r = (a.r + b.r) / 2;
-	  int g = (a.g + b.g) / 2;
-	  int b = (a.b + b.b) / 2;
-	  col.r = (sf::Uint8)r;
-	  col.g = (sf::Uint8)g;
-	  col.b = (sf::Uint8)b;
+	  int red = (a.r + b.r) / 2;
+	  int green = (a.g + b.g) / 2;
+	  int blue = (a.b + b.b) / 2;
+	  col.r = (sf::Uint8)red;
+	  col.g = (sf::Uint8)green;
+	  col.b = (sf::Uint8)blue;
 	  col.a = 255;
 	  return (col);
   }

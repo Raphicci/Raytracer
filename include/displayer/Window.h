@@ -5,7 +5,7 @@
 ** Login   <zanard_a@epitech.net>
 **
 ** Started on  Thu Jun 11 11:52:31 2015 Antoine Zanardi
-** Last update Sat Nov  7 16:48:39 2015 Antoine Lempereur
+** Last update Wed Nov 18 17:08:09 2015 Antoine Lempereur
 */
 
 #ifndef				WINDOW_H_
@@ -18,10 +18,12 @@
 # include			<SFML/Graphics.hpp>
 
 # include			"Window_Config.h"
-//# include			"displayer/Frame.h"
+# include			"displayer/Frame.h"
 
 namespace			Displayer
 {
+  class				Frame;
+
   class				Window
   {
   public:
@@ -29,7 +31,7 @@ namespace			Displayer
     ~Window();
 
     void			loop();
-	//void			loop(Displayer::Frame const&);
+    void			loop(Displayer::Frame);
 	//void			loop(list de frames);
 
   private:

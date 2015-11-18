@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 **
 ** Started on  Sun Nov 15 09:53:57 2015 Antoine Lempereur
-** Last update Tue Nov 17 22:03:38 2015 Antoine Lempereur
+** Last update Wed Nov 18 16:36:04 2015 Antoine Lempereur
 */
 
 #ifndef		BOX_H_
@@ -16,6 +16,9 @@
 
 namespace	Engine
 {
+  class		Ray;
+  class		Object;
+
   class		Box
   {
   public:
