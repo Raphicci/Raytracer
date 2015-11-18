@@ -80,7 +80,7 @@ namespace	Engine
     //this->findClosestObject(scene.getObject());
 	*/
     this->setIntersection();
-    //this->setNormale()
+    //this->setNormale();
       //this->setColor();
   }
 

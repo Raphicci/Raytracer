@@ -43,6 +43,8 @@ namespace	Engine
 	int					width;	
 	int					antiAliasing;
 	int					fps;
+
+
 	*/
   };
 };

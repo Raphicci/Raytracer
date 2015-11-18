@@ -37,6 +37,26 @@ namespace	Engine
 
   void		Scene::run()
   {
+	/*double i = 0;
+	double j = 0;
+    sf::Uint8 *pixels = new sf::Uint8[this->width * this->height * 4];
+	float	*dist = new float[this->width * this->height];
+
+	while (i < this->width)
+	{
+		while (j < this->height)
+		{
+			Engine::Ray	ray(i, j, this); // c'est légal ça ?
+			ray.compute(this);
+			dist[j + i * sizeline] = ray.getDist();
+			pixels[j + i * sizeline] = ray.getColor().getR();
+			// pareil pour g et b, 0 pour a
+			j++;
+		}
+		i++;
+	}
+	Display::Frame frame(pixels, dist);
+	m_window->loop(frame)*/ // l'idée serait d'envoyer à loop toutes les frames
     m_window->loop();
   }
 };
