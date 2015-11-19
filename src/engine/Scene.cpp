@@ -28,8 +28,18 @@ namespace	Engine
 
   bool		Scene::init(int argv, char **argc)
   {
+	//test
+	Engine::Sphere	*sphere;
+
+	sphere = new Engine::Sphere();
     this->height = 200;
     this->width = 200;
+	this->origin.setValues(-300, 0, 0);
+	this->rotation.setValues(0, 0, 0);
+	this->objects.push_back(sphere);
+
+	// fin test
+
     m_parser = new Parser::SceneParser;
     if (!Displayer::EnvChecker::hasXEnv())
       return (false);
@@ -60,22 +70,24 @@ namespace	Engine
     sf::Uint8 *pixels = new sf::Uint8[this->width * this->height * 4];
     float	*dist = new float[this->width * this->height];
     int		pos;
+	int		sizeLine = this->width * 4;
+	int		positionY;
 
     while (i < this->width)
       {
 	j = 0;
+	positionY = i * sizeLine;
 	while (j < this->height)
 	  {
-	    pos = i * this->width * 4 + j * 4; // précalculer width * 4;
-	    Engine::Ray	ray(i, j, this); // c'est légal ça ?
+	    pos = positionY + j * 4;
+	    Engine::Ray	ray(i, j, this); // c'est légal ça ?  si c'est pas légal go tout mettre à nul dans le constructeur et faire des méthodes init
 	    ray.compute(this);
 	    dist[0] = ray.getDist();
 	    //pixels[pos] = ray.getColor().getR();
 	    pixels[pos] = 255;
-	    pixels[pos + 1] = 255;
+	    pixels[pos + 1] = 255; // go checker l'ordre, dans la minilibX c'etait inversé ça l'est peut etre aussi ici
 	    pixels[pos + 2] = 255;
 	    pixels[pos + 3] = 255;
-	    // pareil pour g et b, 255 pour a
 	    j++;
 	  }
 	i++;

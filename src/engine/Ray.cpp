@@ -17,6 +17,10 @@ namespace	Engine
   {
     this->origin = origin;
     this->direction = direction;
+	this->direction.normalize();//verifier que normaliser des le debut fout aps la merde
+    this->inversed = this->direction; // logiquement ça fait bien une copie
+    this->inversed.inverse();
+	this->squared.setValues(this->direction.getX() * this->direction.getX(), this->direction.getY() * this->direction.getY(), this->direction.getZ() * this->direction.getZ());
   }
 
   void	Ray::setIntersection()
@@ -42,12 +46,14 @@ namespace	Engine
     x = w / 2 * ANTI_FISH_EYE_VALUE;
     y = w / 2 - i;
     z = h / 2 - j;
-    //this->origin = scene.getOrigin();
+    this->origin = scene.getOrigin();
     this->direction.setValues(x, y, z);
     this->direction.rotate(0, 0, 0); // (scene.getRotation().getX(), scene.getRotation().getY(), scene.getRotation().getZ())
     this->direction.normalize();//verifier que normaliser des le debut fout aps la merde
     this->inversed = this->direction; // logiquement ça fait bien une copie
     this->inversed.inverse();
+	this->squared.setValues(this->direction.getX() * this->direction.getX(), this->direction.getY() * this->direction.getY(), this->direction.getZ() * this->direction.getZ());
+	//problème : this->inversed utile que pour l'inter avec box et this->squared que pour l'inter avec certains objets, donc pas utiles 100% du temps -> booleen isSet ? ou juste check que les valeurs sont toutes != 0 (vu qu'on bosse sur une direction, il n'y a jamais le cas 0/0/0)
   }
 
   void			Ray::findClosestObject(std::vector<Engine::Object*> objects)
@@ -77,13 +83,12 @@ namespace	Engine
   void			Ray::compute(Engine::Scene *scene)
   {
 	  /*if (Scene.Box.collide(this) > 0)
-    //this->findClosestObject(scene.getObject());
+    this->findClosestObject(scene.getObject());
 	*/
 	  if (this->dist >= 0)
 	  {
 		  //this->setIntersection();
-		  //this->setNormale(this->object);
-		  //this->setColor();
+		  //this->setColor(scene, this->object.getNormal(this));
 		  this->color.setRGB(255, 255, 255);
 	  }
 	  else

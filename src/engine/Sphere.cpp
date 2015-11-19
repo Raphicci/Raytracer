@@ -26,7 +26,8 @@ namespace		Engine
 
     Sphere()
     {
-
+		Object();
+		this->ray = 10;
     }
 
     ~Sphere()
@@ -34,18 +35,30 @@ namespace		Engine
 
     }
 
-    float collide(Rayon const * ray)
+    float collide(Rayon const *ray)
     {
     	double	equ[3];
 		double	delta;
 
-		equ[0] = ray.getX() * ray.getX() + ray.getY() * ray.getY() + ray.getZ() * ray.getZ();
-	    equ[1] = 2 * (EYEX * ray.getX() + EYEY * ray.getY() + EYEZ * ray.getZ());
-		equ[2] = EYEX * EYEX + EYEY * EYEY + EYEZ * EYEZ - this.getRay() * this.getRay();
-		if ((delta = equ[1] * equ[1] - 4 * equ[0] * equ[2]) >= 0)
-			return  MIN((-equ[1] - sqrt(delta)) / (2 * equ[0]), (-equ[1] + sqrt(delta)) / (2 * equ[0])));
+		// les x², y² et z² go les save dans ray, mais en faisant gaffe d'avoir à ne les calculer que si besoin (genre set à null par défaut, set les valeurs la premieres fois qu'on en a besoin, et check si != null après)
+		equ[0] = ray->getDirection().getX() * ray->getDirection().getX() + ray->getDirection().getY() * ray->getDirection().getY() + ray->getDirection().getZ() * ray->getDirection().getZ();
+	    equ[1] = 2 * (EYEX * ray->getDirection().getX() + EYEY * ray->getDirection().getY() + EYEZ * ray->getDirection().getZ());
+		equ[2] = EYEX * EYEX + EYEY * EYEY + EYEZ * EYEZ - this.getRay() * this.getRay(); // hey cette ligne est toujours la même pour tous les rayons ayant la même origine, go trouver un moyen de précalculer !
+		/*
+		Dans l'idée faire un truc genre
+		if (ray->countRef == 0 && ray->countTransp == 0)
+			equ[2] = this->precalculated;
 		else
-	    	return -2.0;
+			equ[2] = truc normal
+		*/
+		if ((delta = equ[1] * equ[1] - 4 * equ[0] * equ[2]) >= 0) 
+		{
+			double root = sqrt(delta); // Grosse grosse optimisation !
+			double diviser = 2 * equ[0];
+			return  MIN((-equ[1] - root) / diviser, (-equ[1] + root) / diviser));
+		}
+		else
+	    	return (-2.0);
 			/*{
 		      if ((k = MIN((-equ.y - sqrt(delta)) / (2 * equ.x), (-equ.y + sqrt(delta)) / (2 * equ.x))) >= 0)
 				{
@@ -60,8 +73,15 @@ namespace		Engine
 		
     }
 
-    Tools::Vector getNormal(Rayon const * ray)
+    Tools::Vector getNormal(Rayon const *ray)
     {
+		Tools::Vector	v;
+
+		v.setX(ray->getInter().getX()); // bien faire gaffe à ce que l'intersection soit bien celle en position simple à ce moment
+		v.setY(ray->getInter().getY());
+		v.setZ(ray->getInter().getZ());
+		return (v);
+
         /*if (!(d->inter.is_sec))
         {*/
           //norm->x = ray.getInter().getX();

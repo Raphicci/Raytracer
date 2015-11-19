@@ -25,7 +25,9 @@ namespace		Engine
 
     Object()
     {
-
+		this->position.setValues(0, 0, 0);
+		this->rotation.setValues(0, 0, 0);
+		this->color.setRGB(0, 0, 0);
     }
 
     ~Object()

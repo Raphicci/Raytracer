@@ -89,9 +89,12 @@ namespace	Tools
 
   void		Vector::inverse()
   {
-    this->x = 1 / this->x;
-    this->y = 1 / this->y;
-    this->z = 1 / this->z;
+	if (this->x < -ALMOST_ZERO || this->x > ALMOST_ZERO)
+		this->x = 1 / this->x;
+	if (this->y < -ALMOST_ZERO || this->y > ALMOST_ZERO)
+		this->y = 1 / this->y;
+	if (this->z < -ALMOST_ZERO || this->z > ALMOST_ZERO)
+		this->z = 1 / this->z;
   }
 
   void		Vector::rotateX(double value)
