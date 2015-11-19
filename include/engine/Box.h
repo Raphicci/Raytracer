@@ -28,6 +28,11 @@ namespace	Engine
 	  bool		contain(Tools::Vector const&);
 	  double	collide(Engine::Ray const&);
 	  void		setBoxesInside();
+	  double	calcWidth();
+	  double	calcHeight();
+	  double	calcDepth();
+	  Tools::Vector	getLowCorner();
+	  Tools::Vector	getHighCorner();
 	  ~Box();
 
   private:

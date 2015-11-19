@@ -17,7 +17,7 @@
 # include	"tools/Vector.h"
 # include	"engine/Object.h"
 # include	"parser/SceneParser.h"
-//# include	<SFML/Graphics/vector.h>
+//# include	<SFML/Graphics/vector.hpp>
 
 namespace	Parser
 {
@@ -41,13 +41,19 @@ namespace	Engine
 
     bool	init(int, char **);
     void	run();
+	Tools::Vector	getOrigin();
+	Tools::Vector	getRotation();
+	//Box			getBox();
+	std::vector<Engine::Object *>	getObjects();
+
 
   private:
     Parser::SceneParser	*m_parser;
     Displayer::Window	*m_window;
     Tools::Vector		origin;
-    //sf::vector3f		rotation; // pourquoi eux ils ont le droit de mettre x, y, z en public ? c'est du racisme
-    std::vector<Engine::Object *> objects;
+    Tools::Vector		rotation;
+	//Box					box;
+    std::vector<Engine::Object *>	objects;
     unsigned int					height; // set hauteur / largeur différent de ceux du fichier de conf ?
     unsigned int					width;
     int					antiAliasing;

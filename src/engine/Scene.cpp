@@ -37,6 +37,21 @@ namespace	Engine
     return (true);
   }
 
+  /*Tools::Vector	Scene::getOrigin() 
+  {
+	  return (this->origin);
+  }
+
+  Tools::Vector	Scene::getRotation() 
+  {
+	  return (this->rotation);
+  }
+
+  std::vector<Engine::Object *>	Scene::getObjects() 
+  {
+	  return (this->objects);
+  }*/
+
   void		Scene::run()
   {
     // je pense pas qu'il faille lancer le loop et faire les calculs dans la même fonction mais on verra plus tard

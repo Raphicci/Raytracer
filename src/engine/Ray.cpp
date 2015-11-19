@@ -76,12 +76,18 @@ namespace	Engine
 
   void			Ray::compute(Engine::Scene *scene)
   {
-	  /*if (Scene.bigBox.collide(this) > 0)
+	  /*if (Scene.Box.collide(this) > 0)
     //this->findClosestObject(scene.getObject());
 	*/
-    this->setIntersection();
-    //this->setNormale();
-      //this->setColor();
+	  if (this->dist >= 0)
+	  {
+		  //this->setIntersection();
+		  //this->setNormale(this->object);
+		  //this->setColor();
+		  this->color.setRGB(255, 255, 255);
+	  }
+	  else
+		  this->color.setRGB(0, 0, 0); // IMAGE DE FOND ?!
   }
 
   Tools::Vector		Ray::calcReflectedMainRay()

@@ -32,12 +32,13 @@ namespace	Tools
     void	setR(int value);
     void	setG(int value);
     void	setB(int value);
+	void	setRGB(int r, int g, int b);
     void	Mix(Color const&);
     void	Mix(std::vector<Color const&>);
     void	Mix(Color const&, float);
     void	PreventOverflow();
 	static sf::Color	MixSfColor(sf::Color const&, sf::Color const&);
-	sf::Color	toSfColor(); //pour envoyer aux fonctions de la sfml
+	sf::Color	toSfColor(); //pour envoyer aux fonctions de la sfml  // peut etre pas besoin en fait, car on peut pas affichier directement une image donc c'est caca
     ~Color();
 
   private:
