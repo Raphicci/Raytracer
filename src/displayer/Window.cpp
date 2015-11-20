@@ -8,6 +8,7 @@
 ** Last update Wed Nov 18 17:10:38 2015 Antoine Lempereur
 */
 
+# include	<sys/time.h>
 # include	"displayer/Window.h"
 # include	"displayer/Frame.h"
 
@@ -53,20 +54,50 @@ namespace	Displayer
       }
   }
 
-  void		Window::loop(Displayer::Frame frame)
+  void		Window::handleEvents() 
   {
-    sf::Event	event;
+	  sf::Event	event;
 
-    while (this->window->isOpen())
-      {
 	while (this->window->pollEvent(event))
 	  {
 	    if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
 	      this->window->close();
 	  }
-	this->window->clear();
-	this->window->draw(frame.getSprite());
-	this->window->display();
-      }
+  }
+
+  void		Window::loop(Displayer::Frame frame)
+  {
+	while (this->window->isOpen())
+	{
+		this->handleEvents();
+		this->window->clear();
+		this->window->draw(frame.getSprite());
+		this->window->display();
+	}
+  }
+
+  void		Window::loop(vector<Displayer::Frame> frames, int frequency) 
+  {
+	static int	i = 0;
+	static int	wait = 1000000 / frequency; // c'est pas une grosse opti parce que ça arrive après tous les calculs, mais quand même
+	static struct timeval	old;
+	struct timeval			value;
+
+	if (old.tv_usec == 0)
+		gettimeofday(&old, null);
+	while (this->window->isOpen())
+	{
+		this->handleEvents();
+		gettimeofday(&value, null);
+		this->window->clear();
+		this->window->draw(frames[i].getSprite());
+		this->window->display();
+		// le truc en dessous c'est le vieux systeme mais je crois qu'il est mauvais lorsqu'il y a chgmt de secondes (a test)
+		if (value.tv_usec > old.tv_usec + wait || value.tv_sec > old.tv_sec) // && pas de pause
+			i++;
+		if (i == frames.size())
+			i = 0;
+		gettimeofday(&old, NULL);
+	}
   }
 };

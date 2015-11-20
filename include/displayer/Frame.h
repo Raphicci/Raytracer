@@ -28,17 +28,18 @@ namespace	Displayer
     void	setDist(float *);
     void	setDist(float, int, int);
     sf::Sprite	getSprite();
+	static sf::Color	MixSfColor(sf::Color const&, sf::Color const&);
+
+	unsigned int	getFramePos();
 
   private:
     sf::Texture			texture;
     sf::Texture			motionBlurTexture;
     sf::Sprite			sprite;
     sf::Sprite			motionBlurSprite;
-    //    sf::Image			image;
-    //sf::Image			motionBlurImage; // c'est lourd àstocker une image ?
     float				*dist; // ça risque de prendre bcp trop de place :(  mais ce serait bien de l'avoir
-    Engine::Object	*objects; // pareil ça prendrait masse mémoire mais ça permettrait d'appliquer l'effet cartoon après le calcul
-    int				framePos; // la position de cette frame dans la série, pas sur que ce soit utile
+    Engine::Object	*objects; // pareil ça prendrait masse mémoire mais ça permettrait d'appliquer l'effet cartoon après le calcul, et probablement d'autre trucs
+    unsigned int				framePos; // la position de cette frame dans la série
   };
 };
 

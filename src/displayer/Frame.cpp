@@ -35,6 +35,11 @@ namespace	Displayer
     this->dist = dist;
   }
 
+  unsigned int	Frame::getFramePos() 
+  {
+	  return (this->framePos);
+  }
+
   void	Frame::setMotionBlur(Frame const& nextFrame) // ou une list de frame si on fait le blur sur plusieurs images (d'ailleurs plus le nombre de FPS est important plus le nombre d'image dont il faut faire la moyenne est important)
   {
     /*    unsigned int	x;

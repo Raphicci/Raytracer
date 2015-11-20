@@ -31,8 +31,9 @@ namespace			Displayer
     ~Window();
 
     void			loop();
+	void			handleEvents() 
     void			loop(Displayer::Frame);
-	//void			loop(list de frames);
+	void			loop(vector<Displayer::Frame>, int); // go laisser à l'user le choix des FPS
 
   private:
     sf::RenderWindow		*window;

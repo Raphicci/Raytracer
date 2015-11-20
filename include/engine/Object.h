@@ -46,7 +46,7 @@ namespace		Engine
   	//Tools::Vector taille; 
 	Tools::Color color;
     //Tools:Texture texture;
-
+	// les constantes : reflexion(une valeur pour l'intensité, une pour la précision) transparence(intensité, precision, indice de réfraction) vitesse(en unité/frame), brillance, specularite 
   };
 }
 

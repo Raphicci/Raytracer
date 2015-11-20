@@ -72,22 +72,27 @@ namespace	Engine
     int		pos;
 	int		sizeLine = this->width * 4;
 	int		positionY;
+	int		positionDistY;
 
     while (i < this->width)
       {
 	j = 0;
 	positionY = i * sizeLine;
+	positionDistY = i * this->width;
 	while (j < this->height)
 	  {
 	    pos = positionY + j * 4;
 	    Engine::Ray	ray(i, j, this); // c'est légal ça ?  si c'est pas légal go tout mettre à nul dans le constructeur et faire des méthodes init
 	    ray.compute(this);
-	    dist[0] = ray.getDist();
-	    //pixels[pos] = ray.getColor().getR();
-	    pixels[pos] = 255;
+	    dist[positionDistY + j] = ray.getDist();
+	    pixels[pos] = ray.getColor().getR();
+		pixels[pos + 1] = ray.getColor().getG();
+		pixels[pos + 2] = ray.getColor().getB();
+		pixels[pos + 3] = 255;
+	    /*pixels[pos] = 255;
 	    pixels[pos + 1] = 255; // go checker l'ordre, dans la minilibX c'etait inversé ça l'est peut etre aussi ici
 	    pixels[pos + 2] = 255;
-	    pixels[pos + 3] = 255;
+	    pixels[pos + 3] = 255;*/
 	    j++;
 	  }
 	i++;
