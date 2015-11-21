@@ -5,7 +5,7 @@
 ** Login   <thieba_r@epitech.net>
 **
 ** Started on  Wed Nov 11 16:02:34 2015 Raphael Thiebault
-** Last update Sat Nov 21 19:51:20 2015 Antoine Lempereur
+** Last update Sat Nov 21 20:57:35 2015 Antoine Lempereur
 */
 
 # include	"tools/Vector.h"
@@ -24,6 +24,7 @@ namespace		Engine
     this->rotation.setValues(0, 0, 0);
     this->color.setRGB(255, 255, 255);
     this->ray = 10;
+    this->setBox();
   }
 
   Sphere::Sphere(Tools::Vector position, Tools::Vector rotation, Tools::Color color, double ray)
@@ -32,6 +33,20 @@ namespace		Engine
     this->rotation = rotation;
     this->color = color;
     this->ray = ray;
+    this->setBox();
+  }
+
+  void			Sphere::setBox()
+  {
+    Tools::Vector	lowCorner(this->position.getX() - this->ray,
+				  this->position.getY() - this->ray,
+				  this->position.getZ() - this->ray);
+    Tools::Vector	highCorner(this->position.getX() + this->ray,
+				  this->position.getY() + this->ray,
+				  this->position.getZ() + this->ray);
+
+    this->box.setLowCorner(lowCorner);
+    this->box.setHighCorner(highCorner);
   }
 
   Sphere::~Sphere()

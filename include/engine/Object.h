@@ -5,7 +5,7 @@
 ** Login   <thieba_r@epitech.net>
 ** 
 ** Started on  Wed Nov 11 15:06:39 2015 Raphael Thiebault
-** Last update Sat Nov 21 15:55:22 2015 Antoine Lempereur
+** Last update Sat Nov 21 20:40:37 2015 Antoine Lempereur
 */
 
 #ifndef			OBJECT_H_
@@ -14,6 +14,7 @@
 #include	"tools/Vector.h"
 #include	"tools/Color.h"
 #include	"engine/Ray.h"
+#include	"engine/Box.h"
 
 namespace		Engine
 {
@@ -29,14 +30,16 @@ namespace		Engine
     Tools::Vector	getPosition();
     Tools::Vector	getRotation();
     Tools::Color	getColor();
+    Box			getBox();
     //virtual Tools::Vector getNormal(Engine::Ray const *) = 0;
     //virtual Tools::Vector getShadow(Engine::Ray const *) = 0;
 
   protected:
-    Tools::Vector position;
-    Tools::Vector rotation;
+    Tools::Vector	position;
+    Tools::Vector	rotation;
     //Tools::Vector taille;
-    Tools::Color color;
+    Tools::Color	color;
+    Box			box;
     //Tools:Texture texture;
     // les constantes : reflexion(une valeur pour l'intensité, une pour la précision) transparence(intensité, precision, indice de réfraction) vitesse(en unité/frame), brillance, specularite
   };

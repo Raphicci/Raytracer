@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Nov 12 20:38:27 2015 Adrien Vasseur
-** Last update Sat Nov 21 20:06:14 2015 Antoine Lempereur
+** Last update Sat Nov 21 21:34:52 2015 Antoine Lempereur
 */
 
 #include	"engine/Scene.h"
@@ -42,7 +42,7 @@ namespace	Engine
     sphere4 = new Engine::Sphere(Tools::Vector(0, 0, 50), Tools::Vector(0, 0, 0), Tools::Color(0, 0, 255), 10);
     this->height = 1080;
     this->width = 1920;
-    this->origin.setValues(-300, 0, 0);
+    this->origin.setValues(-300, -10, -10);
     this->rotation.setValues(0, 0, 0);
     this->objects.push_back(sphere1);
     this->objects.push_back(sphere2);

@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Mon Nov  9 21:36:06 2015 Antoine Lempereur
-** Last update Sat Nov 21 20:16:38 2015 Antoine Lempereur
+** Last update Sat Nov 21 21:37:29 2015 Antoine Lempereur
 */
 
 #include	"engine/Ray.h"
@@ -75,8 +75,11 @@ namespace	Engine
 	// cette maniere de gérer la position simple est pas ouf, go repenser le truc
 	this->origin = save_origin;
 	this->direction = save_direction;
-	this->swapToPosSimple(objects[i]->getPosition(), objects[i]->getRotation());
-	dist = objects[i]->collide(this);
+	if ((dist = objects[i]->getBox().collide(this)) >= 0) // on perd du temps à faire ça sur les spheres, c'est juste pour voir ce qui marche atm
+	  {
+	    this->swapToPosSimple(objects[i]->getPosition(), objects[i]->getRotation());
+	    //dist = objects[i]->collide(this);
+	  }
 	if (i == 0)
 	  {
 	    this->dist = dist;

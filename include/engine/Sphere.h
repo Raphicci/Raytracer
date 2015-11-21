@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Fri Nov 20 16:45:08 2015 Antoine Lempereur
-** Last update Sat Nov 21 19:46:22 2015 Antoine Lempereur
+** Last update Sat Nov 21 20:40:23 2015 Antoine Lempereur
 */
 
 //tamere raphi je suis obligé de faire un .h pour que ça compile
@@ -15,6 +15,7 @@
 
 # include	"engine/Object.h"
 # include	"tools/Vector.h"
+# include	"engine/Box.h"
 
 namespace	Engine
 {
@@ -28,6 +29,7 @@ namespace	Engine
     Tools::Vector	getNormal(Ray *);
     Sphere		*setRay(double);
     double		getRay();
+    void		setBox();
 
   private:
     double		ray;

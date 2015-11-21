@@ -5,12 +5,13 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Fri Nov 20 17:00:28 2015 Antoine Lempereur
-** Last update Fri Nov 20 18:17:18 2015 Antoine Lempereur
+** Last update Sat Nov 21 20:42:41 2015 Antoine Lempereur
 */
 
 # include	"tools/Vector.h"
 # include	"engine/Object.h"
 # include	"tools/Color.h"
+# include	"engine/Box.h"
 
 namespace		Engine
 {
@@ -34,6 +35,11 @@ namespace		Engine
   Tools::Color	Object::getColor()
   {
     return (this->color);
+  }
+
+  Box		Object::getBox()
+  {
+    return (this->box);
   }
 
   Object::~Object()

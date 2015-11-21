@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sun Nov 15 10:11:38 2015 Antoine Lempereur
-** Last update Sat Nov 21 16:11:14 2015 Antoine Lempereur
+** Last update Sat Nov 21 21:31:47 2015 Antoine Lempereur
 */
 
 #include	<math.h>
@@ -28,34 +28,43 @@ namespace		Engine
     this->highCorner = highCorner;
   }
 
-  /*  void		Box::setBoxesInside()
+  void	Box::setLowCorner(Tools::Vector lowCorner)
   {
-	  double	width = abs(this->lowCorner.getY() - this->highCorner.getY()) / 2;
-	  double	height = abs(this->lowCorner.getZ() - this->highCorner.getZ()) / 2;
-	  double	depth = abs(this->lowCorner.getX() - this->highCorner.getX()) / 2;
-	  Tools::Vector	lowCorner;
-	  Tools::Vector	highCorner;
-	  highCorner.setValues(lowCorner.getX() + depth, lowCorner.getY() + width, lowCorner.getZ() + height);
-	   // bon vraiment l'encapsulation c'est chiant
-	  this->boxes[0].lowCorner = lowCorner;
-	  this->boxes[0].highCorner = etc...
-  }*/
+    this->lowCorner = lowCorner;
+  }
+
+  void	Box::setHighCorner(Tools::Vector highCorner)
+  {
+    this->highCorner = highCorner;
+  }
+    /*  void		Box::setBoxesInside()
+	{
+	double	width = abs(this->lowCorner.getY() - this->highCorner.getY()) / 2;
+	double	height = abs(this->lowCorner.getZ() - this->highCorner.getZ()) / 2;
+	double	depth = abs(this->lowCorner.getX() - this->highCorner.getX()) / 2;
+	Tools::Vector	lowCorner;
+	Tools::Vector	highCorner;
+	highCorner.setValues(lowCorner.getX() + depth, lowCorner.getY() + width, lowCorner.getZ() + height);
+	// bon vraiment l'encapsulation c'est chiant
+	this->boxes[0].lowCorner = lowCorner;
+	this->boxes[0].highCorner = etc...
+	}*/
 
 
-  /*double	Box::collide(Engine::Ray const& ray)
+  double	Box::collide(Engine::Ray *ray)
   {
-        Tools::Vector	v = ray.getInversed();
+    Tools::Vector	v = ray->getInversed();
     Tools::Vector	t1;
     Tools::Vector	t2; // c'est pas genre super con de déclarer ça sous forme de classe ? il y a 0 interet
     double	tmax;
     double	tmin;
 
-    t1.setX((this->lowCorner.getX() - ray.getOrigin().getX()) * v.getX());
-    t1.setY((this->highCorner.getX() - ray.getOrigin().getX()) * v.getX());
-    t1.setZ((this->lowCorner.getY() - ray.getOrigin().getY()) * v.getY());
-    t2.setX((this->highCorner.getY() - ray.getOrigin().getY()) * v.getY());
-    t2.setY((this->lowCorner.getZ() - ray.getOrigin().getZ()) * v.getZ());
-    t2.setZ((this->highCorner.getZ() - ray.getOrigin().getZ()) * v.getZ());
+    t1.setX((this->lowCorner.getX() - ray->getOrigin().getX()) * v.getX());
+    t1.setY((this->highCorner.getX() - ray->getOrigin().getX()) * v.getX());
+    t1.setZ((this->lowCorner.getY() - ray->getOrigin().getY()) * v.getY());
+    t2.setX((this->highCorner.getY() - ray->getOrigin().getY()) * v.getY());
+    t2.setY((this->lowCorner.getZ() - ray->getOrigin().getZ()) * v.getZ());
+    t2.setZ((this->highCorner.getZ() - ray->getOrigin().getZ()) * v.getZ());
     tmin = fmax(fmax(fmin(t1.getX(), t1.getY()), fmin(t1.getZ(), t2.getX())), fmin(t2.getY(), t2.getZ()));
     tmax = fmin(fmin(fmax(t1.getX(), t1.getY()), fmax(t1.getZ(), t2.getX())), fmax(t2.getY(), t2.getZ()));
     if (tmax < 0.0)
@@ -66,64 +75,82 @@ namespace		Engine
 
 
 
-    // HEY J'AI TROUVE UNE OPTI DE CE CODE :) je la code sans encapsulation parce que ça me pete les couilles
+      // HEY J'AI TROUVE UNE OPTI DE CE CODE :) je la code sans encapsulation parce que ça me pete les couilles
 
-    // à tester, vérifier, toussa toussa mais ça me parrait bien.
-  double	min[3];
-  double	max[3];
+      // à tester, vérifier, toussa toussa mais ça me parrait bien.
+    /*double	min[3];
+      double	max[3];
 
-    if (ray.inversed.x >= 0)
-      {
-	min[0] = this->lowCorner.x - r.origin.x * ray.inversed.x;
-	max[0] = this->highCorner.x - r.origin.x * ray.inversed.x;
-      }
-    else
-      {
-	max[0] = this->lowCorner.x - r.origin.x * ray.inversed.x;
-	min[0] = this->highCorner.x - r.origin.x * ray.inversed.x;
-      }
-    if (ray.inversed.y >= 0)
-      {
-	min[1] = this->lowCorner.y - r.origin.y * ray.inversed.y;
-	max[1] = this->highCorner.y - r.origin.y * ray.inversed.y;
-      }
-    else
-      {
-	max[1] = this->lowCorner.y - r.origin.y * ray.inversed.y;
-	min[1] = this->highCorner.y - r.origin.y * ray.inversed.y;
-      }
-    if (min[0] > max[1] || min[1] > max[0])
-      return (-1);
-    if (min[1] > min[0])
-      min[0] = min[1];
-    if (max[1] < max[0])
-      max[0] = max[1];
-    if (ray.inversed.z >= 0)
-      {
-	min[2] = this->lowCorner.z - r.origin.z * ray.inversed.z;
-	max[2] = this->highCorner.z - r.origin.z * ray.inversed.z;
-      }
-    else
-      {
-	max[2] = this->lowCorner.z - r.origin.z * ray.inversed.z;
-	min[2] = this->highCorner.z - r.origin.z * ray.inversed.z;
-      }
-    if (min[0] > max[2] || min[2] > max[0])
-      return (-1);
-    if (min[2] > min[0])
-      min[0] = min[2];
-    if (max[2] < max[0])
-      max[0] = max[2];
-    return (min[0]);
-}*/
-
-  /*  bool	Box::isInsideBox(Engine::Box const& box)
-  {
-
-  }*/
-
-  Box::~Box()
-  {
-
+      if (r->getInversed().getX() >= 0)
+	{
+	  min[0] = this->lowCorner.getX() -
+	    r->getOrigin().getX() * r->getInversed().getX();
+	  max[0] = this->highCorner.getX() -
+	    r->getOrigin().getX() * r->getInversed().getX();
+	}
+      else
+	{
+	  max[0] = this->lowCorner.getX() -
+	    r->getOrigin().getX() * r->getInversed().getX();
+	  min[0] = this->highCorner.getX() -
+	    r->getOrigin().getX() * r->getInversed().getX();
+	}
+      if (r->getInversed().getY() >= 0)
+	{
+	  min[1] = this->lowCorner.getY() -
+	    r->getOrigin().getY() * r->getInversed().getY();
+	  max[1] = this->highCorner.getY() -
+	    r->getOrigin().getY() * r->getInversed().getY();
+	}
+      else
+	{
+	  max[1] = this->lowCorner.getY() -
+	    r->getOrigin().getY() * r->getInversed().getY();
+	  min[1] = this->highCorner.getY() -
+	    r->getOrigin().getY() * r->getInversed().getY();
+	}
+      if (min[0] > max[1] || min[1] > max[0])
+	return (-1);
+      if (min[1] > min[0])
+	min[0] = min[1];
+      if (max[1] < max[0])
+	max[0] = max[1];
+      if (r->getInversed().getZ() >= 0)
+	{
+	  min[2] = this->lowCorner.getZ() - r->getOrigin().getZ() * r->getInversed().getZ();
+	  max[2] = this->highCorner.getZ() - r->getOrigin().getZ() * r->getInversed().getZ();
+	}
+      else
+	{
+	  max[2] = this->lowCorner.getZ() - r->getOrigin().getZ() * r->getInversed().getZ();
+	  min[2] = this->highCorner.getZ() - r->getOrigin().getZ() * r->getInversed().getZ();
+	}
+      if (min[0] > max[2] || min[2] > max[0])
+	return (-1);
+      if (min[2] > min[0])
+	min[0] = min[2];
+      if (max[2] < max[0])
+	max[0] = max[2];
+	return (min[0]);*/
   }
-}
+
+  Tools::Vector	Box::getLowCorner()
+  {
+    return (this->lowCorner);
+  }
+
+  Tools::Vector	Box::getHighCorner()
+  {
+    return (this->highCorner);
+  }
+
+    /*  bool	Box::isInsideBox(Engine::Box const& box)
+	{
+
+	}*/
+
+    Box::~Box()
+    {
+
+    }
+  }
