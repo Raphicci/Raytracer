@@ -5,10 +5,12 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Jun 18 17:01:24 2015 Adrien Vasseur
-** Last update Wed Nov 18 17:10:38 2015 Antoine Lempereur
+** Last update Fri Nov 20 16:33:14 2015 Antoine Lempereur
 */
 
 # include	<sys/time.h>
+# include	<vector>
+# include	<stdlib.h>
 # include	"displayer/Window.h"
 # include	"displayer/Frame.h"
 
@@ -54,7 +56,7 @@ namespace	Displayer
       }
   }
 
-  void		Window::handleEvents() 
+  void		Window::handleEvents()
   {
 	  sf::Event	event;
 
@@ -76,19 +78,19 @@ namespace	Displayer
 	}
   }
 
-  void		Window::loop(vector<Displayer::Frame> frames, int frequency) 
+  void		Window::loop(std::vector<Displayer::Frame> frames, int frequency)
   {
-	static int	i = 0;
+	static unsigned int	i = 0;
 	static int	wait = 1000000 / frequency; // c'est pas une grosse opti parce que ça arrive après tous les calculs, mais quand même
 	static struct timeval	old;
 	struct timeval			value;
 
 	if (old.tv_usec == 0)
-		gettimeofday(&old, null);
+		gettimeofday(&old, NULL);
 	while (this->window->isOpen())
 	{
 		this->handleEvents();
-		gettimeofday(&value, null);
+		gettimeofday(&value, NULL);
 		this->window->clear();
 		this->window->draw(frames[i].getSprite());
 		this->window->display();

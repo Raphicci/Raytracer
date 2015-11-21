@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Wed Nov 18 16:40:47 2015 Antoine Lempereur
-** Last update Wed Nov 18 17:12:25 2015 Antoine Lempereur
+** Last update Sat Nov 21 15:51:56 2015 Antoine Lempereur
 */
 
 #include	"displayer/Frame.h"
@@ -23,6 +23,7 @@ namespace	Displayer
     this->texture.create(width, height);
     this->texture.update(pixels);
     this->sprite.setTexture(this->texture);
+    this->dist = dist;
   }
 
   sf::Sprite	Frame::getSprite()
@@ -35,14 +36,14 @@ namespace	Displayer
     this->dist = dist;
   }
 
-  unsigned int	Frame::getFramePos() 
+  unsigned int	Frame::getFramePos()
   {
 	  return (this->framePos);
   }
 
-  void	Frame::setMotionBlur(Frame const& nextFrame) // ou une list de frame si on fait le blur sur plusieurs images (d'ailleurs plus le nombre de FPS est important plus le nombre d'image dont il faut faire la moyenne est important)
+  /*  void	Frame::setMotionBlur(Frame const& nextFrame) // ou une list de frame si on fait le blur sur plusieurs images (d'ailleurs plus le nombre de FPS est important plus le nombre d'image dont il faut faire la moyenne est important)
   {
-    /*    unsigned int	x;
+    unsigned int	x;
     unsigned int	y;
     sf::Vector2u size = this->texture.getSize();
     sf::Color		previousColor;
@@ -59,8 +60,8 @@ namespace	Displayer
 	    y++;
 	  }
 	x++;
-	}*/
-  }
+	}
+  }*/
 
   Frame::~Frame()
   {

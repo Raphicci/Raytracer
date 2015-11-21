@@ -5,7 +5,7 @@
 ** Login   <zanard_a@epitech.net>
 **
 ** Started on  Thu Jun 11 11:52:31 2015 Antoine Zanardi
-** Last update Wed Nov 18 17:08:09 2015 Antoine Lempereur
+** Last update Fri Nov 20 16:31:34 2015 Antoine Lempereur
 */
 
 #ifndef				WINDOW_H_
@@ -13,6 +13,8 @@
 
 # include			<iostream>
 # include			<exception>
+
+# include			<vector>
 
 # include			<SFML/Window.hpp>
 # include			<SFML/Graphics.hpp>
@@ -31,9 +33,9 @@ namespace			Displayer
     ~Window();
 
     void			loop();
-	void			handleEvents() 
+    void			handleEvents();
     void			loop(Displayer::Frame);
-	void			loop(vector<Displayer::Frame>, int); // go laisser à l'user le choix des FPS
+    void			loop(std::vector<Displayer::Frame>, int); // go laisser à l'user le choix des FPS
 
   private:
     sf::RenderWindow		*window;

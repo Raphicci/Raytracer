@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Wed Nov 18 16:39:48 2015 Antoine Lempereur
-** Last update Wed Nov 18 17:10:31 2015 Antoine Lempereur
+** Last update Fri Nov 20 16:41:31 2015 Antoine Lempereur
 */
 
 #ifndef		FRAME_H_
@@ -22,15 +22,15 @@ namespace	Displayer
   public:
     Frame();
     Frame(sf::Uint8 *, float *, unsigned int, unsigned int);
-      ~Frame();
+    ~Frame();
 
     void	setMotionBlur(Frame const&);
     void	setDist(float *);
     void	setDist(float, int, int);
     sf::Sprite	getSprite();
-	static sf::Color	MixSfColor(sf::Color const&, sf::Color const&);
+    static sf::Color	MixSfColor(sf::Color const&, sf::Color const&);
 
-	unsigned int	getFramePos();
+    unsigned int	getFramePos();
 
   private:
     sf::Texture			texture;
@@ -38,7 +38,7 @@ namespace	Displayer
     sf::Sprite			sprite;
     sf::Sprite			motionBlurSprite;
     float				*dist; // ça risque de prendre bcp trop de place :(  mais ce serait bien de l'avoir
-    Engine::Object	*objects; // pareil ça prendrait masse mémoire mais ça permettrait d'appliquer l'effet cartoon après le calcul, et probablement d'autre trucs
+    //Engine::Object		*objects; pareil ça prendrait masse mémoire mais ça permettrait d'appliquer l'effet cartoon après le calcul, et probablement d'autre trucs
     unsigned int				framePos; // la position de cette frame dans la série
   };
 };

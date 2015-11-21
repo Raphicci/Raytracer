@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Mon Nov  9 21:36:06 2015 Antoine Lempereur
-** Last update Wed Nov 18 17:02:09 2015 Antoine Lempereur
+** Last update Sat Nov 21 16:05:05 2015 Antoine Lempereur
 */
 
 #include	"engine/Ray.h"
@@ -17,17 +17,20 @@ namespace	Engine
   {
     this->origin = origin;
     this->direction = direction;
-	this->direction.normalize();//verifier que normaliser des le debut fout aps la merde
+    this->direction.normalize();//verifier que normaliser des le debut fout aps la merde
     this->inversed = this->direction; // logiquement ça fait bien une copie
     this->inversed.inverse();
-	this->squared.setValues(this->direction.getX() * this->direction.getX(), this->direction.getY() * this->direction.getY(), this->direction.getZ() * this->direction.getZ());
+    this->squared.setValues(this->direction.getX() * this->direction.getX(), this->direction.getY() * this->direction.getY(), this->direction.getZ() * this->direction.getZ());
   }
 
   void	Ray::setIntersection()
   {
-    this->intersection.setX(this->origin.getX() + this->dist * this->direction.getX());
-    this->intersection.setY(this->origin.getY() + this->dist * this->direction.getY());
-    this->intersection.setZ(this->origin.getZ() + this->dist * this->direction.getZ());
+    this->intersection.setX(this->origin.getX() +
+			    this->dist * this->direction.getX());
+    this->intersection.setY(this->origin.getY() +
+			    this->dist * this->direction.getY());
+    this->intersection.setZ(this->origin.getZ() +
+			    this->dist * this->direction.getZ());
   }
 
   void	Ray::normalize()
@@ -40,20 +43,18 @@ namespace	Engine
     double	x;
     double	y;
     double	z;
-    double	w = 1; // c'est juste pour que ça compile hein
-    double	h = 1;
 
-    x = w / 2 * ANTI_FISH_EYE_VALUE;
-    y = w / 2 - i;
-    z = h / 2 - j;
-    this->origin = scene.getOrigin();
+    x = scene->getWidth() / 2 * ANTI_FISH_EYE_VALUE;
+    y = scene->getWidth() / 2 - i;
+    z = scene->getHeight() / 2 - j;
+    this->origin = scene->getOrigin();
     this->direction.setValues(x, y, z);
     this->direction.rotate(0, 0, 0); // (scene.getRotation().getX(), scene.getRotation().getY(), scene.getRotation().getZ())
     this->direction.normalize();//verifier que normaliser des le debut fout aps la merde
     this->inversed = this->direction; // logiquement ça fait bien une copie
     this->inversed.inverse();
-	this->squared.setValues(this->direction.getX() * this->direction.getX(), this->direction.getY() * this->direction.getY(), this->direction.getZ() * this->direction.getZ());
-	//problème : this->inversed utile que pour l'inter avec box et this->squared que pour l'inter avec certains objets, donc pas utiles 100% du temps -> booleen isSet ? ou juste check que les valeurs sont toutes != 0 (vu qu'on bosse sur une direction, il n'y a jamais le cas 0/0/0)
+    this->squared.setValues(this->direction.getX() * this->direction.getX(), this->direction.getY() * this->direction.getY(), this->direction.getZ() * this->direction.getZ());
+    //problème : this->inversed utile que pour l'inter avec box et this->squared que pour l'inter avec certains objets, donc pas utiles 100% du temps -> booleen isSet ? ou juste check que les valeurs sont toutes != 0 (vu qu'on bosse sur une direction, il n'y a jamais le cas 0/0/0)
   }
 
   void			Ray::findClosestObject(std::vector<Engine::Object*> objects)
@@ -65,7 +66,7 @@ namespace	Engine
       return;
     while (i < objects.size())
       {
-	dist = objects[i]->Collide(this);
+	dist = objects[i]->collide(this);
 	if (i == 0)
 	  {
 	    this->dist = dist;
@@ -82,17 +83,18 @@ namespace	Engine
 
   void			Ray::compute(Engine::Scene *scene)
   {
-	  /*if (Scene.Box.collide(this) > 0)
-    this->findClosestObject(scene.getObject());
-	*/
-	  if (this->dist >= 0)
-	  {
-		  //this->setIntersection();
-		  //this->setColor(scene, this->object.getNormal(this));
-		  this->color.setRGB(255, 255, 255);
-	  }
-	  else
-		  this->color.setRGB(0, 0, 0); // IMAGE DE FOND ?!
+    /*if (Scene.Box.collide(this) > 0)
+
+     */
+    this->findClosestObject(scene->getObjects());
+    if (this->dist >= 0)
+      {
+	//this->setIntersection();
+	//this->setColor(scene, this->object.getNormal(this));
+	this->color = this->object->getColor();
+      }
+    else
+      this->color.setRGB(0, 0, 0); // IMAGE DE FOND ?!
   }
 
   Tools::Vector		Ray::calcReflectedMainRay()
@@ -152,6 +154,11 @@ namespace	Engine
   Tools::Vector	Ray::getInversed()
   {
     return (this->inversed);
+  }
+
+  Tools::Vector	Ray::getSquared()
+  {
+    return (this->squared);
   }
 
   Tools::Vector	Ray::getIntersection()

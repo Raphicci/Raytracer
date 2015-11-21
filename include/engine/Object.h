@@ -5,7 +5,7 @@
 ** Login   <thieba_r@epitech.net>
 ** 
 ** Started on  Wed Nov 11 15:06:39 2015 Raphael Thiebault
-** Last update Wed Nov 11 19:43:10 2015 Adrien Vasseur
+** Last update Sat Nov 21 15:55:22 2015 Antoine Lempereur
 */
 
 #ifndef			OBJECT_H_
@@ -22,31 +22,23 @@ namespace		Engine
   class			Object
   {
   public:
+    Object();
+    ~Object();
 
-    Object()
-    {
-		this->position.setValues(0, 0, 0);
-		this->rotation.setValues(0, 0, 0);
-		this->color.setRGB(0, 0, 0);
-    }
+    virtual float collide(Engine::Ray *) = 0;
+    Tools::Vector	getPosition();
+    Tools::Vector	getRotation();
+    Tools::Color	getColor();
+    //virtual Tools::Vector getNormal(Engine::Ray const *) = 0;
+    //virtual Tools::Vector getShadow(Engine::Ray const *) = 0;
 
-    ~Object()
-    {
-
-    }
-
-    virtual float Collide(Engine::Ray const *);
-    virtual Tools::Vector getNormal(Engine::Ray const *);
-    virtual Tools::Vector getShadow(Engine::Ray const *);
-
-  private:
-
-  	Tools::Vector position;
-  	Tools::Vector rotation;
-  	//Tools::Vector taille; 
-	Tools::Color color;
+  protected:
+    Tools::Vector position;
+    Tools::Vector rotation;
+    //Tools::Vector taille;
+    Tools::Color color;
     //Tools:Texture texture;
-	// les constantes : reflexion(une valeur pour l'intensité, une pour la précision) transparence(intensité, precision, indice de réfraction) vitesse(en unité/frame), brillance, specularite 
+    // les constantes : reflexion(une valeur pour l'intensité, une pour la précision) transparence(intensité, precision, indice de réfraction) vitesse(en unité/frame), brillance, specularite
   };
 }
 

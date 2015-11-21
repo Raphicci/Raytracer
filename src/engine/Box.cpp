@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sun Nov 15 10:11:38 2015 Antoine Lempereur
-** Last update Sun Nov 15 10:45:52 2015 Antoine Lempereur
+** Last update Sat Nov 21 16:11:14 2015 Antoine Lempereur
 */
 
 #include	<math.h>
@@ -28,19 +28,18 @@ namespace		Engine
     this->highCorner = highCorner;
   }
 
-  void		Box::setBoxesInside() 
+  /*  void		Box::setBoxesInside()
   {
 	  double	width = abs(this->lowCorner.getY() - this->highCorner.getY()) / 2;
 	  double	height = abs(this->lowCorner.getZ() - this->highCorner.getZ()) / 2;
 	  double	depth = abs(this->lowCorner.getX() - this->highCorner.getX()) / 2;
 	  Tools::Vector	lowCorner;
 	  Tools::Vector	highCorner;
-	  /*
 	  highCorner.setValues(lowCorner.getX() + depth, lowCorner.getY() + width, lowCorner.getZ() + height);
 	   // bon vraiment l'encapsulation c'est chiant
 	  this->boxes[0].lowCorner = lowCorner;
-	  this->boxes[0].highCorner = etc...*/
-  }
+	  this->boxes[0].highCorner = etc...
+  }*/
 
 
   /*double	Box::collide(Engine::Ray const& ray)

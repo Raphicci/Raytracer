@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sun Nov  8 10:31:42 2015 Antoine Lempereur
-** Last update Wed Nov 18 16:29:47 2015 Antoine Lempereur
+** Last update Sat Nov 21 16:09:45 2015 Antoine Lempereur
 */
 
 #include	"tools/Color.h"
@@ -39,7 +39,7 @@ namespace	Tools
     this->b = value;
   }
 
-  void	Color::setRGB(int r, int g, int b) 
+  void	Color::setRGB(int r, int g, int b)
   {
 	  this->r = r;
 	  this->g = g;

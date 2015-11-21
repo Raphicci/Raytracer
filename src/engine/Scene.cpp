@@ -5,10 +5,12 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Nov 12 20:38:27 2015 Adrien Vasseur
-** Last update Wed Nov 18 17:30:52 2015 Antoine Lempereur
+** Last update Sat Nov 21 16:12:08 2015 Antoine Lempereur
 */
 
 #include	"engine/Scene.h"
+#include	"engine/Object.h"
+#include	"engine/Sphere.h"
 
 namespace	Engine
 {
@@ -28,17 +30,17 @@ namespace	Engine
 
   bool		Scene::init(int argv, char **argc)
   {
-	//test
-	Engine::Sphere	*sphere;
+    //test
+    Engine::Sphere	*sphere;
 
-	sphere = new Engine::Sphere();
-    this->height = 200;
-    this->width = 200;
-	this->origin.setValues(-300, 0, 0);
-	this->rotation.setValues(0, 0, 0);
-	this->objects.push_back(sphere);
+    sphere = new Engine::Sphere();
+    this->height = 500;
+    this->width = 1000;
+    this->origin.setValues(-300, 0, 80);
+    this->rotation.setValues(0, 0, 0);
+    this->objects.push_back(sphere);
 
-	// fin test
+    // fin test
 
     m_parser = new Parser::SceneParser;
     if (!Displayer::EnvChecker::hasXEnv())
@@ -47,20 +49,30 @@ namespace	Engine
     return (true);
   }
 
-  /*Tools::Vector	Scene::getOrigin() 
+  Tools::Vector	Scene::getOrigin()
   {
 	  return (this->origin);
   }
 
-  Tools::Vector	Scene::getRotation() 
+  Tools::Vector	Scene::getRotation()
   {
 	  return (this->rotation);
   }
 
-  std::vector<Engine::Object *>	Scene::getObjects() 
+  unsigned int	Scene::getWidth()
+  {
+    return (this->width);
+  }
+
+  unsigned int	Scene::getHeight()
+  {
+    return (this->height);
+  }
+
+  std::vector<Engine::Object *>	Scene::getObjects()
   {
 	  return (this->objects);
-  }*/
+  }
 
   void		Scene::run()
   {
@@ -70,29 +82,25 @@ namespace	Engine
     sf::Uint8 *pixels = new sf::Uint8[this->width * this->height * 4];
     float	*dist = new float[this->width * this->height];
     int		pos;
-	int		sizeLine = this->width * 4;
-	int		positionY;
-	int		positionDistY;
+    int		sizeLine = this->width * 4;
+    int		positionY;
+    int		positionDistY;
 
-    while (i < this->width)
+    while (i < this->height)
       {
 	j = 0;
 	positionY = i * sizeLine;
 	positionDistY = i * this->width;
-	while (j < this->height)
+	while (j < this->width)
 	  {
 	    pos = positionY + j * 4;
 	    Engine::Ray	ray(i, j, this); // c'est légal ça ?  si c'est pas légal go tout mettre à nul dans le constructeur et faire des méthodes init
 	    ray.compute(this);
-	    dist[positionDistY + j] = ray.getDist();
+	    //dist[(int)(positionDistY + j)] = ray.getDist();
 	    pixels[pos] = ray.getColor().getR();
-		pixels[pos + 1] = ray.getColor().getG();
-		pixels[pos + 2] = ray.getColor().getB();
-		pixels[pos + 3] = 255;
-	    /*pixels[pos] = 255;
-	    pixels[pos + 1] = 255; // go checker l'ordre, dans la minilibX c'etait inversé ça l'est peut etre aussi ici
-	    pixels[pos + 2] = 255;
-	    pixels[pos + 3] = 255;*/
+	    pixels[pos + 1] = ray.getColor().getG();
+	    pixels[pos + 2] = ray.getColor().getB();
+	    pixels[pos + 3] = 255;
 	    j++;
 	  }
 	i++;

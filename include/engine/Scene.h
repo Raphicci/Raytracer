@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Nov 12 20:33:42 2015 Adrien Vasseur
-** Last update Wed Nov 18 17:01:14 2015 Antoine Lempereur
+** Last update Sat Nov 21 15:33:40 2015 Antoine Lempereur
 */
 
 #ifndef		SCENE_H_
@@ -39,12 +39,14 @@ namespace	Engine
     Scene();
     ~Scene();
 
-    bool	init(int, char **);
-    void	run();
-	Tools::Vector	getOrigin();
-	Tools::Vector	getRotation();
-	//Box			getBox();
-	std::vector<Engine::Object *>	getObjects();
+    bool				init(int, char **);
+    void				run();
+    Tools::Vector			getOrigin();
+    Tools::Vector			getRotation();
+    //Box			getBox();
+    unsigned int			getWidth();
+    unsigned int			getHeight();
+    std::vector<Engine::Object *>	getObjects();
 
 
   private:
@@ -52,7 +54,7 @@ namespace	Engine
     Displayer::Window	*m_window;
     Tools::Vector		origin;
     Tools::Vector		rotation;
-	//Box					box;
+    //Box					box;
     std::vector<Engine::Object *>	objects;
     unsigned int					height; // set hauteur / largeur différent de ceux du fichier de conf ?
     unsigned int					width;

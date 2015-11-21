@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:59:23 2015 Antoine Lempereur
-** Last update Sun Nov 15 13:43:29 2015 Antoine Lempereur
+** Last update Sat Nov 21 16:16:29 2015 Antoine Lempereur
 */
 
 #include	<math.h>
@@ -89,12 +89,12 @@ namespace	Tools
 
   void		Vector::inverse()
   {
-	if (this->x < -ALMOST_ZERO || this->x > ALMOST_ZERO)
-		this->x = 1 / this->x;
-	if (this->y < -ALMOST_ZERO || this->y > ALMOST_ZERO)
-		this->y = 1 / this->y;
-	if (this->z < -ALMOST_ZERO || this->z > ALMOST_ZERO)
-		this->z = 1 / this->z;
+    if (this->x < -ALMOST_ZERO || this->x > ALMOST_ZERO)
+      this->x = 1 / this->x;
+    if (this->y < -ALMOST_ZERO || this->y > ALMOST_ZERO)
+      this->y = 1 / this->y;
+    if (this->z < -ALMOST_ZERO || this->z > ALMOST_ZERO)
+      this->z = 1 / this->z;
   }
 
   void		Vector::rotateX(double value)
@@ -134,7 +134,7 @@ namespace	Tools
       this->rotateZ(z);
   }
 
-  Vector	Vector::getRandomVec(double angle)
+  /*  Vector	Vector::getRandomVec(double angle)
   {
     Vector	v(this->x, this->y, this->z);
 
@@ -144,27 +144,27 @@ namespace	Tools
     
     //v.rotate(10.3 % angle, 10 % angle, 10 % angle);
     return (v);
-  }
+    }*/
 
   void		Vector::translate(double x, double y, double z) 
   {
-	  this->x += x;
-	  this->y += y;
-	  this->z += z;
+    this->x += x;
+    this->y += y;
+    this->z += z;
   }
 
   Vector	Vector::vectorProduct(Vector const& vec)
   {
-	  Vector	result;
-	  double	x;
-	  double	y;
-	  double	z;
+    Vector	result;
+    double	x;
+    double	y;
+    double	z;
 
-	  x = this->z * vec.y - vec.z * this->y;
-	  y = this->x * vec.z - vec.x * this->z;
-	  z = this->y * vec.x - vec.y * this->x;
-	  result.setValues(x, y, z);
-	  return (result);
+    x = this->z * vec.y - vec.z * this->y;
+    y = this->x * vec.z - vec.x * this->z;
+    z = this->y * vec.x - vec.y * this->x;
+    result.setValues(x, y, z);
+    return (result);
   }
 
   Vector	Vector::operator+(Vector const& vec)
@@ -178,6 +178,4 @@ namespace	Tools
   {
 
   }
-
-  //reste à coder translate, vectorProduct
 };

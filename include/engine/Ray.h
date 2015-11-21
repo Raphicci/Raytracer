@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:21:52 2015 Antoine Lempereur
-** Last update Wed Nov 18 17:02:26 2015 Antoine Lempereur
+** Last update Fri Nov 20 16:40:18 2015 Antoine Lempereur
 */
 
 #ifndef		RAY_H_
@@ -46,6 +46,7 @@ namespace	Engine
     Tools::Vector				getIntersection();
     Tools::Vector				getNormal();
     Tools::Vector				getInversed();
+    Tools::Vector				getSquared();
     Tools::Vector				getOrigin();
     Tools::Vector				getDirection();
     Engine::Object*				getObject();
