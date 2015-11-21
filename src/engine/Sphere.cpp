@@ -5,7 +5,7 @@
 ** Login   <thieba_r@epitech.net>
 **
 ** Started on  Wed Nov 11 16:02:34 2015 Raphael Thiebault
-** Last update Sat Nov 21 16:09:53 2015 Antoine Lempereur
+** Last update Sat Nov 21 16:37:29 2015 Antoine Lempereur
 */
 
 # include	"tools/Vector.h"
@@ -23,7 +23,7 @@ namespace		Engine
   {
     this->position.setValues(0, 0, 0);
     this->rotation.setValues(0, 0, 0);
-    this->color.setRGB(0, 255, 255);
+    this->color.setRGB(255, 255, 255);
     this->ray = 10;
   }
 

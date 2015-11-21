@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Nov 12 20:38:27 2015 Adrien Vasseur
-** Last update Sat Nov 21 16:12:08 2015 Antoine Lempereur
+** Last update Sat Nov 21 16:37:11 2015 Antoine Lempereur
 */
 
 #include	"engine/Scene.h"
@@ -36,7 +36,7 @@ namespace	Engine
     sphere = new Engine::Sphere();
     this->height = 500;
     this->width = 1000;
-    this->origin.setValues(-300, 0, 80);
+    this->origin.setValues(-300, 0, 0);
     this->rotation.setValues(0, 0, 0);
     this->objects.push_back(sphere);
 
@@ -86,14 +86,14 @@ namespace	Engine
     int		positionY;
     int		positionDistY;
 
-    while (i < this->height)
+    while (j < this->height)
       {
-	j = 0;
-	positionY = i * sizeLine;
-	positionDistY = i * this->width;
-	while (j < this->width)
+	i = 0;
+	positionY = j * sizeLine;
+	positionDistY = j * this->width;
+	while (i < this->width)
 	  {
-	    pos = positionY + j * 4;
+	    pos = positionY + i * 4;
 	    Engine::Ray	ray(i, j, this); // c'est légal ça ?  si c'est pas légal go tout mettre à nul dans le constructeur et faire des méthodes init
 	    ray.compute(this);
 	    //dist[(int)(positionDistY + j)] = ray.getDist();
@@ -101,9 +101,9 @@ namespace	Engine
 	    pixels[pos + 1] = ray.getColor().getG();
 	    pixels[pos + 2] = ray.getColor().getB();
 	    pixels[pos + 3] = 255;
-	    j++;
+	    i++;
 	  }
-	i++;
+	j++;
       }
     Displayer::Frame frame(pixels, dist, this->width, this->height);
     m_window->loop(frame); // l'idée serait d'envoyer à loop toutes les frames
