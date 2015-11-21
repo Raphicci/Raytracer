@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Mon Nov  9 21:36:06 2015 Antoine Lempereur
-** Last update Sat Nov 21 21:37:29 2015 Antoine Lempereur
+** Last update Sat Nov 21 22:15:04 2015 Antoine Lempereur
 */
 
 #include	"engine/Ray.h"
@@ -78,7 +78,7 @@ namespace	Engine
 	if ((dist = objects[i]->getBox().collide(this)) >= 0) // on perd du temps à faire ça sur les spheres, c'est juste pour voir ce qui marche atm
 	  {
 	    this->swapToPosSimple(objects[i]->getPosition(), objects[i]->getRotation());
-	    //dist = objects[i]->collide(this);
+	    dist = objects[i]->collide(this);
 	  }
 	if (i == 0)
 	  {
@@ -96,15 +96,17 @@ namespace	Engine
 
   void			Ray::compute(Engine::Scene *scene)
   {
-    /*if (Scene.Box.collide(this) > 0)
-
-     */
-    this->findClosestObject(scene->getObjects());
-    if (this->dist >= 0)
+    if (scene->getBox().collide(this) > 0)
       {
-	//this->setIntersection();
-	//this->setColor(scene, this->object.getNormal(this));
-	this->color = this->object->getColor();
+	this->findClosestObject(scene->getObjects());
+	if (this->dist >= 0)
+	  {
+	    //this->setIntersection();
+	    //this->setColor(scene, this->object.getNormal(this));
+	    this->color = this->object->getColor();
+	  }
+	else
+	  this->color.setRGB(0, 0, 0); // IMAGE DE FOND ?!
       }
     else
       this->color.setRGB(0, 0, 0); // IMAGE DE FOND ?!

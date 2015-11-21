@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Tue Nov 10 16:37:19 2015 Antoine Lempereur
-** Last update Thu Nov 12 17:29:26 2015 Antoine Lempereur
+** Last update Sat Nov 21 21:52:16 2015 Antoine Lempereur
 */
 
 #ifndef		CONST_H_
