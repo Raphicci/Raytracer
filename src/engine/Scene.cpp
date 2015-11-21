@@ -5,7 +5,7 @@
 ** Login   <vasseu_g@epitech.net>
 ** 
 ** Started on  Thu Nov 12 20:38:27 2015 Adrien Vasseur
-** Last update Sat Nov 21 16:37:11 2015 Antoine Lempereur
+** Last update Sat Nov 21 20:06:14 2015 Antoine Lempereur
 */
 
 #include	"engine/Scene.h"
@@ -31,15 +31,23 @@ namespace	Engine
   bool		Scene::init(int argv, char **argc)
   {
     //test
-    Engine::Sphere	*sphere;
+    Engine::Sphere	*sphere1;
+    Engine::Sphere	*sphere2;
+    Engine::Sphere	*sphere3;
+    Engine::Sphere	*sphere4;
 
-    sphere = new Engine::Sphere();
-    this->height = 500;
-    this->width = 1000;
+    sphere1 = new Engine::Sphere(Tools::Vector(0, 0, -50), Tools::Vector(0, 0, 0), Tools::Color(0, 255, 255), 10);
+    sphere2 = new Engine::Sphere(Tools::Vector(0, 50, 0), Tools::Vector(0, 0, 0), Tools::Color(255, 255, 0), 10);
+    sphere3 = new Engine::Sphere(Tools::Vector(0, -50, 0), Tools::Vector(0, 0, 0), Tools::Color(255, 0, 255), 10);
+    sphere4 = new Engine::Sphere(Tools::Vector(0, 0, 50), Tools::Vector(0, 0, 0), Tools::Color(0, 0, 255), 10);
+    this->height = 1080;
+    this->width = 1920;
     this->origin.setValues(-300, 0, 0);
     this->rotation.setValues(0, 0, 0);
-    this->objects.push_back(sphere);
-
+    this->objects.push_back(sphere1);
+    this->objects.push_back(sphere2);
+    this->objects.push_back(sphere3);
+    this->objects.push_back(sphere4);
     // fin test
 
     m_parser = new Parser::SceneParser;
@@ -94,9 +102,9 @@ namespace	Engine
 	while (i < this->width)
 	  {
 	    pos = positionY + i * 4;
-	    Engine::Ray	ray(i, j, this); // c'est légal ça ?  si c'est pas légal go tout mettre à nul dans le constructeur et faire des méthodes init
+	    Engine::Ray	ray(i, j, this);
 	    ray.compute(this);
-	    //dist[(int)(positionDistY + j)] = ray.getDist();
+	    dist[(int)(positionDistY + j)] = ray.getDist();
 	    pixels[pos] = ray.getColor().getR();
 	    pixels[pos + 1] = ray.getColor().getG();
 	    pixels[pos + 2] = ray.getColor().getB();
@@ -107,6 +115,5 @@ namespace	Engine
       }
     Displayer::Frame frame(pixels, dist, this->width, this->height);
     m_window->loop(frame); // l'idée serait d'envoyer à loop toutes les frames
-    //m_window->loop();
   }
 };

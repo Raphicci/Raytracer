@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Fri Nov 20 16:45:08 2015 Antoine Lempereur
-** Last update Fri Nov 20 17:49:27 2015 Antoine Lempereur
+** Last update Sat Nov 21 19:46:22 2015 Antoine Lempereur
 */
 
 //tamere raphi je suis obligé de faire un .h pour que ça compile
@@ -22,6 +22,7 @@ namespace	Engine
   {
   public:
     Sphere();
+    Sphere(Tools::Vector, Tools::Vector, Tools::Color, double);
     ~Sphere();
     float		collide(Ray *);
     Tools::Vector	getNormal(Ray *);

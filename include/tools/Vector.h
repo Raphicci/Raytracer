@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:21:52 2015 Antoine Lempereur
-** Last update Sat Nov 21 16:15:34 2015 Antoine Lempereur
+** Last update Sat Nov 21 20:09:48 2015 Antoine Lempereur
 */
 
 #ifndef		VECTOR_H_
@@ -34,10 +34,12 @@ namespace	Tools
     void	rotateY(double);
     void	rotateZ(double);
     void	rotate(double x, double y, double z);
+    void	rotate(Vector const& vec);
     void	normalize();
     void	translate(double x, double y, double z);
     Vector	getRandomVec(double angle);
     Vector	operator+(Vector const&);
+    Vector	operator-(Vector const&);
 
   private:
     double	x;

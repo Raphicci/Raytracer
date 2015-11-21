@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:21:52 2015 Antoine Lempereur
-** Last update Fri Nov 20 16:40:18 2015 Antoine Lempereur
+** Last update Sat Nov 21 20:14:40 2015 Antoine Lempereur
 */
 
 #ifndef		RAY_H_
@@ -30,44 +30,43 @@ namespace	Engine
     Ray(double i, double j, Engine::Scene *);
     ~Ray();
 
-    void						setIntersection();
-    void						normalize();
-    void						compute(Engine::Scene *);
-    void						setNormal();
-    void						findClosestObject(std::vector<Engine::Object*>);
-    void						setListBox(Engine::Scene const&);
+    void					setIntersection();
+    void					normalize();
+    void					compute(Engine::Scene *);
+    void					setNormal();
+    void					findClosestObject(std::vector<Engine::Object*>);
+    void					setListBox(Engine::Scene const&);
     Tools::Vector				calcReflectedMainRay();
     Tools::Vector				calcRefractedMainRay();
     Tools::Color				getReflectedColor(Engine::Scene *);
     Tools::Color				getRefractedColor(Engine::Scene *);
-    void						setColor(Engine::Scene const&);
+    void					setColor(Engine::Scene const&);
+    void					swapToPosSimple(Tools::Vector, Tools::Vector);
 
     Tools::Color				getColor();
     Tools::Vector				getIntersection();
     Tools::Vector				getNormal();
     Tools::Vector				getInversed();
-    Tools::Vector				getSquared();
     Tools::Vector				getOrigin();
     Tools::Vector				getDirection();
     Engine::Object*				getObject();
-    bool						getIsLim();
-    double						getDist();
+    bool					getIsLim();
+    double					getDist();
 
   private:
     Engine::Object				*object;
-    double						dist;
-    bool						isLim;
+    double					dist;
+    bool					isLim;
     Tools::Vector				origin;
-	Tools::Vector				originPosSimple;
+    Tools::Vector				originPosSimple;
     Tools::Vector				direction;
-	Tools::Vector				directionPosSimple;
+    Tools::Vector				directionPosSimple;
     Tools::Vector				inversed;
-	Tools::Vector				squared;
     Tools::Vector				intersection;
     Tools::Vector				normal; // probablement pas besoin de la stocker en fait, sauf si ça sert post-calculs // pareil pour l'intersection en fait, on en a besoin souvent mais pas forcément besoin de le stocker
     Tools::Color				color;
-    std::vector<Engine::Box>	boxes;
-	int							countRef;
+    std::vector<Engine::Box>			boxes;
+    int						countRef;
   };
 }
 

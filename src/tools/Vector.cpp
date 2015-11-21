@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sat Nov  7 16:59:23 2015 Antoine Lempereur
-** Last update Sat Nov 21 16:16:29 2015 Antoine Lempereur
+** Last update Sat Nov 21 20:11:42 2015 Antoine Lempereur
 */
 
 #include	<math.h>
@@ -134,6 +134,11 @@ namespace	Tools
       this->rotateZ(z);
   }
 
+  void		Vector::rotate(Vector const& vec)
+  {
+    this->rotate(vec.x, vec.y, vec.z);
+  }
+
   /*  Vector	Vector::getRandomVec(double angle)
   {
     Vector	v(this->x, this->y, this->z);
@@ -170,6 +175,13 @@ namespace	Tools
   Vector	Vector::operator+(Vector const& vec)
   {
     Vector	result(this->x + vec.x, this->y + vec.y, this->z + vec.z);
+
+    return (result);
+  }
+
+  Vector	Vector::operator-(Vector const& vec)
+  {
+    Vector	result(this->x - vec.x, this->y - vec.y, this->z - vec.z);
 
     return (result);
   }

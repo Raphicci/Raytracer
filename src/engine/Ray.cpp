@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Mon Nov  9 21:36:06 2015 Antoine Lempereur
-** Last update Sat Nov 21 16:05:05 2015 Antoine Lempereur
+** Last update Sat Nov 21 20:16:38 2015 Antoine Lempereur
 */
 
 #include	"engine/Ray.h"
@@ -17,10 +17,9 @@ namespace	Engine
   {
     this->origin = origin;
     this->direction = direction;
-    this->direction.normalize();//verifier que normaliser des le debut fout aps la merde
-    this->inversed = this->direction; // logiquement ça fait bien une copie
+    this->direction.normalize();
+    this->inversed = this->direction;
     this->inversed.inverse();
-    this->squared.setValues(this->direction.getX() * this->direction.getX(), this->direction.getY() * this->direction.getY(), this->direction.getZ() * this->direction.getZ());
   }
 
   void	Ray::setIntersection()
@@ -49,23 +48,34 @@ namespace	Engine
     z = scene->getHeight() / 2 - j;
     this->origin = scene->getOrigin();
     this->direction.setValues(x, y, z);
-    this->direction.rotate(0, 0, 0); // (scene.getRotation().getX(), scene.getRotation().getY(), scene.getRotation().getZ())
-    this->direction.normalize();//verifier que normaliser des le debut fout aps la merde
-    this->inversed = this->direction; // logiquement ça fait bien une copie
+    this->direction.rotate(scene->getRotation());
+    this->direction.normalize();
+    this->inversed = this->direction;
     this->inversed.inverse();
-    this->squared.setValues(this->direction.getX() * this->direction.getX(), this->direction.getY() * this->direction.getY(), this->direction.getZ() * this->direction.getZ());
-    //problème : this->inversed utile que pour l'inter avec box et this->squared que pour l'inter avec certains objets, donc pas utiles 100% du temps -> booleen isSet ? ou juste check que les valeurs sont toutes != 0 (vu qu'on bosse sur une direction, il n'y a jamais le cas 0/0/0)
   }
 
-  void			Ray::findClosestObject(std::vector<Engine::Object*> objects)
+  void		Ray::swapToPosSimple(Tools::Vector pos, Tools::Vector rot)
   {
-    unsigned int	i = 0;
-    float		dist;
+    this->origin = this->origin - pos;
+    this->origin.rotate(rot);
+    this->direction.rotate(rot);
+  }
+
+  void				Ray::findClosestObject(std::vector<Engine::Object*> objects)
+  {
+    unsigned int		i = 0;
+    float			dist;
+    Tools::Vector		save_origin(this->origin);
+    Tools::Vector		save_direction(this->direction);
 
     if (objects.size() == 0)
       return;
     while (i < objects.size())
       {
+	// cette maniere de gérer la position simple est pas ouf, go repenser le truc
+	this->origin = save_origin;
+	this->direction = save_direction;
+	this->swapToPosSimple(objects[i]->getPosition(), objects[i]->getRotation());
 	dist = objects[i]->collide(this);
 	if (i == 0)
 	  {
@@ -154,11 +164,6 @@ namespace	Engine
   Tools::Vector	Ray::getInversed()
   {
     return (this->inversed);
-  }
-
-  Tools::Vector	Ray::getSquared()
-  {
-    return (this->squared);
   }
 
   Tools::Vector	Ray::getIntersection()

@@ -5,7 +5,7 @@
 ** Login   <thieba_r@epitech.net>
 **
 ** Started on  Wed Nov 11 16:02:34 2015 Raphael Thiebault
-** Last update Sat Nov 21 16:37:29 2015 Antoine Lempereur
+** Last update Sat Nov 21 19:51:20 2015 Antoine Lempereur
 */
 
 # include	"tools/Vector.h"
@@ -18,13 +18,20 @@
 
 namespace		Engine
 {
-
   Sphere::Sphere()
   {
     this->position.setValues(0, 0, 0);
     this->rotation.setValues(0, 0, 0);
     this->color.setRGB(255, 255, 255);
     this->ray = 10;
+  }
+
+  Sphere::Sphere(Tools::Vector position, Tools::Vector rotation, Tools::Color color, double ray)
+  {
+    this->position = position;
+    this->rotation = rotation;
+    this->color = color;
+    this->ray = ray;
   }
 
   Sphere::~Sphere()
@@ -37,25 +44,17 @@ namespace		Engine
     double	equ[3];
     double	delta;
 
-    equ[0] = ray->getSquared().getX() + ray->getSquared().getY() +
-      ray->getSquared().getZ();
+    //je croyais qu'on pouvait opti ça mais en fait non, à cause de la pos simple
+    equ[0] = ray->getDirection().getX() * ray->getDirection().getX() +
+      ray->getDirection().getY() * ray->getDirection().getY() +
+      ray->getDirection().getZ() * ray->getDirection().getZ();
     equ[1] = 2 * (ray->getOrigin().getX() * ray->getDirection().getX() +
 		  ray->getOrigin().getY() * ray->getDirection().getY() +
 		  ray->getOrigin().getZ() * ray->getDirection().getZ());
     equ[2] = ray->getOrigin().getX() * ray->getOrigin().getX() +
-      ray->getOrigin().getY() *ray->getOrigin().getY() +
+      ray->getOrigin().getY() * ray->getOrigin().getY() +
       ray->getOrigin().getZ() * ray->getOrigin().getZ() -
       this->getRay() * this->getRay(); // hey cette ligne est toujours la même pour tous les rayons ayant la même origine, go trouver un moyen de précalculer !
-    /*
-      Dans l'idée faire un truc genre
-      if (ray->countRef == 0 && ray->countTransp == 0)
-      equ[2] = this->precalculated;
-      else
-      equ[2] = truc normal
-    */
-    /*    printf("%f %f %f\n", ray->getDirection().getX(), ray->getDirection().getY(), ray->getDirection().getZ());
-    printf("%f %f %f\n", ray->getSquared().getX(), ray->getSquared().getY(), ray->getSquared().getZ());
-    exit(1);*/
     if ((delta = equ[1] * equ[1] - 4 * equ[0] * equ[2]) >= 0)
       {
 	double root = sqrt(delta); // Grosse grosse optimisation !

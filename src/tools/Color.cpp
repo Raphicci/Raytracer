@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sun Nov  8 10:31:42 2015 Antoine Lempereur
-** Last update Sat Nov 21 16:09:45 2015 Antoine Lempereur
+** Last update Sat Nov 21 20:03:24 2015 Antoine Lempereur
 */
 
 #include	"tools/Color.h"
@@ -53,7 +53,7 @@ namespace	Tools
 
   int	Color::getG()
   {
-    return (this->b);
+    return (this->g);
   }
 
   int	Color::getB()
