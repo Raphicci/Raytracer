@@ -54,21 +54,23 @@ namespace		Engine
 
   }
 
+  // Return dist from ray. Position simple must be set
+  // je propose de changer le prototype et de prendre en param orig et dir en pos simple, pour que ça marche aussi pour la shadow (à moins que ça marche déjà ? a voir)
   float		Sphere::collide(Ray *ray)
   {
     double	equ[3];
     double	delta;
 
     //je croyais qu'on pouvait opti ça mais en fait non, à cause de la pos simple
-    equ[0] = ray->getDirection().getX() * ray->getDirection().getX() +
-      ray->getDirection().getY() * ray->getDirection().getY() +
-      ray->getDirection().getZ() * ray->getDirection().getZ();
-    equ[1] = 2 * (ray->getOrigin().getX() * ray->getDirection().getX() +
-		  ray->getOrigin().getY() * ray->getDirection().getY() +
-		  ray->getOrigin().getZ() * ray->getDirection().getZ());
-    equ[2] = ray->getOrigin().getX() * ray->getOrigin().getX() +
-      ray->getOrigin().getY() * ray->getOrigin().getY() +
-      ray->getOrigin().getZ() * ray->getOrigin().getZ() -
+    equ[0] = ray->getDirectionSimple().getX() * ray->getDirectionSimple().getX() +
+      ray->getDirectionSimple().getY() * ray->getDirectionSimple().getY() +
+      ray->getDirectionSimple().getZ() * ray->getDirectionSimple().getZ();
+    equ[1] = 2 * (ray->getOriginSimple().getX() * ray->getDirectionSimple().getX() +
+		  ray->getOriginSimple().getY() * ray->getDirectionSimple().getY() +
+		  ray->getOriginSimple().getZ() * ray->getDirectionSimple().getZ());
+    equ[2] = ray->getOriginSimple().getX() * ray->getOriginSimple().getX() +
+      ray->getOriginSimple().getY() * ray->getOriginSimple().getY() +
+      ray->getOriginSimple().getZ() * ray->getOriginSimple().getZ() -
       this->getRay() * this->getRay(); // hey cette ligne est toujours la même pour tous les rayons ayant la même origine, go trouver un moyen de précalculer !
     if ((delta = equ[1] * equ[1] - 4 * equ[0] * equ[2]) >= 0)
       {
@@ -92,13 +94,13 @@ namespace		Engine
 
   }
 
-  Tools::Vector getNormal(Ray *ray)
+  Tools::Vector getNormal(Tools::Vector intersection)
   {
     Tools::Vector	v;
 
-    v.setX(ray->getIntersection().getX()); // bien faire gaffe à ce que l'intersection soit bien celle en position simple à ce moment
-    v.setY(ray->getIntersection().getY());
-    v.setZ(ray->getIntersection().getZ());
+    v.setX(intersection.getX()); // bien faire gaffe à ce que l'intersection soit bien celle en position simple à ce moment
+    v.setY(intersection.getY());
+    v.setZ(intersection.getZ());
     return (v);
 
     /*if (!(d->inter.is_sec))

@@ -13,6 +13,7 @@
 
 namespace	Engine
 {
+	//Ray constructor, knowing origin and direction (useful for reflection and transparency)
   Ray::Ray(Tools::Vector origin, Tools::Vector direction)
   {
     this->origin = origin;
@@ -22,21 +23,23 @@ namespace	Engine
     this->inversed.inverse();
   }
 
-  void	Ray::setIntersection()
+  Tools::Vector	Ray::calcIntersection(Tools::Vector origin, Tools::Vector direction, float dist)
   {
-    this->intersection.setX(this->origin.getX() +
-			    this->dist * this->direction.getX());
-    this->intersection.setY(this->origin.getY() +
-			    this->dist * this->direction.getY());
-    this->intersection.setZ(this->origin.getZ() +
-			    this->dist * this->direction.getZ());
+	  Tools::Vector	intersection;
+
+    intersection.setX(origin.getX() + dist * direction.getX());
+    intersection.setY(origin.getY() + dist * direction.getY());
+    intersection.setZ(origin.getZ() + dist * direction.getZ());
+	return (intersection);
   }
 
+  //Normalize ray direction
   void	Ray::normalize()
   {
     this->direction.normalize();
   }
 
+  //Ray constructor for a specific pixel
   Ray::Ray(double i, double j, Scene *scene)
   {
     double	x;
@@ -54,46 +57,68 @@ namespace	Engine
     this->inversed.inverse();
   }
 
-  void		Ray::swapToPosSimple(Tools::Vector pos, Tools::Vector rot)
+  // Set pos simple to calculate intersection with object
+  void		Ray::setPosSimple(Tools::Vector pos, Tools::Vector rot)
   {
-    this->origin = this->origin - pos;
-    this->origin.rotate(rot);
-    this->direction.rotate(rot);
+    this->originSimple = this->origin - pos;
+    this->originSimple.rotate(rot);
+    this->directionSimple.rotate(rot);
   }
 
+  // Values to save if closer objects is found
+  void		Ray::setSaves(float dist, Engine::Object *object, Tools::Vector &origin, Tools::Vector &direction) 
+  {
+	  	this->dist = dist;
+	    this->object = object;
+		origin = this->originSimple;
+		direction = this->directionSimple;
+  }
+
+  // Set dist, object, originSimple and directionSimple for the closest object in a vector of objects
+  // To reduce computing time, try to reduce size of vector
   void				Ray::findClosestObject(std::vector<Engine::Object*> objects)
   {
     unsigned int		i = 0;
     float			dist;
-    Tools::Vector		save_origin(this->origin);
-    Tools::Vector		save_direction(this->direction);
+    Tools::Vector		saveOriginSimple(this->origin);
+    Tools::Vector		saveDirectionSimple(this->direction);
 
     if (objects.size() == 0)
       return;
+	// for each object
     while (i < objects.size())
       {
-	// cette maniere de gérer la position simple est pas ouf, go repenser le truc
-	this->origin = save_origin;
-	this->direction = save_direction;
-	if ((dist = objects[i]->getBox().collide(this)) >= 0) // on perd du temps à faire ça sur les spheres, c'est juste pour voir ce qui marche atm
+		// test intersection with bounding box
+	if ((dist = objects[i]->getBox().collide(this)) >= 0)
 	  {
-	    this->swapToPosSimple(objects[i]->getPosition(), objects[i]->getRotation());
+	    this->setPosSimple(objects[i]->getPosition(), objects[i]->getRotation());
+		// test intersection with object
 	    dist = objects[i]->collide(this);
 	  }
 	if (i == 0)
 	  {
-	    this->dist = dist;
+		// not tested yet
+		this->setSaves(dist, objects[i], saveOriginSimple, saveDirectionSimple);
+	    /*this->dist = dist;
 	    this->object = objects[i];
+		saveOriginSimple = this->originSimple;
+		saveDirectionSimple = this->directionSimple;*/
 	  }
 	else if (dist > 0 && (dist < this->dist || this->dist < 0))
 	  {
-	    this->dist = dist;
+		this->setSaves(dist, objects[i], saveOriginSimple, saveDirectionSimple);
+	    /*this->dist = dist;
 	    this->object = objects[i];
+		saveOriginSimple = this->originSimple;
+		saveDirectionSimple = this->directionSimple;*/
 	  }
 	i++;
       }
+	this->originSimple = saveOriginSimple;
+	this->directionSimple = saveDirectionSimple;
   }
 
+  //Calculate intersection and apply effects to set the final color
   void			Ray::compute(Engine::Scene *scene)
   {
     if (scene->getBox().collide(this) > 0)
@@ -112,12 +137,14 @@ namespace	Engine
       this->color.setRGB(0, 0, 0); // IMAGE DE FOND ?!
   }
 
+  // Return reflection direction, normalized
+  // Vectors direction and normal must be set
   Tools::Vector		Ray::calcReflectedMainRay()
   {
     double		scal;
     Tools::Vector	reflected;
 
-    scal = this->normal.scalar(this->direction); // direction doit etre en position normale
+    scal = this->normal.scalar(this->direction);
     reflected.setX(this->direction.getX() - 2 * this->normal.getX() * scal);
     reflected.setY(this->direction.getY() - 2 * this->normal.getY() * scal);
     reflected.setZ(this->direction.getZ() - 2 * this->normal.getZ() * scal);
@@ -125,6 +152,8 @@ namespace	Engine
     return (reflected);
   }
 
+  // Return refracted direction, normalized
+  // Vectors direction and normal must be set
   Tools::Vector		Ray::calcRefractedMainRay()
   {
     double		scal;
@@ -141,6 +170,7 @@ namespace	Engine
     return (refracted);
   }
 
+  // NOT TESTED YET
   Tools::Color	Ray::getReflectedColor(Scene *scene)
   {
     Tools::Vector		reflected = this->calcReflectedMainRay();
@@ -151,6 +181,7 @@ namespace	Engine
     return (ray.getColor());
   }
 
+  // NOT TESTED YET
   Tools::Color	Ray::getRefractedColor(Scene *scene)
   {
     Tools::Vector		refracted = this->calcRefractedMainRay();
@@ -171,7 +202,11 @@ namespace	Engine
     return (this->inversed);
   }
 
+<<<<<<< HEAD
   Tools::Vector		Ray::getIntersection()
+=======
+  /*Tools::Vector	Ray::getIntersection()
+>>>>>>> 6f304620d7c266bd89ae9121eed8bacaef6dd6c3
   {
     return (this->intersection);
   }
@@ -179,7 +214,7 @@ namespace	Engine
   Tools::Vector		Ray::getNormal()
   {
     return (this->normal);
-  }
+  }*/
 
   Tools::Vector		Ray::getOrigin()
   {
@@ -189,6 +224,16 @@ namespace	Engine
   Tools::Vector		Ray::getDirection()
   {
     return (this->direction);
+  }
+
+  Tools::Vector	Ray::getOriginSimple()
+  {
+    return (this->originSimple);
+  }
+
+  Tools::Vector	Ray::getDirectionSimple()
+  {
+    return (this->directionSimple);
   }
 
   Engine::Object*	Ray::getObject()
@@ -206,10 +251,21 @@ namespace	Engine
     return (this->dist);
   }
 
+<<<<<<< HEAD
   /*  void			Ray::setColor(Scene const& scene)
       {
       int			i = 0;
       Tools::Color	color;
+=======
+  // NOT TESTED YET
+  void			Ray::setColor(Scene const& scene)
+  {
+    int			i = 0;
+    Tools::Color	color;
+	Tools::Vector	interSimple(this->calcIntersection(this->originSimple, this->directionSimple, this->dist));
+	Tools::Vector	interReel(this->calcIntersection(this->origin, this->direction, this->dist));
+	Tools::Vector	normal(this->object.getNormal(interSimple));
+>>>>>>> 6f304620d7c266bd89ae9121eed8bacaef6dd6c3
 
       //shadowhandler : à calculer dans BigLightFunction, sert à opti le calcul des ombres, càd calculer le main rayon et les objets possiblement rencontré
 
@@ -218,12 +274,21 @@ namespace	Engine
       this->object->getTransparency());
       while (i < scene.getLights().Length)
       {
+<<<<<<< HEAD
       color += scene.getLights()[i].BigLightFunction(scene, this, shadowHandler);
       i++;
       }
       this->color = color;
       this->color.PreventOverflow();
       }*/
+=======
+	color += scene.getLights()[i].BigLightFunction(scene, this, interReel, normal);
+	i++;
+      }
+    this->color = color;
+    this->color.PreventOverflow();
+  }
+>>>>>>> 6f304620d7c266bd89ae9121eed8bacaef6dd6c3
 
   Ray::~Ray()
   {

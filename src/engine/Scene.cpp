@@ -89,6 +89,7 @@ namespace	Engine
     return (this->box);
   }
 
+  // Set bounding box around the whole scene
   void		Scene::setBox()
   {
     unsigned int	i = 0;

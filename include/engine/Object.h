@@ -31,7 +31,7 @@ namespace		Engine
     Tools::Vector	getRotation();
     Tools::Color	getColor();
     Box			getBox();
-    //virtual Tools::Vector getNormal(Engine::Ray const *) = 0;
+    virtual Tools::Vector getNormal(Tools::Vector) = 0;
     //virtual Tools::Vector getShadow(Engine::Ray const *) = 0;
 
   protected:

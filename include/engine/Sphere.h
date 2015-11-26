@@ -26,7 +26,7 @@ namespace	Engine
     Sphere(Tools::Vector, Tools::Vector, Tools::Color, double);
     ~Sphere();
     float		collide(Ray *);
-    Tools::Vector	getNormal(Ray *);
+    Tools::Vector	getNormal(Tools::Vector);
     Sphere		*setRay(double);
     double		getRay();
     void		setBox();
