@@ -54,6 +54,8 @@ namespace		Engine
 
   }
 
+  // Return dist from ray. Position simple must be set
+  // je propose de changer le prototype et de prendre en param orig et dir en pos simple, pour que ça marche aussi pour la shadow (à moins que ça marche déjà ? a voir)
   float		Sphere::collide(Ray *ray)
   {
     double	equ[3];
@@ -92,13 +94,13 @@ namespace		Engine
 
   }
 
-  Tools::Vector getNormal(Ray *ray)
+  Tools::Vector getNormal(Tools::Vector intersection)
   {
     Tools::Vector	v;
 
-    v.setX(ray->getIntersection().getX()); // bien faire gaffe à ce que l'intersection soit bien celle en position simple à ce moment
-    v.setY(ray->getIntersection().getY());
-    v.setZ(ray->getIntersection().getZ());
+    v.setX(intersection.getX()); // bien faire gaffe à ce que l'intersection soit bien celle en position simple à ce moment
+    v.setY(intersection.getY());
+    v.setZ(intersection.getZ());
     return (v);
 
     /*if (!(d->inter.is_sec))

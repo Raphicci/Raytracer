@@ -50,7 +50,8 @@ namespace		Engine
 	this->boxes[0].highCorner = etc...
 	}*/
 
-
+  // Return dist from ray;
+  // ray.inversed, ray.origin and both corners must be set
   double	Box::collide(Engine::Ray *ray)
   {
     Tools::Vector	v = ray->getInversed();
@@ -78,6 +79,8 @@ namespace		Engine
       // HEY J'AI TROUVE UNE OPTI DE CE CODE :) je la code sans encapsulation parce que ça me pete les couilles
 
       // à tester, vérifier, toussa toussa mais ça me parrait bien.
+
+	// en fait ça marche pas ><
     /*double	min[3];
       double	max[3];
 

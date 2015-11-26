@@ -30,7 +30,7 @@ namespace	Engine
     Ray(double i, double j, Engine::Scene *);
     ~Ray();
 
-    void					setIntersection();
+//    void					setIntersection();
     void					normalize();
     void					compute(Engine::Scene *);
     void					setNormal();
