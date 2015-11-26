@@ -41,29 +41,34 @@ namespace	Engine
     Tools::Color				getReflectedColor(Engine::Scene *);
     Tools::Color				getRefractedColor(Engine::Scene *);
     void					setColor(Engine::Scene const&);
-    void					swapToPosSimple(Tools::Vector, Tools::Vector);
 
     Tools::Color				getColor();
-    Tools::Vector				getIntersection();
-    Tools::Vector				getNormal();
+    /*Tools::Vector				getIntersection();
+    Tools::Vector				getNormal();*/
     Tools::Vector				getInversed();
     Tools::Vector				getOrigin();
+	Tools::Vector				getOriginSimple();
     Tools::Vector				getDirection();
+	Tools::Vector				getDirectionSimple();
     Engine::Object*				getObject();
     bool					getIsLim();
     double					getDist();
 
   private:
+	void					setPosSimple(Tools::Vector, Tools::Vector);
+	void					setSaves();
+	Tools::Vector			calcIntersection(Tools::Vector, Tools::Vector, float)
+
     Engine::Object				*object;
     double					dist;
     bool					isLim;
     Tools::Vector				origin;
-    Tools::Vector				originPosSimple;
+    Tools::Vector				originSimple;
     Tools::Vector				direction;
-    Tools::Vector				directionPosSimple;
+    Tools::Vector				directionSimple;
     Tools::Vector				inversed;
-    Tools::Vector				intersection;
-    Tools::Vector				normal; // probablement pas besoin de la stocker en fait, sauf si ça sert post-calculs // pareil pour l'intersection en fait, on en a besoin souvent mais pas forcément besoin de le stocker
+    /*Tools::Vector				intersection;
+    Tools::Vector				normal;*/ // probablement pas besoin de la stocker en fait, sauf si ça sert post-calculs // pareil pour l'intersection en fait, on en a besoin souvent mais pas forcément besoin de le stocker
     Tools::Color				color;
     std::vector<Engine::Box>			boxes;
     int						countRef;

@@ -22,14 +22,14 @@ namespace	Engine
     this->inversed.inverse();
   }
 
-  void	Ray::setIntersection()
+  Tools::Vector	Ray::calcIntersection(Tools::Vector origin, Tools::Vector direction, float dist)
   {
-    this->intersection.setX(this->origin.getX() +
-			    this->dist * this->direction.getX());
-    this->intersection.setY(this->origin.getY() +
-			    this->dist * this->direction.getY());
-    this->intersection.setZ(this->origin.getZ() +
-			    this->dist * this->direction.getZ());
+	  Tools::Vector	intersection;
+
+    intersection.setX(origin.getX() + dist * direction.getX());
+    intersection.setY(origin.getY() + dist * direction.getY());
+    intersection.setZ(origin.getZ() + dist * direction.getZ());
+	return (intersection);
   }
 
   void	Ray::normalize()
@@ -54,44 +54,57 @@ namespace	Engine
     this->inversed.inverse();
   }
 
-  void		Ray::swapToPosSimple(Tools::Vector pos, Tools::Vector rot)
+  void		Ray::setPosSimple(Tools::Vector pos, Tools::Vector rot)
   {
-    this->origin = this->origin - pos;
-    this->origin.rotate(rot);
-    this->direction.rotate(rot);
+    this->originSimple = this->origin - pos;
+    this->originSimple.rotate(rot);
+    this->directionSimple.rotate(rot);
+  }
+
+  void		Ray::setSaves(float dist, Engine::Object *object, Tools::Vector &origin, Tools::Vector &direction) 
+  {
+	  	this->dist = dist;
+	    this->object = object;
+		origin = this->originSimple;
+		direction = this->directionSimple;
   }
 
   void				Ray::findClosestObject(std::vector<Engine::Object*> objects)
   {
     unsigned int		i = 0;
     float			dist;
-    Tools::Vector		save_origin(this->origin);
-    Tools::Vector		save_direction(this->direction);
+    Tools::Vector		saveOriginSimple(this->origin);
+    Tools::Vector		saveDirectionSimple(this->direction);
 
     if (objects.size() == 0)
       return;
     while (i < objects.size())
       {
-	// cette maniere de gérer la position simple est pas ouf, go repenser le truc
-	this->origin = save_origin;
-	this->direction = save_direction;
 	if ((dist = objects[i]->getBox().collide(this)) >= 0) // on perd du temps à faire ça sur les spheres, c'est juste pour voir ce qui marche atm
 	  {
-	    this->swapToPosSimple(objects[i]->getPosition(), objects[i]->getRotation());
+	    this->setPosSimple(objects[i]->getPosition(), objects[i]->getRotation());
 	    dist = objects[i]->collide(this);
 	  }
 	if (i == 0)
 	  {
-	    this->dist = dist;
+		this->setSaves(dist, objects[i], saveOriginSimple, saveDirectionSimple);
+	    /*this->dist = dist;
 	    this->object = objects[i];
+		saveOriginSimple = this->originSimple;
+		saveDirectionSimple = this->directionSimple;*/
 	  }
 	else if (dist > 0 && (dist < this->dist || this->dist < 0))
 	  {
-	    this->dist = dist;
+		this->setSaves(dist, objects[i], saveOriginSimple, saveDirectionSimple);
+	    /*this->dist = dist;
 	    this->object = objects[i];
+		saveOriginSimple = this->originSimple;
+		saveDirectionSimple = this->directionSimple;*/
 	  }
 	i++;
       }
+	this->originSimple = saveOriginSimple;
+	this->directionSimple = saveDirectionSimple;
   }
 
   void			Ray::compute(Engine::Scene *scene)
@@ -117,7 +130,7 @@ namespace	Engine
     double		scal;
     Tools::Vector	reflected;
 
-    scal = this->normal.scalar(this->direction); // direction doit etre en position normale
+    scal = this->normal.scalar(this->direction);
     reflected.setX(this->direction.getX() - 2 * this->normal.getX() * scal);
     reflected.setY(this->direction.getY() - 2 * this->normal.getY() * scal);
     reflected.setZ(this->direction.getZ() - 2 * this->normal.getZ() * scal);
@@ -171,7 +184,7 @@ namespace	Engine
     return (this->inversed);
   }
 
-  Tools::Vector	Ray::getIntersection()
+  /*Tools::Vector	Ray::getIntersection()
   {
     return (this->intersection);
   }
@@ -179,7 +192,7 @@ namespace	Engine
   Tools::Vector	Ray::getNormal()
   {
     return (this->normal);
-  }
+  }*/
 
   Tools::Vector	Ray::getOrigin()
   {
@@ -189,6 +202,16 @@ namespace	Engine
   Tools::Vector	Ray::getDirection()
   {
     return (this->direction);
+  }
+
+  Tools::Vector	Ray::getOriginSimple()
+  {
+    return (this->originSimple);
+  }
+
+  Tools::Vector	Ray::getDirectionSimple()
+  {
+    return (this->directionSimple);
   }
 
   Engine::Object*	Ray::getObject()
@@ -206,10 +229,13 @@ namespace	Engine
     return (this->dist);
   }
 
-  /*void			Ray::setColor(Scene const& scene)
+  void			Ray::setColor(Scene const& scene)
   {
     int			i = 0;
     Tools::Color	color;
+	Tools::Vector	interSimple(this->calcIntersection(this->originSimple, this->directionSimple, this->dist));
+	Tools::Vector	interReel(this->calcIntersection(this->origin, this->direction, this->dist));
+	Tools::Vector	normal(this->object.getNormal(interSimple));
 
     //shadowhandler : à calculer dans BigLightFunction, sert à opti le calcul des ombres, càd calculer le main rayon et les objets possiblement rencontré
     
@@ -218,12 +244,12 @@ namespace	Engine
 		    this->object->getTransparency());
     while (i < scene.getLights().Length)
       {
-	color += scene.getLights()[i].BigLightFunction(scene, this, shadowHandler);
+	color += scene.getLights()[i].BigLightFunction(scene, this, interReel, normal);
 	i++;
       }
     this->color = color;
     this->color.PreventOverflow();
-  }*/
+  }
 
   Ray::~Ray()
   {
