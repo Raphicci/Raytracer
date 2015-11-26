@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 ** 
 ** Started on  Sun Nov 15 10:11:38 2015 Antoine Lempereur
-** Last update Sun Nov 22 15:16:36 2015 Antoine Lempereur
+** Last update Thu Nov 26 16:56:40 2015 Antoine Lempereur
 */
 
 #include	<math.h>
@@ -118,17 +118,14 @@ namespace		Engine
 
     // HEY J'AI TROUVE UNE OPTI DE CE CODE :) je la code sans encapsulation parce que ça me pete les couilles
 
-<<<<<<< HEAD
     // à tester, vérifier, toussa toussa mais ça me parrait bien.
     /*    double	min[3];
 	  double	max[3];
-=======
-      // à tester, vérifier, toussa toussa mais ça me parrait bien.
+	  // à tester, vérifier, toussa toussa mais ça me parrait bien.
 
-	// en fait ça marche pas ><
-    /*double	min[3];
-      double	max[3];
->>>>>>> 6f304620d7c266bd89ae9121eed8bacaef6dd6c3
+	  // en fait ça marche pas ><
+	  double	min[3];
+	  double	max[3];
 
 	  if (r->getInversed().getX() >= 0)
 	  {

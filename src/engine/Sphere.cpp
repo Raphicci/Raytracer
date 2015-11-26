@@ -5,7 +5,7 @@
 ** Login   <thieba_r@epitech.net>
 **
 ** Started on  Wed Nov 11 16:02:34 2015 Raphael Thiebault
-** Last update Sat Nov 21 20:57:35 2015 Antoine Lempereur
+** Last update Thu Nov 26 16:58:15 2015 Antoine Lempereur
 */
 
 # include	"tools/Vector.h"
@@ -94,7 +94,7 @@ namespace		Engine
 
   }
 
-  Tools::Vector getNormal(Tools::Vector intersection)
+  Tools::Vector Sphere::getNormal(Tools::Vector intersection)
   {
     Tools::Vector	v;
 
