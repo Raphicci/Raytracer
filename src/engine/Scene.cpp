@@ -1,11 +1,11 @@
 /*
 ** Scene.cpp for Raytracer in /home/vasseu_g/github/Raytracer
-** 
+**
 ** Made by Adrien Vasseur
 ** Login   <vasseu_g@epitech.net>
-** 
+**
 ** Started on  Thu Nov 12 20:38:27 2015 Adrien Vasseur
-** Last update Sat Nov 21 22:09:58 2015 Antoine Lempereur
+** Last update Sun Nov 22 12:11:06 2015 Antoine Lempereur
 */
 
 #include	"engine/Scene.h"
@@ -42,7 +42,7 @@ namespace	Engine
     sphere4 = new Engine::Sphere(Tools::Vector(0, 0, 50), Tools::Vector(0, 0, 0), Tools::Color(0, 0, 255), 10);
     this->height = 1080;
     this->width = 1920;
-    this->origin.setValues(-700, 150, 100);
+    this->origin.setValues(-300, 0, 0);
     this->rotation.setValues(0, 0, 0);
     this->objects.push_back(sphere1);
     this->objects.push_back(sphere2);
@@ -55,17 +55,18 @@ namespace	Engine
       return (false);
     m_window = new Displayer::Window;
     this->setBox();
+    //this->getBox().setBoxesInside();
     return (true);
   }
 
   Tools::Vector	Scene::getOrigin()
   {
-	  return (this->origin);
+    return (this->origin);
   }
 
   Tools::Vector	Scene::getRotation()
   {
-	  return (this->rotation);
+    return (this->rotation);
   }
 
   unsigned int	Scene::getWidth()
@@ -80,7 +81,7 @@ namespace	Engine
 
   std::vector<Engine::Object *>	Scene::getObjects()
   {
-	  return (this->objects);
+    return (this->objects);
   }
 
   Box		Scene::getBox()

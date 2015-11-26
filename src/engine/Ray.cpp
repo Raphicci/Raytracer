@@ -1,11 +1,11 @@
 /*
 ** Ray.cpp for raytracer in /home/lemper_a/rendu/raytracer/Raytracer/src
-** 
+**
 ** Made by Antoine Lempereur
 ** Login   <lemper_a@epitech.net>
-** 
+**
 ** Started on  Mon Nov  9 21:36:06 2015 Antoine Lempereur
-** Last update Sat Nov 21 22:15:04 2015 Antoine Lempereur
+** Last update Sun Nov 22 15:32:36 2015 Antoine Lempereur
 */
 
 #include	"engine/Ray.h"
@@ -101,7 +101,7 @@ namespace	Engine
 	this->findClosestObject(scene->getObjects());
 	if (this->dist >= 0)
 	  {
-	    //this->setIntersection();
+	    //this->setIntersection(); attention psition simple / reelle
 	    //this->setColor(scene, this->object.getNormal(this));
 	    this->color = this->object->getColor();
 	  }
@@ -161,32 +161,32 @@ namespace	Engine
     return (ray.getColor());
   }
 
-  Tools::Color	Ray::getColor()
+  Tools::Color		Ray::getColor()
   {
     return (this->color);
   }
 
-  Tools::Vector	Ray::getInversed()
+  Tools::Vector		Ray::getInversed()
   {
     return (this->inversed);
   }
 
-  Tools::Vector	Ray::getIntersection()
+  Tools::Vector		Ray::getIntersection()
   {
     return (this->intersection);
   }
 
-  Tools::Vector	Ray::getNormal()
+  Tools::Vector		Ray::getNormal()
   {
     return (this->normal);
   }
 
-  Tools::Vector	Ray::getOrigin()
+  Tools::Vector		Ray::getOrigin()
   {
     return (this->origin);
   }
 
-  Tools::Vector	Ray::getDirection()
+  Tools::Vector		Ray::getDirection()
   {
     return (this->direction);
   }
@@ -196,34 +196,34 @@ namespace	Engine
     return (this->object);
   }
 
-  bool				Ray::getIsLim()
+  bool			Ray::getIsLim()
   {
     return (this->isLim);
   }
 
-  double			Ray::getDist()
+  double		Ray::getDist()
   {
     return (this->dist);
   }
 
-  /*void			Ray::setColor(Scene const& scene)
-  {
-    int			i = 0;
-    Tools::Color	color;
-
-    //shadowhandler : à calculer dans BigLightFunction, sert à opti le calcul des ombres, càd calculer le main rayon et les objets possiblement rencontré
-    
-    this->color.Mix(this->getReflectedColor(scene), this->object->getReflexion());
-    this->color.Mix(this->getRefractedColor(scene),
-		    this->object->getTransparency());
-    while (i < scene.getLights().Length)
+  /*  void			Ray::setColor(Scene const& scene)
       {
-	color += scene.getLights()[i].BigLightFunction(scene, this, shadowHandler);
-	i++;
+      int			i = 0;
+      Tools::Color	color;
+
+      //shadowhandler : à calculer dans BigLightFunction, sert à opti le calcul des ombres, càd calculer le main rayon et les objets possiblement rencontré
+
+      this->color.Mix(this->getReflectedColor(scene), this->object->getReflexion());
+      this->color.Mix(this->getRefractedColor(scene),
+      this->object->getTransparency());
+      while (i < scene.getLights().Length)
+      {
+      color += scene.getLights()[i].BigLightFunction(scene, this, shadowHandler);
+      i++;
       }
-    this->color = color;
-    this->color.PreventOverflow();
-  }*/
+      this->color = color;
+      this->color.PreventOverflow();
+      }*/
 
   Ray::~Ray()
   {

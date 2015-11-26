@@ -5,7 +5,7 @@
 ** Login   <lemper_a@epitech.net>
 **
 ** Started on  Sun Nov 15 09:53:57 2015 Antoine Lempereur
-** Last update Sat Nov 21 21:02:46 2015 Antoine Lempereur
+** Last update Sun Nov 22 12:09:35 2015 Antoine Lempereur
 */
 
 #ifndef		BOX_H_
@@ -28,6 +28,7 @@ namespace	Engine
 	  bool		contain(Tools::Vector const&);
 	  double	collide(Engine::Ray *);
 	  void		setBoxesInside();
+	  void		setSmallBox(Tools::Vector, int, double, double, double);
 	  double	calcWidth();
 	  double	calcHeight(); // le mettre en attr plutot ?
 	  double	calcDepth();
@@ -38,10 +39,10 @@ namespace	Engine
 	  ~Box();
 
   private:
-	  Tools::Vector	lowCorner;
-	  Tools::Vector	highCorner;
+	  Tools::Vector			lowCorner;
+	  Tools::Vector			highCorner;
 	  std::vector<Engine::Object *> objects;
-	  Box		*boxes;
+	  Box				*boxes;
   };
 }
 

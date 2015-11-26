@@ -84,46 +84,8 @@ Vector	getRandomVecFromDir(Vector *dir, float angle)
 
 
 
-//L'idée c'est de couper la scène en boites, de précalculer si un obj est dans la boite (#moins de calculs)
-Box	createBigBox(liste d'objets)
-{
-	Parcourir listeObjet;
-	récupérer plus petit x / y / z, plus grand x / y / z    // prendre en compte la taille de l'obj
 
-	box.corner1 = petit x / y / z // coin en bas à gauche
-	box.corner2 = grand x / y / z // coin au fond en haut à droite
-	return (box);
-}
-ListBox	createBoxesInsideBox(Box bigBox) // AKA BoxCeption
-{
-	listBox liste[4];
-	lenght = abs (bigBox.corner1.x - bigBox.corner2.x);
-	width = abs (bigBox.corner1.y - bigBox.corner2.y);
-
-	liste[0].corner1.x = ;
-	liste[0].corner1.y = ;
-	liste[0].corner1.z = ;
-	liste[0].corner2.x = ;
-	liste[0].corner2.y = ;
-	liste[0].corner2.z = ;
-}
-Bool	objInsideBox(Object obj, Box box)
-{
-	damn c'est compliqué ça.
-	imo le plus simple c'est de mettre des box pour tout, et après c'est easy
-	genre une sphere sa boite c'est centre -/+ rayon (en x y z) pour le coin en haut et en bas.
-	après il suffit de determiner si un des 4 coins est dans la box (xmin<=x<=xmax && ymin<=y<=ymax && zmin<=z<=zmax)
-	Vu qu'on a la boite, est-ce que tester l'intersection avec la boite avant celle avec la sphere vaut le coup ?
-}
-double	inter_box() //cf inter_box.c
-{
-	précalculer l'inverse du vecteur directeur, au cas ou il y ait (et il y aura) plusieurs boites.
-	calculer tmax, faire le test if tmax < 0, et tmin après
-
-	globablement, voir s'il n'y a pas plus efficient
-}
 // SI UNE BOITE NE CONTIENT PAS D'OBJET, LA SUPPRIMER DE LA LISTE
-
 
 
 
