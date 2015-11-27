@@ -61,7 +61,8 @@ namespace	Engine
   void		Ray::setPosSimple(Tools::Vector pos, Tools::Vector rot)
   {
     this->originSimple = this->origin - pos;
-    this->originSimple.rotate(rot);
+    this->originSimple.rotate(rot); // rotate inverse ?
+	this->directionSimple = this->direction;
     this->directionSimple.rotate(rot);
   }
 
